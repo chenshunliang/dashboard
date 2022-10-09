@@ -55,8 +55,8 @@
           :style="{ opacity: `${SelfOut ? 1 : 0}` }"
         >
           <strong>
-            更便捷的云原生管理平台
-            <div class="login__second__desc__en">Let cloudnative management more easily</div>
+            美立PaaS平台以应用为中心，以容器为底座，面向多种应用类型支撑的云原生操作系统，产品族由容器云、微服务应用管理、AI应用支持、容器安全管理、中间件管理组成，可助力企业提升应用交付效率，简化应用管理、提供应用稳定的运行环境，达到降本增效目标。
+            <!-- <div class="login__second__desc__en">Let cloudnative management more easily</div> -->
           </strong>
         </div>
       </div>
@@ -451,9 +451,9 @@
       }
 
       &__small {
-        top: 43%;
+        top: 42%;
         transform: none;
-        left: 60vw;
+        left: 47vw;
       }
     }
 
@@ -487,8 +487,8 @@
       transform: translate(-50%, -50%);
     }
     100% {
-      left: 160vw;
-      top: 43%;
+      left: 147vw;
+      top: 42%;
       transform: none;
     }
   }
@@ -544,11 +544,12 @@
       &__desc {
         width: 45%;
         line-height: 1.5;
-        font-size: 24px;
+        font-size: 16px;
         position: absolute;
-        left: 48%;
+        left: 46%;
         top: 50%;
         opacity: 0;
+        text-align: left;
 
         &__en {
           font-size: 19px;
