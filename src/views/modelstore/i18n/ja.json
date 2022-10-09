@@ -8,7 +8,7 @@
     "chartmuseum": "ChartMuseum は、オープン ソースのオープンソース プロジェクトで、Helm Chart リポジトリサーバです。",
     "pytorch": "検出されたモデルとリサーチのために設計された プリペイドモデルリポジトリに公開します。",
     "paddlepaddle": "は 産業を基盤とするオープンソース・ゼロ・学習プラットフォームです",
-    "kubegems": "Kubegemsビルトインアルゴリズムモデル",
+    "kubegems": "MeiLeaビルトインアルゴリズムモデル",
     "platform_recomment": "プラットフォームの提案",
     "user_comment": "ユーザースコア",
     "comment": "コメント",

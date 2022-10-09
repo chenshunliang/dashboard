@@ -16,7 +16,7 @@
 
 <template>
   <v-overlay :opacity="0.3" :value="Progress && !DialogActive && !PanelActive && !FullDialogActive">
-    <v-card class="progress__light" flat height="100px" width="130px">
+    <v-card class="progress__light" flat height="100px" width="105px">
       <v-card-text>
         <div class="text-center primary--text progress__loading" :style="{ fontFamily: 'kubegems-sample' }">
           <span
@@ -42,7 +42,7 @@
     data() {
       return {
         processName: this.$PLATFORM,
-        charWidth: [0, 13, 24, 36, 46, 60, 70, 86, 98, 110, 122, 134, 146],
+        charWidth: [0, 19, 31, 38, 50, 62, 70, 86, 98, 110, 122, 134, 146],
       };
     },
     computed: {

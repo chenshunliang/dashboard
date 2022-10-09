@@ -410,7 +410,7 @@
     "appstore_registry": "The chart repository is where chart packages are stored, used by app stores and deployments.",
 
     "modelstore": "",
-    "modelstore_registry": "AI Model Registry achieves model synchronization by configuring the model warehouse, and is integrated in Kubegems.",
+    "modelstore_registry": "AI Model Registry achieves model synchronization by configuring the model warehouse, and is integrated in MeiLea.",
 
     "auth_setting": "Based on the third-party authentication integration of oauth2.0/ldap, users can log in in various ways.",
     "prometheus_setting": "Configure Prometheus Recording rules to improve monitoring query efficiency.",
@@ -470,7 +470,7 @@
   },
 
   "metadata": {
-    "description": "Let cloudnative management more easily.",
+    "description": "The Meilea PaaS platform is application-centric, container-based, and is oriented to a cloud-native operating system supported by multiple application types. The product family consists of container cloud, microservice application management, AI application support, container security management, and middleware management. It can help enterprises improve application delivery efficiency, simplify application management, provide a stable application operating environment, and achieve the goal of reducing costs and increasing efficiency.",
     "environment_type": {
       "dev": "Development",
       "test": "Test",

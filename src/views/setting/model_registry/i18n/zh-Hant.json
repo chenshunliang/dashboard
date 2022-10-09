@@ -44,7 +44,7 @@
     "tensorflow": "一個核心開源庫，可以説明您開發和訓練機器學習模型。",
     "pytorch": "發現模型並將其發佈到專為研究探索而設計的預訓練模型存儲庫。",
     "paddlepaddle": "源於產業實踐的開源深度學習平臺。",
-    "kubegems": "Kubegems內置演算法模型商店。",
+    "kubegems": "MeiLea內置演算法模型商店。",
     "status": "同步狀態",
     "update_at": "更新時間",
     "address": "位址",

@@ -270,7 +270,7 @@ const MODEL_FRAMEWORK = [
 ];
 
 // 定制化字段
-const PLATFORM = 'KubeGems';
+const PLATFORM = 'MeiLea';
 const MANUAL = 'https://www.kubegems.io/docs/concepts/what-is-kubegems';
 const LOGO_BLUE = '/logo-blue.svg';
 const LOGO_WHITE = '/logo-white.svg';

@@ -392,7 +392,7 @@
     "appstore": "應用商店（HelmChart）是一個描述Kubernetes相關資源的檔集合，單個應用可以用來部署某些複雜的HTTP伺服器以及web全棧應用、資料庫、緩存等。",
     "appstore_registry": "chart倉庫是chart包存放的位置， 被應用商店和部署所使用。",
     "modelstore": "",
-    "modelstore_registry": "演算法商店倉庫（AI Model Registry）通過配置模型的倉庫來達到模型的同步，集成於Kubegems。",
+    "modelstore_registry": "演算法商店倉庫（AI Model Registry）通過配置模型的倉庫來達到模型的同步，集成於MeiLea。",
     "auth_setting": "基於 oauth2.0/ldap 的第三方認證整合， 使用者可進行多種方式登錄。",
     "prometheus_setting": "配置 Prometheus Recording rules 來提升監控查詢效率。",
     "monitor_template": "配置監控大盤模版來快速創建監控大盤。",
@@ -446,7 +446,7 @@
     "dash_app": "應用監控（Jaeger）"
   },
   "metadata": {
-    "description": "更便捷的雲原生管理平臺",
+    "description": "美立PaaS平台以應用為中心，以容器為底座，面向多種應用類型支撐的雲原生操作系統，產品族由容器雲、微服務應用管理、AI應用支持、容器安全管理、中間件管理組成，可助力企業提升應用交付效率，簡化應用管理、提供應用穩定的運行環境，達到降本增效目標。",
     "environment_type": {
       "dev": "開發",
       "test": "測試",

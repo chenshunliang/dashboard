@@ -446,7 +446,7 @@
     "dash_app": "ジャガーアプリケーション化"
   },
   "metadata": {
-    "description": "より簡単に、クラウドベースでお届けします",
+    "description": "The Meil​ea PaaS platform is application-centric, container-based, and isdirectional to a cloud-native operating system supported by multiple applications types. 製品ファミリは、コンテナ クラウド、マイクロサービス アプリケーション管理、AI アプリケーション サポート、コンテナ セキュリティ管理、およびミドルウェア管理. これは、企業がアプリケーション配信効率を改善し、アプリケーション管理を簡素化し、安定したアプリケーション動作環境を提供し、コストを削減して効率を高めるという目標を達成するのに役立ちます.",
     "environment_type": {
       "dev": "開発",
       "test": "テスト",

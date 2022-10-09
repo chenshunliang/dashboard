@@ -3,7 +3,7 @@
   "logout": "登出",
   "403": "无权限访问",
   "404": "页面不存在",
-  "loading": "数据获取中",
+  "loading": "加载中",
   "username": "用户名",
   "passwd": "密码",
   "query": "搜索",
@@ -410,7 +410,7 @@
     "appstore_registry": "chart仓库是chart包存放的位置, 被应用商店和部署所使用。",
 
     "modelstore": "",
-    "modelstore_registry": "算法商店仓库(AI Model Registry)通过配置模型的仓库来达到模型的同步,集成于Kubegems。",
+    "modelstore_registry": "算法商店仓库(AI Model Registry)通过配置模型的仓库来达到模型的同步,集成于MeiLea。",
 
     "auth_setting": "基于 oauth2.0/ldap 的第三方认证集成, 用户可进行多种方式登录。",
     "prometheus_setting": "配置 Prometheus Recording rules 来提升监控查询效率。",
@@ -469,7 +469,7 @@
     "dash_app": "应用监控(Jaeger)"
   },
   "metadata": {
-    "description": "更便捷的云原生管理平台",
+    "description": "美立PaaS平台以应用为中心，以容器为底座，面向多种应用类型支撑的云原生操作系统，产品族由容器云、微服务应用管理、AI应用支持、容器安全管理、中间件管理组成，可助力企业提升应用交付效率，简化应用管理、提供应用稳定的运行环境，达到降本增效目标。",
     "environment_type": {
       "dev": "开发",
       "test": "测试",
