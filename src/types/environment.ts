@@ -20,7 +20,11 @@ import { Project } from './project';
 import { ResourceRole, UserRole } from './role';
 import { User } from './user';
 
-export class Environment implements UserRole {
+interface Operator {
+  getEnvironmentWithMatrics(params: KubeRequest): Promise<any>;
+}
+
+export class Environment implements UserRole, Operator {
   constructor(environment?: { [key: string]: any }) {
     Object.assign(this, environment);
   }
@@ -90,5 +94,10 @@ export class Environment implements UserRole {
 
   public async deleteUser(user: User): Promise<void> {
     await axios.delete(`environment/${this.ID}/user/${user.ID}`);
+  }
+
+  public async getEnvironmentWithMatrics(params: KubeRequest): Promise<any> {
+    const data: { [key: string]: any } = await axios(`/environment/${this.ID}/observability`, { params: params });
+    return data as any;
   }
 }

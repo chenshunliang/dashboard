@@ -18,7 +18,7 @@
   <v-card class="pa-4" flat>
     <div class="d-flex justify-space-between align-center">
       <ProjectSelect v-model="project" :tenant="tenant" />
-      <Duration v-model="params.duration" />
+      <Duration v-model="pagination.request.duration" />
     </div>
 
     <v-data-table
@@ -26,17 +26,17 @@
       disable-sort
       :headers="headers"
       hide-default-footer
-      item-key="value"
-      :items="items"
-      :items-per-page="params.size"
-      :no-data-text="$root.$t('data.no_data')"
-      :no-results-text="$root.$t('data.no_data')"
-      :page.sync="params.page"
+      item-key="environmentID"
+      :items="pagination.items"
+      :items-per-page="pagination.size"
+      :no-data-text="i18n.t('data.no_data')"
+      :no-results-text="i18n.t('data.no_data')"
+      :page.sync="pagination.page"
     >
-      <template #[`item.labels`]="{ item, index }">
+      <template #item.labels="{ item, index }">
         <BaseCollapseChips :id="`o_label_${index}`" :chips="item.labels || {}" icon="mdi-label" single-line />
       </template>
-      <template #[`item.alertLiving`]="{ item }">
+      <template #item.alertLiving="{ item }">
         {{ (item.errorAlertCount || 0) + (item.criticalAlertCount || 0) }}
         <BaseTipChips
           v-if="item.criticalAlertCount || item.errorAlertCount"
@@ -48,31 +48,31 @@
         />
         <v-icon color="primary" small @click="toAlertDashboard"> mdi-open-in-new </v-icon>
       </template>
-      <template #[`item.alertRuleCount`]="{ item }">
+      <template #item.alertRuleCount="{ item }">
         {{ item.alertRuleCount }}
         <BaseTipChips :chips="item.alertResourceMap || {}" color="primary" icon="mdi-ruler" single-line small />
         <v-icon color="primary" small @click="toAlertRule(item)"> mdi-open-in-new </v-icon>
       </template>
-      <template #[`item.monitorCollectorCount`]="{ item }">
+      <template #item.monitorCollectorCount="{ item }">
         {{ item.monitorCollectorCount }}
         <v-icon color="primary" small @click="toMetrics(item)"> mdi-open-in-new </v-icon>
       </template>
-      <template #[`item.status`]="{ item }">
+      <template #item.status="{ item }">
         <StatusTag :item="item" :l="item.logging" :m="item.monitoring" :s="item.serviceMesh" />
       </template>
-      <template #[`item.errorLogCount`]="{ item }">
+      <template #item.errorLogCount="{ item }">
         {{ beautyLogCount(item.errorLogCount || 0) }}
         <v-icon color="primary" small @click="showErrorLogRate(item)"> mdi-chart-line </v-icon>
       </template>
-      <template #[`item.logRate`]="{ item }">
+      <template #item.logRate="{ item }">
         {{ beautyLogRate(item.logRate || 0) }}
         <v-icon color="primary" small @click="showLogRate(item)"> mdi-chart-line </v-icon>
       </template>
-      <template #[`item.eventCount`]="{ item }">
+      <template #item.eventCount="{ item }">
         {{ item.eventCount }}
         <v-icon color="primary" small @click="showEvents(item)"> mdi-chart-pie </v-icon>
       </template>
-      <template #[`item.loggingCollectorCount`]="{ item }">
+      <template #item.loggingCollectorCount="{ item }">
         {{ item.loggingCollectorCount }}
         <v-icon color="primary" small @click="toLogFlow(item)"> mdi-open-in-new </v-icon>
         <v-menu
@@ -94,14 +94,14 @@
           <v-card flat>
             <v-flex class="text-body-2 text-center primary white--text py-2">
               <v-icon color="white" left small> mdi-alert-circle </v-icon>
-              <span>{{ $t('tip.error_info') }}</span>
+              <span>{{ i18nLocal.t('tip.error_info') }}</span>
             </v-flex>
             <v-list class="pa-0 kubegems__tip" dense>
               <v-list-item>
                 <v-list-item-content>
                   <v-list-item class="float-left pa-0" two-line>
                     <v-list-item-content class="py-0">
-                      <v-list-item-title> {{ $t('tip.error_info') }} </v-list-item-title>
+                      <v-list-item-title> {{ i18nLocal.t('tip.error_info') }} </v-list-item-title>
                       <v-list-item-content class="text-caption kubegems__text kubegems__break-all">
                         {{ item.warning }}
                       </v-list-item-content>
@@ -116,199 +116,237 @@
     </v-data-table>
 
     <BasePagination
-      v-if="pageCount >= 1"
-      v-model="params.page"
+      v-if="pagination.pageCount >= 1"
+      v-model="pagination.page"
       :front-page="true"
-      :page-count="pageCount"
-      :size="params.size"
-      @changepage="onPageIndexChange"
-      @changesize="onPageSizeChange"
+      :page-count="pagination.pageCount"
+      :size="pagination.size"
+      @changepage="pageChange"
+      @changesize="sizeChange"
     />
 
-    <K8sEvents ref="k8sEvents" :env="env" @clear="env = null" />
-    <LogRateChart ref="logRateChart" :env="env" @clear="env = null" />
-    <ErrorLogRateChart ref="errorLogRateChart" :env="env" @clear="env = null" />
+    <K8sEvents ref="k8sEvents" :env="env" @clear="env = undefined" />
+    <LogRateChart ref="logRateChart" :env="env" @clear="env = undefined" />
+    <ErrorLogRateChart ref="errorLogRateChart" :env="env" @clear="env = undefined" />
   </v-card>
 </template>
 
-<script>
-  import messages from '../../i18n';
-  import Duration from './Duration';
-  import ErrorLogRateChart from './ErrorLogRateChart';
-  import K8sEvents from './K8sEvents';
-  import LogRateChart from './LogRateChart';
-  import ProjectSelect from './ProjectSelect';
-  import StatusTag from './StatusTag';
-  import { getEnvironmentObservability } from '@/api';
-  import BaseSelect from '@/mixins/select';
+<script lang="ts" setup>
+  import { reactive, ref, watch } from 'vue';
 
-  export default {
-    name: 'OverviewList',
-    i18n: {
-      messages: messages,
+  import { useI18n } from '../../i18n';
+  import Duration from './Duration.vue';
+  import ErrorLogRateChart from './ErrorLogRateChart.vue';
+  import K8sEvents from './K8sEvents/index.vue';
+  import LogRateChart from './LogRateChart.vue';
+  import ProjectSelect from './ProjectSelect.vue';
+  import StatusTag from './StatusTag.vue';
+  import { useEnvironmentListInProject } from '@/composition/project';
+  import { useRouter } from '@/composition/router';
+  import { useGlobalI18n } from '@/i18n';
+  import { Environment } from '@/types/environment';
+  import { Project } from '@/types/project';
+
+  withDefaults(
+    defineProps<{
+      tenant?: { ID: number; TenantName: string };
+    }>(),
+    {
+      tenant: undefined,
     },
-    components: {
-      Duration,
-      ErrorLogRateChart,
-      K8sEvents,
-      LogRateChart,
-      ProjectSelect,
-      StatusTag,
+  );
+
+  type EnvironmentWithtMetrics = Environment & {
+    alertResourceMap: { [key: string]: any };
+    alertRuleCount: number;
+    clusterName: string;
+    containerRestartTotal: number;
+    cpu: string;
+    criticalAlertCount: number;
+    environmentID: number;
+    environmentName: string;
+    errorAlertCount: number;
+    errorLogCount: number;
+    eventCount: number;
+    labels: { [key: string]: any };
+    logRate: string;
+    logging: boolean;
+    loggingCollectorCount: number;
+    memory: string;
+    monitorCollectorCount: number;
+    monitoring: boolean;
+    namespace: string;
+    projectID: number;
+    projectName: string;
+    serviceMesh: boolean;
+    warning: string;
+  };
+
+  const i18n = useGlobalI18n();
+  const i18nLocal = useI18n();
+  const router = useRouter();
+
+  const headers = [
+    { text: i18n.t('resource.environment'), value: 'environmentName', align: 'start' },
+    { text: i18nLocal.t('table.label'), value: 'labels', align: 'start' },
+    { text: i18nLocal.t('table.status'), value: 'status', align: 'start', width: 250 },
+    { text: i18nLocal.t('table.restart_count'), value: 'containerRestartTotal', align: 'start' },
+    { text: i18n.t('resource.cpu'), value: 'cpu', align: 'start' },
+    { text: i18n.t('resource.memory'), value: 'memory', align: 'start' },
+    { text: i18nLocal.t('table.metrics_count'), value: 'monitorCollectorCount', align: 'end', width: 75 },
+    { text: i18nLocal.t('table.alert_rule_count'), value: 'alertRuleCount', align: 'end', width: 75 },
+    { text: i18nLocal.t('table.living_alert_count'), value: 'alertLiving', align: 'end', width: 75 },
+    { text: i18nLocal.t('table.log_count'), value: 'loggingCollectorCount', align: 'end', width: 75 },
+    { text: i18nLocal.t('table.error_log_count'), value: 'errorLogCount', align: 'end', width: 75 },
+    { text: i18nLocal.t('table.log_rate'), value: 'logRate', align: 'end', width: 130 },
+    { text: i18nLocal.t('table.event_count'), value: 'eventCount', align: 'end', width: 100 },
+  ];
+
+  let pagination: Pagination<EnvironmentWithtMetrics> = reactive<Pagination<EnvironmentWithtMetrics>>({
+    page: 1,
+    size: 10,
+    pageCount: 0,
+    items: [],
+    request: {
+      duration: '1h',
     },
-    mixins: [BaseSelect],
-    props: {
-      tenant: {
-        type: Object,
-        default: () => null,
-      },
+  });
+
+  const env = ref(undefined);
+  const project = ref<number>(undefined);
+  const metrics = ref<EnvironmentWithtMetrics[]>([]);
+  const getEnvironmentWithMatrics = async (envId: number): Promise<void> => {
+    const data = await new Environment({ ID: envId }).getEnvironmentWithMatrics(pagination.request);
+    const index = metrics.value.findIndex((e) => {
+      return e.environmentName === data.environmentName;
+    });
+    if (index > -1) {
+      pagination.items.push(data as EnvironmentWithtMetrics);
+    }
+    pagination.pageCount = Math.ceil(pagination.items.length / pagination.size);
+  };
+
+  const environmentItems = ref<Environment[]>([]);
+  watch(
+    () => project.value,
+    async (newValue) => {
+      if (!newValue) return;
+      metrics.value = [];
+      pagination.items = [];
+      environmentItems.value = await useEnvironmentListInProject(new Project({ ID: newValue }));
+      environmentItems.value.forEach((env) => {
+        metrics.value.push({ environmentName: env.EnvironmentName } as EnvironmentWithtMetrics);
+        getEnvironmentWithMatrics(env.ID);
+      });
     },
-    data() {
-      return {
-        params: {
-          duration: '1h',
-          page: 1,
-          size: 10,
-        },
-        project: undefined,
-        items: [],
-        pageCount: 0,
-        env: null,
-      };
+    { deep: true },
+  );
+
+  watch(
+    () => pagination.request.duration,
+    async (newValue) => {
+      if (!newValue) return;
+      metrics.value = [];
+      pagination.items = [];
+      environmentItems.value.forEach((env) => {
+        metrics.value.push({ environmentName: env.EnvironmentName } as EnvironmentWithtMetrics);
+        getEnvironmentWithMatrics(env.ID);
+      });
     },
-    computed: {
-      headers() {
-        return [
-          { text: this.$root.$t('resource.environment'), value: 'environmentName', align: 'start' },
-          { text: this.$t('table.label'), value: 'labels', align: 'start' },
-          { text: this.$t('table.status'), value: 'status', align: 'start', width: 250 },
-          { text: this.$t('table.restart_count'), value: 'containerRestartTotal', align: 'start' },
-          { text: this.$root.$t('resource.cpu'), value: 'cpu', align: 'start' },
-          { text: this.$root.$t('resource.memory'), value: 'memory', align: 'start' },
-          { text: this.$t('table.metrics_count'), value: 'monitorCollectorCount', align: 'end', width: 75 },
-          { text: this.$t('table.alert_rule_count'), value: 'alertRuleCount', align: 'end', width: 75 },
-          { text: this.$t('table.living_alert_count'), value: 'alertLiving', align: 'end', width: 75 },
-          { text: this.$t('table.log_count'), value: 'loggingCollectorCount', align: 'end', width: 75 },
-          { text: this.$t('table.error_log_count'), value: 'errorLogCount', align: 'end', width: 75 },
-          { text: this.$t('table.log_rate'), value: 'logRate', align: 'end', width: 130 },
-          { text: this.$t('table.event_count'), value: 'eventCount', align: 'end', width: 100 },
-        ];
+    { deep: true },
+  );
+
+  const pageChange = (page: number): void => {
+    pagination.page = page;
+  };
+
+  const sizeChange = (size: number): void => {
+    pagination.page = 1;
+    pagination.size = size;
+  };
+
+  const k8sEvents = ref(null);
+  const showEvents = (item: EnvironmentWithtMetrics): void => {
+    env.value = item;
+    k8sEvents.value.open();
+  };
+
+  const logRateChart = ref(null);
+  const showLogRate = (item: EnvironmentWithtMetrics): void => {
+    env.value = item;
+    logRateChart.value.open();
+  };
+
+  const errorLogRateChart = ref(null);
+  const showErrorLogRate = (item: EnvironmentWithtMetrics): void => {
+    env.value = item;
+    errorLogRateChart.value.open();
+  };
+
+  const beautyLogCount = (count: number): string => {
+    let result = parseFloat(count.toString());
+    const units = ['', 'k', 'm'];
+    for (const index in units) {
+      if (Math.abs(result) < 1000.0) {
+        return `${result.toFixed(1)} ${units[index]}`;
+      }
+      result /= 1000.0;
+    }
+    return `${result.toFixed(1)} Yi`;
+  };
+
+  const beautyLogRate = (rate: string): string => {
+    let result = rate ? parseInt(rate.replaceAll('/min', '')) : 0;
+    const resultStr = `${beautyLogCount(result)} /min`;
+    return resultStr;
+  };
+
+  const toMetrics = (item: EnvironmentWithtMetrics): void => {
+    router.push({
+      name: 'observe-monitor-config',
+      query: {
+        proj: item.projectName,
+        env: item.environmentName,
+        envid: item.environmentID.toString(),
+        projid: item.projectID.toString(),
+        cluster: item.clusterName,
+        namespace: item.namespace,
       },
-    },
-    watch: {
-      project: {
-        async handler() {
-          if (this.project) {
-            this.items = [];
-            await this.m_select_projectEnvironmentSelectData(this.project);
-            this.m_select_projectEnvironmentItems.forEach((env) => {
-              this.items.push({ environmentName: env.environmentName });
-              this.environmentObservability(env.value);
-            });
-          }
-        },
-        deep: true,
+    });
+  };
+
+  const toAlertRule = (item: EnvironmentWithtMetrics): void => {
+    router.push({
+      name: 'observe-monitor-config',
+      query: {
+        proj: item.projectName,
+        env: item.environmentName,
+        envid: item.environmentID.toString(),
+        projid: item.projectID.toString(),
+        cluster: item.clusterName,
+        namespace: item.namespace,
+        tab: 'prometheusrule',
       },
-      'params.duration': {
-        handler() {
-          this.items = [];
-          this.m_select_projectEnvironmentItems.forEach((env) => {
-            this.items.push({ environmentName: env.environmentName });
-            this.environmentObservability(env.value);
-          });
-        },
+    });
+  };
+
+  const toLogFlow = (item: EnvironmentWithtMetrics): void => {
+    router.push({
+      name: 'log-config',
+      query: {
+        proj: item.projectName,
+        env: item.environmentName,
+        envid: item.environmentID.toString(),
+        projid: item.projectID.toString(),
+        cluster: item.clusterName,
+        namespace: item.namespace,
       },
-    },
-    methods: {
-      async environmentObservability(envId) {
-        const data = await getEnvironmentObservability(envId, { duration: this.params.duration });
-        const index = this.items.findIndex((e) => {
-          return e.environmentName === data.environmentName;
-        });
-        if (index > -1) {
-          this.$set(this.items, index, data);
-        }
-        this.pageCount = Math.ceil(this.items.length / this.params.size);
-      },
-      onPageSizeChange(size) {
-        this.params.page = 1;
-        this.params.size = size;
-      },
-      onPageIndexChange(page) {
-        this.params.page = page;
-      },
-      showEvents(item) {
-        this.env = item;
-        this.$refs.k8sEvents.open();
-      },
-      showLogRate(item) {
-        this.env = item;
-        this.$refs.logRateChart.open();
-      },
-      showErrorLogRate(item) {
-        this.env = item;
-        this.$refs.errorLogRateChart.open();
-      },
-      beautyLogCount(count) {
-        let result = parseFloat(count);
-        const units = ['', 'k', 'm'];
-        for (const index in units) {
-          if (Math.abs(result) < 1000.0) {
-            return `${result.toFixed(1)} ${units[index]}`;
-          }
-          result /= 1000.0;
-        }
-        return `${result.toFixed(1)} Yi`;
-      },
-      beautyLogRate(rate) {
-        let result = rate ? parseInt(rate.replaceAll('/min', '')) : 0;
-        result = `${this.beautyLogCount(result)} /min`;
-        return result;
-      },
-      toMetrics(item) {
-        this.$router.push({
-          name: 'observe-monitor-config',
-          query: {
-            proj: item.projectName,
-            env: item.environmentName,
-            envid: item.environmentID,
-            projid: item.projectID,
-            cluster: item.clusterName,
-            namespace: item.namespace,
-          },
-        });
-      },
-      toAlertRule(item) {
-        this.$router.push({
-          name: 'observe-monitor-config',
-          query: {
-            proj: item.projectName,
-            env: item.environmentName,
-            envid: item.environmentID,
-            projid: item.projectID,
-            cluster: item.clusterName,
-            namespace: item.namespace,
-            tab: 'prometheusrule',
-          },
-        });
-      },
-      toLogFlow(item) {
-        this.$router.push({
-          name: 'log-config',
-          query: {
-            proj: item.projectName,
-            env: item.environmentName,
-            envid: item.environmentID,
-            projid: item.projectID,
-            cluster: item.clusterName,
-            namespace: item.namespace,
-          },
-        });
-      },
-      toAlertDashboard() {
-        this.$router.push({
-          name: 'observe-monitor-overview',
-        });
-      },
-    },
+    });
+  };
+
+  const toAlertDashboard = (): void => {
+    router.push({
+      name: 'observe-monitor-overview',
+    });
   };
 </script>

@@ -92,6 +92,12 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/v1/, '/v1'),
       },
+      '/api/v1/sreg': {
+        target: 'http://172.16.23.235:30531',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/v1/, '/api/v1'),
+        ws: true,
+      },
       '/api/v1': {
         // target: 'http://10.12.32.41:8020',
         target: 'http://local.kubegems.io:30939',

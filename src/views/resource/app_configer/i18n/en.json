@@ -17,7 +17,7 @@
   "tip": {
     "config": "Configuration Item",
     "more": "More Configuration",
-    "listen_list": "Listening list",
+    "listen_list": "Listener list",
     "sdk_demo": "Sample SDK Access",
     "history": "Config History",
     "rollback_tip": "Rollback configuration {0} to version {1}",

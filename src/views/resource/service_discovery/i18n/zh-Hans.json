@@ -1,0 +1,56 @@
+{
+  "filter": {
+    "service": "服务名称"
+  },
+  "table": {
+    "name": "服务名称",
+    "group": "分组名称",
+    "cluster_count": "集群数目",
+    "instance_count": "实例数",
+    "health_instance_count": "健康实例数",
+    "trigger": "触发保护阀值",
+    "address": "地址",
+    "client_version": "客户端版本",
+    "app_name": "应用名称",
+    "port": "端口",
+    "weight": "权重",
+    "metadata": "元数据",
+    "healthy": "健康状态",
+    "ephemeral": "临时实例"
+  },
+  "form": {
+    "service_name": "服务名称",
+    "group_name": "分组名称",
+    "protect_threshold": "保护阀值",
+    "metadata": "元数据",
+    "weight": "权重",
+    "port": "端口",
+    "enabled": "上线",
+    "ip": "IP"
+  },
+  "ruler": {
+    "float_0_1": "格式错误(0到1浮点数)"
+  },
+  "tip": {
+    "sdk_demo": "SDK接入示例",
+    "access_info": "访问信息",
+    "get_access_info": "获取访问信息",
+    "listen_list": "监听列表",
+    "cluster_type": "类型",
+    "cluster_name": "名称",
+    "cluster_check_type": "检查类型",
+    "protected_threshold": "保护阀值",
+    "metadata": "元数据"
+  },
+  "operate": {
+    "listen": "监听查询",
+    "sdk_demo": "SDK示例"
+  },
+  "tab": {
+    "instance": "实例列表"
+  },
+  "status": {
+    "enabled": "启用",
+    "disabled": "关闭"
+  }
+}

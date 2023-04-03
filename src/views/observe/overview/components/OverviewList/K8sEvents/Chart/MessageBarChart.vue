@@ -16,101 +16,89 @@
 
 <template>
   <BaseBarChart
-    :class="`clear-zoom-${Scale.toString().replaceAll('.', '-')}`"
+    :class="`clear-zoom-${store.state.Scale.toString().replaceAll('.', '-')}`"
     :color="['#26C6DA', '#FB8C00']"
     height="290px"
     :metrics="series"
   />
 </template>
 
-<script>
-  import { mapState } from 'vuex';
+<script lang="ts" setup>
+  import moment from 'moment';
+  import { ref, watch } from 'vue';
 
-  import messages from '../../../../i18n';
+  import { useParams } from '@/router';
+  import { useStore } from '@/store';
 
-  export default {
-    name: 'MessageBarChart',
-    i18n: {
-      messages: messages,
+  const props = withDefaults(
+    defineProps<{
+      date?: any[];
+      data?: any[];
+    }>(),
+    {
+      date: undefined,
+      data: undefined,
     },
-    props: {
-      data: {
-        type: Array,
-        default: () => [],
-      },
-      date: {
-        type: Array,
-        default: () => [],
-      },
-    },
-    data() {
-      return {
-        series: [],
-      };
-    },
-    computed: {
-      ...mapState(['Scale']),
-    },
-    watch: {
-      data: {
-        handler(newValue) {
-          if (newValue) {
-            const timeArray = this.generateDateArray();
-            this.loadSeries(newValue, timeArray);
-          }
-        },
-        deep: true,
-        immediate: true,
-      },
-    },
-    methods: {
-      generateDateArray() {
-        const timeStep = (this.date[1] - this.date[0]) / 10;
-        return '0123456789'
-          .split('')
-          .concat([10])
-          .map((s) => {
-            return this.date[0] + timeStep * s;
-          });
-      },
-      loadSeries(data, timeArray) {
-        const metrics = [];
-        const types = ['Normal', 'Warning'];
-        types.forEach((severity) => {
-          metrics.push({
-            metric: { name: severity },
-            values: timeArray.map((d) => {
-              return [d, 0];
-            }),
-          });
-        });
-        data.forEach((d) => {
-          const time = Date.parse(this.$moment(d.stream.lastTimestamp));
-          const index = timeArray.findIndex((t) => {
-            return t >= time;
-          });
-          if (index > -1) {
-            if (d.stream.type === 'Normal') {
-              metrics[0].values[index][1] += 1;
-            } else if (d.stream.type === 'Warning') {
-              metrics[1].values[index][1] += 1;
-            }
-          }
-        });
-        this.series = metrics.map((metricAndValues) => {
-          return {
-            label:
-              metricAndValues.metric && JSON.stringify(metricAndValues.metric) !== '{}'
-                ? this.label
-                  ? metricAndValues.metric[this.label]
-                  : Object.values(metricAndValues.metric)[0]
-                : this.$route.params.name,
-            data: metricAndValues.values.map((v) => {
-              return { x: this.$moment(new Date(v[0])).format('LTS'), y: v[1] };
-            }),
-          };
-        });
-      },
-    },
+  );
+
+  const store = useStore();
+  const routeParams = useParams();
+
+  const generateDateArray = () => {
+    const timeStep = (props.date[1] - props.date[0]) / 10;
+    return '0123456789'
+      .split('')
+      .concat(['10'])
+      .map((s) => {
+        return props.date[0] + timeStep * parseFloat(s);
+      });
   };
+
+  const series = ref([]);
+  const loadSeries = (data, timeArray) => {
+    const metrics = [];
+    const types = ['Normal', 'Warning'];
+    types.forEach((severity) => {
+      metrics.push({
+        metric: { name: severity },
+        values: timeArray.map((d) => {
+          return [d, 0];
+        }),
+      });
+    });
+    data.forEach((d) => {
+      const time = Date.parse(moment(d.stream.lastTimestamp as any) as any);
+      const index = timeArray.findIndex((t) => {
+        return t >= time;
+      });
+      if (index > -1) {
+        if (d.stream.type === 'Normal') {
+          metrics[0].values[index][1] += 1;
+        } else if (d.stream.type === 'Warning') {
+          metrics[1].values[index][1] += 1;
+        }
+      }
+    });
+    series.value = metrics.map((metricAndValues) => {
+      return {
+        label:
+          metricAndValues.metric && JSON.stringify(metricAndValues.metric) !== '{}'
+            ? Object.values(metricAndValues.metric)[0]
+            : routeParams.value.name,
+        data: metricAndValues.values.map((v) => {
+          return { x: moment(new Date(v[0])).format('LTS'), y: v[1] };
+        }),
+      };
+    });
+  };
+
+  watch(
+    () => props.data,
+    async (newValue) => {
+      if (!newValue) return;
+      const timeArray = generateDateArray();
+      loadSeries(newValue, timeArray);
+    },
+    { deep: true, immediate: true },
+  );
 </script>

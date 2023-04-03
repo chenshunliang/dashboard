@@ -24,7 +24,6 @@
         :items-per-page="params.size"
         :no-data-text="$root.$t('data.no_data')"
         :page.sync="params.page"
-        @page-count="pageCount = $event"
       />
       <BasePagination
         v-if="pageCount >= 1"

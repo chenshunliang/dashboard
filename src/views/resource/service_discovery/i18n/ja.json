@@ -1,0 +1,56 @@
+{
+  "filter": {
+    "service": "サービス名"
+  },
+  "table": {
+    "name": "サービス名",
+    "group": "グループ名",
+    "cluster_count": "クラスタ数",
+    "instance_count": "インスタンス数",
+    "health_instance_count": "正常なインスタンスの数",
+    "trigger": "トリガー保護しきい値",
+    "address": "住所",
+    "client_version": "クライアントバージョン",
+    "app_name": "アプリケーション名",
+    "port": "ポート",
+    "weight": "ウェイト",
+    "metadata": "メタデータ",
+    "healthy": "健康状態",
+    "ephemeral": "一時インスタンス"
+  },
+  "form": {
+    "service_name": "サービス名",
+    "group_name": "グループ名",
+    "protect_threshold": "トリガー保護しきい値",
+    "metadata": "メタデータ",
+    "weight": "ウェイト",
+    "port": "ポート",
+    "enabled": "オンライン",
+    "ip": "IP"
+  },
+  "ruler": {
+    "float_0_1": "不正な形式 (0 から 1 の float)"
+  },
+  "tip": {
+    "sdk_demo": "SDKアクセスポイントのサンプル",
+    "access_info": "アクセス情報",
+    "get_access_info": "アクセス情報を取得する",
+    "listen_list": "リスニングリスト",
+    "cluster_type": "クラスタ タイプ",
+    "cluster_name": "クラスター名",
+    "cluster_check_type": "クラスタ チェック タイプ",
+    "protected_threshold": "保護しきい値",
+    "metadata": "メタデータ"
+  },
+  "operate": {
+    "listen": "クエリを聴く",
+    "sdk_demo": "SDK の例"
+  },
+  "tab": {
+    "instance": "インスタンス リスト"
+  },
+  "status": {
+    "enabled": "有効",
+    "disabled": "閉鎖"
+  }
+}

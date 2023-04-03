@@ -15,93 +15,80 @@
 -->
 
 <template>
-  <BasePanel v-model="panel" icon="mdi-bell" :title="$t('tip.event')" @dispose="dispose">
+  <BasePanel v-model="state.panel" icon="mdi-bell" :title="i18nLocal.t('tip.event')" @dispose="dispose">
     <template #action>
-      <BaseDatetimePicker v-model="date" color="primary" :default-value="60" @change="onDatetimeChange(undefined)" />
+      <BaseDatetimePicker v-model="date" color="primary" :default-value="60" @change="datetimeChanged" />
     </template>
     <template #content>
       <v-tabs v-model="tab" class="rounded-t pa-0 v-tabs--default" fixed-tabs height="45">
-        <v-tab v-for="t in tabItems" :key="t.value">
+        <v-tab v-for="t in tabItems" :key="t.key">
           {{ t.text }}
         </v-tab>
       </v-tabs>
       <div class="d-flex flex-column mt-0">
-        <component :is="tabItems[tab].value" v-if="data" :data="data" :date="date" @loadData="eventList" />
+        <component :is="tabItems[tab].value" v-if="matrics" :data="matrics" :date="date" @loadData="getEventList" />
       </div>
     </template>
   </BasePanel>
 </template>
 
-<script>
-  import messages from '../../../i18n';
-  import Chart from './Chart';
-  import EventList from './EventList';
-  import { getEventListFromLoki } from '@/api';
+<script lang="ts" setup>
+  import { reactive, ref } from 'vue';
 
-  export default {
-    name: 'K8sEvents',
-    i18n: {
-      messages: messages,
+  import { useI18n } from '../../../i18n';
+  import Chart from './Chart/index.vue';
+  import EventList from './EventList.vue';
+  import { Log } from '@/types/log';
+
+  const props = withDefaults(
+    defineProps<{
+      env?: { clusterName: string; namespace: string };
+    }>(),
+    {
+      env: undefined,
     },
-    components: {
-      Chart,
-      EventList,
-    },
-    props: {
-      env: {
-        type: Object,
-        default: () => null,
-      },
-    },
-    data() {
-      return {
-        panel: false,
-        data: null,
-        date: [],
-        tab: 0,
-      };
-    },
-    computed: {
-      tabItems() {
-        return [
-          { text: this.$t('tab.event_chart'), value: 'Chart' },
-          { text: this.$t('tab.event_list'), value: 'EventList' },
-        ];
-      },
-    },
-    watch: {
-      env: {
-        handler(newValue) {
-          if (newValue) {
-            this.eventList();
-          }
-        },
-        deep: true,
-        immediate: true,
-      },
-    },
-    methods: {
-      open() {
-        this.panel = true;
-      },
-      async eventList() {
-        let query = '{container="event-exporter", stream="stdout"} | json | __error__=``';
-        query += ` | line_format "{{.metadata_namespace}}" |= "${this.env.namespace}"`;
-        const data = await getEventListFromLoki(this.env.clusterName, {
-          query: query,
-          limit: 3000,
-          start: `${this.date[0]}000000`,
-          end: `${this.date[1]}000000`,
-        });
-        this.data = data || [];
-      },
-      onDatetimeChange() {
-        this.eventList();
-      },
-      dispose() {
-        this.data = [];
-        this.$emit('clear');
-      },
-    },
+  );
+
+  const i18nLocal = useI18n();
+
+  const state = reactive({
+    panel: false,
+  });
+
+  const tab = ref<number>(0);
+  const tabItems = [
+    { text: i18nLocal.t('tab.event_chart'), value: Chart, key: 'chart' },
+    { text: i18nLocal.t('tab.event_list'), value: EventList, key: 'event' },
+  ];
+
+  const date = ref([]);
+  const matrics = ref([]);
+  const getEventList = async (): Promise<void> => {
+    let query = '{container="event-exporter", stream="stdout"} | json | __error__=``';
+    query += ` | line_format "{{.metadata_namespace}}" |= "${props.env.namespace}"`;
+    const data = await new Log().getEventList(props.env.clusterName, {
+      query: query,
+      limit: 3000,
+      start: `${date.value[0]}000000`,
+      end: `${date.value[1]}000000`,
+    });
+    matrics.value = data || [];
+  };
+
+  const datetimeChanged = () => {
+    getEventList();
+  };
+
+  const open = (): void => {
+    state.panel = true;
+  };
+  defineExpose({
+    open,
+  });
+
+  const emit = defineEmits(['clear']);
+  const dispose = (): void => {
+    matrics.value = [];
+    emit('clear');
   };
 </script>

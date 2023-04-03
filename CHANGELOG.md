@@ -5,6 +5,7 @@
 | 范围 | 描述 | commitId |
 | --- | --- | --- |
 | - | [feat: ✨ support user guide for platform] | [4e4d0c2](https://github.com/chenshunliang/dashboard/commit/4e4d0c2a62470ffd2a5da0fc4b5f639c771e21a8) |
+| - | [perf: ⚡ optimization log context loading style] | [c98d070](https://github.com/chenshunliang/dashboard/commit/c98d070a92a1eb446e2aee9f899c4f9967bb75f1) |
 
 ### Bug Fixes
 

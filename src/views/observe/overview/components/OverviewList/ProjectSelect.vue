@@ -16,76 +16,71 @@
 
 <template>
   <v-autocomplete
-    v-model="current"
+    v-model="project"
     dense
     flat
     hide-details
     hide-selected
     :items="projectItems"
-    :label="$t('tip.filter_project')"
-    :no-data-text="$root.$t('data.no_data')"
+    :label="i18nLocal.t('tip.filter_project')"
+    :no-data-text="i18n.t('data.no_data')"
     prepend-inner-icon="mdi-magnify"
     solo
     :style="{ maxWidth: `500px` }"
-    @change="onProjectChange"
+    @change="projectChanged"
   >
     <template #selection="{ item }">
-      <v-chip color="primary" label small> {{ $root.$t('resource.project') }} : {{ item.text }} </v-chip>
+      <v-chip color="primary" label small> {{ i18n.t('resource.project') }} : {{ item.text }} </v-chip>
     </template>
   </v-autocomplete>
 </template>
 
-<script>
-  import messages from '../../i18n';
-  import { getProjectList } from '@/api';
-  import { convertResponse2List } from '@/types/base';
+<script lang="ts" setup>
+  import { ref, watch } from 'vue';
 
-  export default {
-    name: 'ProjectSelect',
-    i18n: {
-      messages: messages,
+  import { useI18n } from '../../i18n';
+  import { useProjectListInTenant } from '@/composition/tenant';
+  import { useGlobalI18n } from '@/i18n';
+  import { Tenant } from '@/types/tenant';
+
+  const i18nLocal = useI18n();
+  const i18n = useGlobalI18n();
+
+  const props = withDefaults(
+    defineProps<{
+      tenant?: { ID: number; TenantName: string };
+    }>(),
+    {
+      tenant: undefined,
     },
-    props: {
-      tenant: {
-        type: Object,
-        default: () => null,
-      },
-    },
-    data() {
-      return {
-        current: undefined,
-        projectItems: [],
-      };
-    },
-    watch: {
-      tenant: {
-        handler: function () {
-          if (this.tenant) {
-            this.getTenantProjectList();
-          }
-        },
-        deep: true,
-      },
-    },
-    methods: {
-      async getTenantProjectList() {
-        const data = await getProjectList(this.tenant.ID, { size: 1000, noprocessing: true });
-        this.projectItems = convertResponse2List(data).map((item) => {
-          return {
-            text: item.ProjectName,
-            value: item.ID,
-          };
-        });
-        if (this.projectItems.length > 0) {
-          this.current = this.projectItems[0].value;
-          this.$emit('input', this.current);
-          this.$emit('change', this.current);
-        }
-      },
-      onProjectChange() {
-        this.$emit('input', this.current);
-        this.$emit('change', this.current);
-      },
-    },
+  );
+
+  const project = ref<number>(undefined);
+  const projectItems = ref<{ text: string; value: number }[]>([]);
+  const emit = defineEmits(['input', 'change']);
+  const getProjectList = async () => {
+    const data = await useProjectListInTenant(new Tenant({ ID: props.tenant.ID }));
+    projectItems.value = data.map((p) => {
+      return { text: p.ProjectName, value: p.ID };
+    });
+    if (projectItems.value.length > 0) {
+      project.value = projectItems.value[0].value;
+      emit('input', project.value);
+      emit('change', project.value);
+    }
   };
+
+  const projectChanged = () => {
+    emit('input', project.value);
+    emit('change', project.value);
+  };
+
+  watch(
+    () => props.tenant,
+    async (newValue) => {
+      if (!newValue) return;
+      getProjectList();
+    },
+    { deep: true },
+  );
 </script>

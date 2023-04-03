@@ -15,9 +15,9 @@
 -->
 
 <template>
-  <div :style="{ width: width, height: height }">
+  <div :style="{ width: '100%', height: '200px' }">
     <BasePieChart
-      :class="`clear-zoom-${Scale.toString().replaceAll('.', '-')}`"
+      :class="`clear-zoom-${store.state.Scale.toString().replaceAll('.', '-')}`"
       colorful
       height="290px"
       :labels="labels"
@@ -27,56 +27,44 @@
   </div>
 </template>
 
-<script>
-  import { mapState } from 'vuex';
+<script lang="ts" setup>
+  import { ref, watch } from 'vue';
 
-  export default {
-    name: 'MessageLineChart',
-    props: {
-      data: {
-        type: Array,
-        default: () => [],
-      },
-      title: {
-        type: String,
-        default: () => '',
-      },
-      type: {
-        type: String,
-        default: () => '',
-      },
-    },
-    data() {
-      return {
-        width: '100%',
-        height: '300px',
-        series: [],
-        labels: [],
-      };
-    },
-    computed: {
-      ...mapState(['Scale']),
-    },
-    watch: {
-      data: {
-        handler(newValue) {
-          if (newValue) {
-            const s = {};
-            newValue.forEach((d) => {
-              if (Object.prototype.hasOwnProperty.call(s, d?.stream[this.type])) {
-                s[d?.stream[this.type]] += 1;
-              } else {
-                s[d?.stream[this.type]] = 1;
-              }
-            });
+  import { useStore } from '@/store';
 
-            this.labels = Object.keys(s);
-            this.series = Object.values(s);
-          }
-        },
-        deep: true,
-        immediate: true,
-      },
+  const props = withDefaults(
+    defineProps<{
+      data?: any[];
+      title?: string;
+      type?: string;
+    }>(),
+    {
+      data: undefined,
+      title: '',
+      type: '',
     },
-  };
+  );
+
+  const store = useStore();
+
+  const labels = ref([]);
+  const series = ref([]);
+  watch(
+    () => props.data,
+    async (newValue) => {
+      if (!newValue) return;
+      const s = {};
+      newValue.forEach((d) => {
+        if (Object.prototype.hasOwnProperty.call(s, d?.stream[props.type])) {
+          s[d?.stream[props.type]] += 1;
+        } else {
+          s[d?.stream[props.type]] = 1;
+        }
+      });
+
+      labels.value = Object.keys(s);
+      series.value = Object.values(s);
+    },
+    { deep: true, immediate: true },
+  );
 </script>

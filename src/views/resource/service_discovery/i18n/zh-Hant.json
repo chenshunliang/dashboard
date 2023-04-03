@@ -1,0 +1,56 @@
+{
+  "filter": {
+    "service": "服務名稱"
+  },
+  "table": {
+    "name": "服務名稱",
+    "group": "分組名稱",
+    "cluster_count": "集群數目",
+    "instance_count": "實例數",
+    "health_instance_count": "健康實例數",
+    "trigger": "觸發保護閥值",
+    "address": "地址",
+    "client_version": "客戶端版本",
+    "app_name": "應用名稱",
+    "port": "端口",
+    "weight": "權重",
+    "metadata": "元數據",
+    "healthy": "健康狀態",
+    "ephemeral": "臨時實例"
+  },
+  "form": {
+    "service_name": "服務名稱",
+    "group_name": "分組名稱",
+    "protect_threshold": "保護閥值",
+    "metadata": "元數據",
+    "weight": "權重",
+    "port": "端口",
+    "enabled": "上線",
+    "ip": "IP"
+  },
+  "ruler": {
+    "float_0_1": "格式錯誤(0到1浮點數)"
+  },
+  "tip": {
+    "sdk_demo": "SDK接入範例",
+    "access_info": "訪問信息",
+    "get_access_info": "獲取訪問信息",
+    "listen_list": "監聽清單",
+    "cluster_type": "集群類型",
+    "cluster_name": "集群名稱",
+    "cluster_check_type": "檢查類型",
+    "protected_threshold": "保護閥值",
+    "metadata": "元數據"
+  },
+  "operate": {
+    "listen": "監聽查詢",
+    "sdk_demo": "SDK示例"
+  },
+  "tab": {
+    "instance": "實例列表"
+  },
+  "status": {
+    "enabled": "啟用",
+    "disabled": "關閉"
+  }
+}

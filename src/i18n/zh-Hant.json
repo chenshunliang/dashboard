@@ -179,7 +179,8 @@
     "host": "主機",
     "cloud_cluster": "雲端集群",
     "edge_cluster": "邊緣集群",
-    "prometheus_probe": "探測任務"
+    "prometheus_probe": "探測任務",
+    "instance": "實例"
   },
   "header": {
     "workspace": "工作臺",
@@ -294,6 +295,7 @@
       "app_deploy": "應用部署",
       "app_manifest": "應用編排",
       "app_config": "應用配置",
+      "app_service_discovery": "服務發現",
       "registry": "鏡像倉庫",
       "project": "專案",
       "terminal": "終端",
@@ -432,6 +434,7 @@
     "dashboard": "租戶下容器服務提供了安全隔離的、具有訪問許可權控制的工作平臺。 這裡您可以看到當前租戶內資源運行的概況。",
     "project": "專案（Project）是一組環境，應用以及鏡像倉庫的抽象組合。",
     "appmanifest": "應用編排（AppManifest）是一組工作負載，配置，密鑰等資源的描述檔集合。",
+    "app_service_discovery": "服務發現 (Nacos) 對服務下的實例的地址和元數據進行探測，並以預先定義的接口提供給客戶端進行查詢",
     "registry": "鏡像倉庫（Registry）是一種存儲庫（或存儲庫集合），用於存儲Kubernetes、DevOps 和基於容器的應用開發的容器鏡像。",
     "cluster": "對多集群以及每個集群的基礎資源，服務元件和應用資源等統一管理。",
     "plugin": "服務元件提供Kubernetes集群內各項服務元件的健康狀態，啟用狀態等管理。",

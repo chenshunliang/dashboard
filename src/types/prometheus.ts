@@ -15,7 +15,11 @@
  */
 import axios from 'axios';
 
-export class Matrix {
+interface MatrixExtend {
+  getMatrixFromObservabilityByMonitor(clusterName: string, namespace: string, params: KubeRequest): Promise<Matrix[]>;
+}
+
+export class Matrix implements MatrixExtend {
   metric?: { [key: string]: string };
   values?: (number | string)[][];
 
@@ -23,6 +27,20 @@ export class Matrix {
     const data: { [key: string]: any } = await axios(`proxy/cluster/${cluster}/custom/prometheus/v1/matrix`, {
       params: params,
     });
+    return data as Matrix[];
+  }
+
+  public async getMatrixFromObservabilityByMonitor(
+    clusterName: string,
+    namespace: string,
+    params: KubeRequest,
+  ): Promise<Matrix[]> {
+    const data: { [key: string]: any } = await axios(
+      `observability/cluster/${clusterName}/namespaces/${namespace}/monitor/metrics/queryrange`,
+      {
+        params: params,
+      },
+    );
     return data as Matrix[];
   }
 }

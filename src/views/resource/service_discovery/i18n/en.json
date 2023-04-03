@@ -1,0 +1,56 @@
+{
+  "filter": {
+    "service": "Service Name"
+  },
+  "table": {
+    "name": "Service Name",
+    "group": "Group Name",
+    "cluster_count": "Cluster Count",
+    "instance_count": "Instance Count",
+    "health_instance_count": "Health Instance Count",
+    "trigger": "Protect Threshold",
+    "address": "Address",
+    "client_version": "Client Version",
+    "app_name": "App Name",
+    "port": "Port",
+    "weight": "Weight",
+    "metadata": "Metadata",
+    "healthy": "Health Status",
+    "ephemeral": "Ephemeral"
+  },
+  "form": {
+    "service_name": "Service Name",
+    "group_name": "Group Name",
+    "protect_threshold": "Protect Threshold",
+    "metadata": "Metadata",
+    "weight": "Weight",
+    "port": "Port",
+    "enabled": "Online",
+    "ip": "IP"
+  },
+  "ruler": {
+    "float_0_1": "error (0 to 1 float)"
+  },
+  "tip": {
+    "sdk_demo": "Sample SDK Access",
+    "access_info": "Access Info",
+    "get_access_info": "Get Access Info",
+    "listen_list": "Listener list",
+    "cluster_type": "Cluster Type",
+    "cluster_name": "Cluster Name",
+    "cluster_check_type": "Check Type",
+    "protected_threshold": "Protected Threshold",
+    "metadata": "Metadata"
+  },
+  "operate": {
+    "listen": "Listen query",
+    "sdk_demo": "Sample SDK"
+  },
+  "tab": {
+    "instance": "Instance List"
+  },
+  "status": {
+    "enabled": "Enabled",
+    "disabled": "Disabled"
+  }
+}

@@ -244,7 +244,7 @@
             }
           });
         } else {
-          this.m_select_registrySelectData();
+          this.m_select_registrySelectData(true);
         }
         this.updateImage();
       },

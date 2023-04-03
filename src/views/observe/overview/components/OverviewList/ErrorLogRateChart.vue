@@ -15,7 +15,12 @@
 -->
 
 <template>
-  <BasePanel v-model="panel" icon="mdi-speedometer" :title="$t('table.error_log_count')" @dispose="dispose">
+  <BasePanel
+    v-model="state.panel"
+    icon="mdi-speedometer"
+    :title="i18nLocal.t('table.error_log_count')"
+    @dispose="dispose"
+  >
     <template #action>
       <Duration v-model="duration" reverse />
     </template>
@@ -23,12 +28,12 @@
       <div class="d-flex flex-column mt-3 mx-2">
         <BaseAreaChart
           chart-type="line"
-          :class="`clear-zoom-${Scale.toString().replaceAll('.', '-')}`"
+          :class="`clear-zoom-${store.state.Scale.toString().replaceAll('.', '-')}`"
           colorful
-          :extend-height="chartHeight"
+          :extend-height="height"
           :global-plugins-check="false"
           label="pod"
-          :metrics="data"
+          :metrics="metrics"
           :precision="0"
           single-tooptip
           title=""
@@ -40,93 +45,95 @@
   </BasePanel>
 </template>
 
-<script>
-  import { mapState } from 'vuex';
+<script lang="ts" setup>
+  import moment from 'moment';
+  import { ComputedRef, computed, reactive, ref, watch } from 'vue';
 
-  import messages from '../../i18n';
-  import Duration from './Duration';
-  import { getMetricsQueryrange } from '@/api';
+  import { useI18n } from '../../i18n';
+  import Duration from './Duration.vue';
+  import { useStore } from '@/store';
+  import { Matrix } from '@/types/prometheus';
 
-  export default {
-    name: 'ErrorLogRateChart',
-    i18n: {
-      messages: messages,
+  const props = withDefaults(
+    defineProps<{
+      env?: { clusterName: string; namespace: string };
+    }>(),
+    {
+      env: undefined,
     },
-    components: {
-      Duration,
+  );
+
+  const i18nLocal = useI18n();
+  const store = useStore();
+
+  const state = reactive({
+    panel: false,
+  });
+
+  const duration = ref<string>('1h');
+  const getParams = (): { offset: number; dur: string } => {
+    if (duration.value === '30s') {
+      return { offset: -20, dur: 'seconds' };
+    }
+    if (duration.value === '5m') {
+      return { offset: -5, dur: 'minutes' };
+    }
+    if (duration.value === '1h') {
+      return { offset: -1, dur: 'hours' };
+    }
+    if (duration.value === '1d') {
+      return { offset: -1, dur: 'days' };
+    }
+    if (duration.value === '1w') {
+      return { offset: -1, dur: 'weeks' };
+    }
+  };
+
+  const metrics = ref([]);
+  const getMetrics = async (): Promise<void> => {
+    const { offset, dur } = getParams();
+    metrics.value = await new Matrix().getMatrixFromObservabilityByMonitor(props.env.clusterName, props.env.namespace, {
+      expr: `sum(gems_loki_error_logs_count_last_1m{namespace="${props.env.namespace}"})by(container)`,
+      start: moment()
+        .utc()
+        .add(offset as any, dur as any)
+        .format(),
+      end: moment().utc().format(),
+    });
+  };
+
+  watch(
+    () => duration.value,
+    async (newValue) => {
+      if (!newValue) return;
+      getMetrics();
     },
-    props: {
-      env: {
-        type: Object,
-        default: () => null,
-      },
+    { deep: true },
+  );
+
+  watch(
+    () => props.env,
+    async (newValue) => {
+      if (!newValue) return;
+      getMetrics();
     },
-    data() {
-      return {
-        panel: false,
-        data: [],
-        duration: '1h',
-      };
-    },
-    computed: {
-      ...mapState(['Scale']),
-      chartHeight() {
-        return (window.innerHeight - 64) / 2 + (this.data.length / 2) * 20;
-      },
-    },
-    watch: {
-      env: {
-        handler(newValue) {
-          if (newValue) {
-            this.errorLogRate();
-          }
-        },
-        deep: true,
-        immediate: true,
-      },
-      duration: {
-        handler(newValue) {
-          if (newValue) {
-            this.errorLogRate();
-          }
-        },
-        deep: true,
-      },
-    },
-    methods: {
-      open() {
-        this.panel = true;
-      },
-      getParams() {
-        if (this.duration === '30s') {
-          return { offset: -20, dur: 'seconds' };
-        }
-        if (this.duration === '5m') {
-          return { offset: -5, dur: 'minutes' };
-        }
-        if (this.duration === '1h') {
-          return { offset: -1, dur: 'hours' };
-        }
-        if (this.duration === '1d') {
-          return { offset: -1, dur: 'days' };
-        }
-        if (this.duration === '1w') {
-          return { offset: -1, dur: 'weeks' };
-        }
-      },
-      async errorLogRate() {
-        const { offset, dur } = this.getParams();
-        let data = await getMetricsQueryrange(this.env.clusterName, this.env.namespace, {
-          expr: `sum(gems_loki_error_logs_count_last_1m{namespace="${this.env.namespace}"})by(container)`,
-          start: this.$moment().utc().add(offset, dur).format(),
-          end: this.$moment().utc().format(),
-        });
-        this.data = data;
-      },
-      dispose() {
-        this.data = [];
-        this.$emit('clear');
-      },
-    },
+    { deep: true, immediate: true },
+  );
+
+  const height: ComputedRef<number> = computed(() => {
+    return (window.innerHeight - 64) / 2 + (metrics.value.length / 2) * 20;
+  });
+
+  const open = (): void => {
+    state.panel = true;
+  };
+  defineExpose({
+    open,
+  });
+
+  const emit = defineEmits(['clear']);
+  const dispose = (): void => {
+    metrics.value = [];
+    emit('clear');
   };
 </script>

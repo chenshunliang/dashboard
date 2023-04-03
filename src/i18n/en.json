@@ -186,7 +186,8 @@
     "host": "Host",
     "cloud_cluster": "Cloud Cluster",
     "edge_cluster": "Edge Cluster",
-    "prometheus_probe": "Prometheus Probe"
+    "prometheus_probe": "Prometheus Probe",
+    "instance": "Instance"
   },
 
   "header": {
@@ -302,6 +303,7 @@
       "app_deploy": "App Deploy",
       "app_manifest": "App Manifest",
       "app_config": "App Config",
+      "app_service_discovery": "Service Discovery",
       "registry": "Image Registry",
       "project": "Project",
       "terminal": "Terminal",
@@ -494,7 +496,8 @@
     "dash_app": "App monitor from Jaeger",
     "alert_channel": "The alert channel provides a variety of alert message sending methods to notify users, including (email, Feishu, webhook, etc.)",
     "edge": "A highly available and certified Kubernetes distribution designed for production workloads in unattended, resource-constrained, remote locations, or inside IoT devices.",
-    "dash_probe": "Prometheus probe is to monitor and analyze key performance indicators such as service loading speed, CDN acceleration, and DNS resolution."
+    "dash_probe": "Prometheus probe is to monitor and analyze key performance indicators such as service loading speed, CDN acceleration, and DNS resolution.",
+    "app_service_discovery": "Service discovery (Nacos) detects the addresses and metadata of instances under the service, and provides them to clients for query through predefined interfaces."
   },
 
   "metadata": {
