@@ -1,0 +1,62 @@
+{
+  "table": {
+    "name": "名前",
+    "description": "説明",
+    "region": "地域",
+    "weight": "重量",
+    "creator": "作成者",
+    "update_at": "update_time",
+    "reclaimable": "回収可能なリソース",
+    "type": "タイプ",
+    "sku_limit": "SKU制限"
+  },
+  "filter": {
+    "name": "名前"
+  },
+  "tip": {
+    "queue_name": "キュー名",
+    "queue_desc": "queue_description",
+    "queue_weight": "重み(weight)",
+    "queue_reclaimable": "resource_reclaimable",
+    "basic": "基本情報",
+    "resource_conf": "リソース設定",
+    "queue_cpu": "CPU",
+    "queue_memory": "メモリ",
+    "no_reclaimabled": "いいえ",
+    "reclaimabled": "Yes",
+    "weight_type": "weight_type",
+    "weight": "ウェイト",
+    "by_cpu": "CPUでウェイトを初期化",
+    "by_gpu": "GPUでウェイトを初期化",
+    "by_memory": "by_memory_initialization_weight",
+    "by_custom": "カスタムウェイト",
+    "cpu": "CPU",
+    "memory": "メモリー",
+    "gpu": "GPU",
+    "max_resource": "最大リソース",
+    "weight_not_equal": "キューの総ウェイト値がウェイト設定と等しくない",
+    "weight_positive": "weight は正の整数です",
+    "im": "モデリング",
+    "inference": "推論",
+    "training": "訓練",
+    "now_weight": "現在の体重",
+    "no_limit": "無制限",
+    "storage": "ストレージ",
+    "tenant_resource": "テナントのリソース",
+    "sgpu": "共有GPU"
+  },
+  "operate": {
+    "auto_generate": "自動的にウェイトを生成する",
+    "update_reclaimable": "更新キューの戻りステータス",
+    "save_weight": "ウェイトを保存する",
+    "save": "保存"
+  },
+  "ruler": {
+    "cpu_format_rule": "フォーマットエラー（例：1m,1）",
+    "memory_format_rule": "フォーマットエラー（例：1Mi,1Gi）",
+    "cpu_max_rule": "CPU の上限を超えました",
+    "memory_max_rule": "メモリの最大制限を超過",
+    "gpu_max_rule": "GPU 最大制限を超過",
+    "storage_max_rule": "ストレージの上限を超えました"
+  }
+}

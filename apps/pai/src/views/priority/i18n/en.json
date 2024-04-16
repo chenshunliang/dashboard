@@ -1,0 +1,23 @@
+{
+  "resource": {
+    "priority": "priority"
+  },
+  "table": {
+    "name": "name",
+    "description": "description",
+    "region": "region",
+    "weight": "weight",
+    "creator": "creator",
+    "update_at": "update_time"
+  },
+  "filter": {
+    "name": "name"
+  },
+  "tip": {
+    "priority_name": "priority_name",
+    "priority_desc": "priority_description",
+    "priority_weight": "weight",
+    "basic": "Basic information",
+    "priority_conf": "weight_configuration"
+  }
+}

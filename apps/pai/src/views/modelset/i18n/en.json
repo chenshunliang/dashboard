@@ -1,0 +1,67 @@
+{
+  "operate": {
+    "register_c": "Register {0}",
+    "publish_c": "Publish {0}",
+    "view_c": "view{0}",
+    "publish": "publish",
+    "open": "public",
+    "open_c": "public{0}",
+    "recache_c": "re-cache {0}",
+    "private": "privatization",
+    "private_c": "privatization {0}"
+  },
+  "resource": {
+    "model": "model set"
+  },
+  "tip": {
+    "now_select": "Current selection",
+    "dataset_type": "datatype",
+    "s3": "Storage based on S3 protocol",
+    "model_name": "model_name",
+    "model_type": "model_type",
+    "model_desc": "model_description",
+    "model_mount": "mount_path",
+    "model_version": "Model version",
+    "version": "version",
+    "model_registry": "model_repository",
+    "other": "other",
+    "modelx_desc": "Model management based on the Kubegems ModelX model management plugin",
+    "other_desc": "Other third-party model management methods, e,g, xxxx",
+    "self": "Self-built model sets",
+    "self_desc": "Create your own model set from 0",
+    "model_source": "model_source",
+    "model_capacity": "model_capacity",
+    "shared_modelset": "shared_modelset",
+    "view_my": "My model set",
+    "task_type": "Task type",
+    "inference_image": "Inference_image",
+    "base_info": "base_info",
+    "resource_conf": "Minimum_resource_configuration",
+    "registry_conf": "repository_configuration",
+    "registry": "model_repository",
+    "token": "token",
+    "image_conf": "image_configuration",
+    "memory": "memory",
+    "gpu_memory": "video_memory",
+    "needGpu": "GPU",
+    "public_modelset": "Public Modelset",
+    "display_name": "DisplayName"
+  },
+  "ruler": {
+    "gt_zero": "Format error (positive number)",
+    "abs_path": "Format error (absolute path)",
+    "capacity_rule": "Format error (Example: 10Gi/10Ti)",
+    "cpu_rule": "Format error (Example: 10m/10)",
+    "memory_rule": "Format error (Example: 10Gi/10Mi)"
+  },
+  "tab": {
+    "other": "Other",
+    "all": "all"
+  },
+  "filter": {
+    "name": "name"
+  },
+  "status": {
+    "downloading": "downloading"
+  }
+}

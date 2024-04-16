@@ -1,0 +1,20 @@
+{
+  "resource": {
+    "model": "モデルセット",
+    "dataset": "データセット"
+  },
+  "tip": {
+    "modelset": "モデルセット",
+    "dataset": "データセット",
+    "recommend_content": "おすすめコンテンツ",
+    "now_select": "current_source",
+    "default": "自分の"
+  },
+  "operate": {
+    "view": "ビュー"
+  },
+  "filter": {
+    "name": "名前",
+    "source": "ソース"
+  }
+}

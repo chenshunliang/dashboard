@@ -1,0 +1,71 @@
+{
+  "tip": {
+    "select_instance": "仕様を選択してください",
+    "instance_info_conf": "名前と価格",
+    "task_type": "タスクタイプ",
+    "gpu_type": "GPUモデル",
+    "gpu_core": "GPUコア",
+    "cpu_type": "CPU_model",
+    "cpu_core": "CPUコア",
+    "single": "シングルカード",
+    "single_more": "单机多卡",
+    "multi": "マルチマシン分散",
+    "name": "名前",
+    "flops": "arithmetic_power",
+    "price": "価格",
+    "power_conf": "arithmetic_configuration",
+    "instance_spec": "specs",
+    "now_select": "selected",
+    "single_desc": "単一のホスト上にある単一のGPUカードを使用する",
+    "single_more_desc": "1つのホストで複数のGPUカードを使用する",
+    "multi_desc": "複数のホストで複数の GPU カードを使用する",
+    "instance_task_type": "タスクタイプ",
+    "core": "コア",
+    "hour": "時間",
+    "memory": "メモリ",
+    "spec": "vCPU/Memory Spec",
+    "region": "地域",
+    "spec_type": "category",
+    "gpu_memory": "ビデオメモリ",
+    "total_gpu_memory": "合計ビデオメモリ",
+    "from_gpu": "GPUによる演算能力",
+    "from_cpu": "CPUによる演算能力",
+    "from_sgpu": "仮想 GPU による計算能力",
+    "share_gpu": "共有GPU"
+  },
+  "resource": {
+    "instance": "spec",
+    "spec": "spec"
+  },
+  "filter": {
+    "spec": "名前",
+    "cpu": "CPU",
+    "gpu": "GPU",
+    "status": "州"
+  },
+  "table": {
+    "instance": "名前",
+    "cpu": "vCPU",
+    "cpu_mode": "processor_model",
+    "gpu": "GPU_count",
+    "gpu_mode": "GPU model",
+    "price": "価格($/時間)",
+    "status": "ステータス",
+    "flops": "演算能力（TFLOPS/S）",
+    "memory": "メモリー",
+    "gpu_memory": "ビデオメモリ"
+  },
+  "ruler": {
+    "gt_zero": "フォーマットエラー（正数）",
+    "limit_max": "フォーマットエラー（最大制限{0}を超えた）",
+    "memory_rule": "間違った形式 (例: 10Gi/10Mi)"
+  },
+  "operate": {
+    "online": "シェルフ",
+    "offline": "オフシェルフ",
+    "online_c": "棚{0}",
+    "offline_c": "下架{0}",
+    "batch_online": "バッチオンシェルフ(Batch_on_shelf)",
+    "batch_offline": "バッチオフライン"
+  }
+}

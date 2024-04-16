@@ -1,0 +1,35 @@
+{
+  "operate": {
+    "add_c": "新增{0}",
+    "view_c": "浏览{0}"
+  },
+  "resource": {
+    "codeset": "代码集"
+  },
+  "tip": {
+    "codeset_conf": "代码配置",
+    "code_name": "代码名称",
+    "code_desc": "代码描述",
+    "git_address": "Git地址",
+    "git_user": "Git用户名",
+    "secret": "密码/Token",
+    "code_mount": "代码挂载路径",
+    "git_conf": "Git仓库配置",
+    "mount_conf": "挂载配置",
+    "branch": "Git分支",
+    "use_commit": "使用commit号",
+    "commit": "Git Commit号",
+    "code_capacity": "代码容量",
+    "auth": "认证",
+    "view_my": "我的代码集",
+    "display_name": "显示名称"
+  },
+  "ruler": {
+    "gt_zero": "格式错误(正数)",
+    "abs_path": "格式错误(绝对路径)",
+    "capacity_rule": "格式错误(例：10Gi/10Ti)"
+  },
+  "filter": {
+    "name": "名称"
+  }
+}

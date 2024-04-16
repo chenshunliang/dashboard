@@ -1,0 +1,71 @@
+{
+  "tip": {
+    "select_instance": "Please select a specification",
+    "instance_info_conf": "Name and price",
+    "task_type": "Task type",
+    "gpu_type": "GPU model",
+    "gpu_core": "GPU core",
+    "cpu_type": "CPU_model",
+    "cpu_core": "CPU core",
+    "single": "Single_card",
+    "single_more": "单机多卡",
+    "multi": "Multi-Machine Distributed",
+    "name": "name",
+    "flops": "arithmetic_power",
+    "price": "price",
+    "power_conf": "arithmetic_configuration",
+    "instance_spec": "specs",
+    "now_select": "selected",
+    "single_desc": "Use a single GPU card located on a single host",
+    "single_more_desc": "Use multiple GPU cards located on a single host",
+    "multi_desc": "Use multiple GPU cards located on multiple hosts",
+    "instance_task_type": "Task type",
+    "core": "core",
+    "hour": "hour",
+    "memory": "memory",
+    "spec": "vCPU/Memory Spec",
+    "region": "region",
+    "spec_type": "category",
+    "gpu_memory": "GPU memory",
+    "total_gpu_memory": "Total gpu memory",
+    "from_gpu": "Computing power from GPU",
+    "from_cpu": "Computing power from CPU",
+    "from_sgpu": "Computing power from Virtualization GPU",
+    "share_gpu": "Share GPU"
+  },
+  "resource": {
+    "instance": "spec",
+    "spec": "spec"
+  },
+  "filter": {
+    "spec": "Name",
+    "cpu": "CPU",
+    "gpu": "GPU",
+    "status": "Status"
+  },
+  "table": {
+    "instance": "name",
+    "cpu": "vCPU",
+    "cpu_mode": "processor_model",
+    "gpu": "GPU_count",
+    "gpu_mode": "GPU model",
+    "price": "price($/hour)",
+    "status": "Status",
+    "flops": "Arithmetic power (TFLOPS/S)",
+    "memory": "Memory",
+    "gpu_memory": "GPU memory"
+  },
+  "ruler": {
+    "gt_zero": "Format error (positive number)",
+    "limit_max": "Format error (exceeded maximum limit {0})",
+    "memory_rule": "Format error (Example: 10Gi/10Mi)"
+  },
+  "operator": {
+    "online": "Shelf",
+    "offline": "off-shelf",
+    "online_c": "Shelves {0}",
+    "offline_c": "下架{0}",
+    "batch_online": "Batch_on_shelf",
+    "batch_offline": "batch_offline"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "module": "ES2022",
+    "target": "ES2022",
+    "sourceMap": true,
+    "watch": false,
+    "allowJs": true,
+    "checkJs": false,
+    "types": ["vite/client"],
+    "jsx": "preserve",
+    "removeComments": true,
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "outDir": "./",
+    "resolveJsonModule": true,
+    "typeRoots": ["./types"],
+    "allowSyntheticDefaultImports": true
+  },
+  "vueCompilerOptions": {
+    "target": 2.7,
+    "extensions": [".vue"]
+  },
+  "include": ["packages/**/*", "packages/extension/store/vuex/modules/status/.ts"],
+  "exclude": ["node_modules", "logs", "dist", "vite.config.ts", "volar.config.ts", "components.d.ts"]
+}

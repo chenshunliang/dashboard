@@ -1,0 +1,71 @@
+{
+  "tip": {
+    "select_instance": "请选择一个规格",
+    "instance_info_conf": "名称及价格",
+    "task_type": "任务类型",
+    "gpu_type": "GPU型号",
+    "gpu_core": "GPU核心",
+    "cpu_type": "CPU型号",
+    "cpu_core": "CPU核心",
+    "single": "单机单卡",
+    "single_more": "单机多卡",
+    "multi": "多机分布式",
+    "name": "名称",
+    "flops": "算力",
+    "price": "价格",
+    "power_conf": "算力配置",
+    "instance_spec": "规格",
+    "now_select": "已选",
+    "single_desc": "使用位于单个主机的单张GPU卡",
+    "single_more_desc": "使用位于单个主机的多张GPU卡",
+    "multi_desc": "使用位于多个主机的多张GPU卡",
+    "instance_task_type": "任务类型",
+    "core": "核心",
+    "hour": "小时",
+    "memory": "内存",
+    "spec": "vCPU/内存规格",
+    "region": "区域",
+    "spec_type": "类别",
+    "gpu_memory": "显存",
+    "total_gpu_memory": "总显存",
+    "from_gpu": "来自GPU的算力",
+    "from_cpu": "来自CPU的算力",
+    "from_sgpu": "来自虚拟GPU的算力",
+    "share_gpu": "共享GPU"
+  },
+  "resource": {
+    "instance": "规格",
+    "spec": "规格"
+  },
+  "filter": {
+    "spec": "名称",
+    "cpu": "CPU",
+    "gpu": "GPU",
+    "status": "状态"
+  },
+  "table": {
+    "instance": "名称",
+    "cpu": "vCPU",
+    "cpu_mode": "处理器型号",
+    "gpu": "GPU数",
+    "gpu_mode": "GPU型号",
+    "price": "价格(元/小时)",
+    "status": "状态",
+    "flops": "算力(TFLOPS/S)",
+    "memory": "内存",
+    "gpu_memory": "显存"
+  },
+  "ruler": {
+    "gt_zero": "格式错误(正数)",
+    "limit_max": "格式错误(超过最大限制{0})",
+    "memory_rule": "格式错误(例：10Gi/10Mi)"
+  },
+  "operate": {
+    "online": "上架",
+    "offline": "下架",
+    "online_c": "上架{0}",
+    "offline_c": "下架{0}",
+    "batch_online": "批量上架",
+    "batch_offline": "批量下架"
+  }
+}

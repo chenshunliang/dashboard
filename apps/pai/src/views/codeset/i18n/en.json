@@ -1,0 +1,35 @@
+{
+  "operate": {
+    "add_c": "Add {0}",
+    "view_c": "view {0}"
+  },
+  "resource": {
+    "codeset": "Codeset"
+  },
+  "tip": {
+    "codeset_conf": "code_configuration",
+    "code_name": "code_name",
+    "code_desc": "code_description",
+    "git_address": "Git address",
+    "git_user": "Git username",
+    "secret": "Password/Token",
+    "code_mount": "Code mount path",
+    "git_conf": "Git repository configuration",
+    "mount_conf": "mount_configuration",
+    "branch": "Git branch",
+    "use_commit": "use_commit_number",
+    "commit": "Git Commit number",
+    "code_capacity": "Code capacity",
+    "auth": "Authentication",
+    "view_my": "My codebook",
+    "display_name": "DisplayName"
+  },
+  "ruler": {
+    "gt_zero": "Format error (positive number)",
+    "abs_path": "Formatting error (absolute path)",
+    "capacity_rule": "Format error (Example: 10Gi/10Ti)"
+  },
+  "filter": {
+    "name": "name"
+  }
+}

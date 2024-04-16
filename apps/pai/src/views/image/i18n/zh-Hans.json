@@ -1,0 +1,46 @@
+{
+  "resource": {
+    "self": "自有镜像",
+    "opensource": "开源镜像"
+  },
+  "table": {
+    "description": "镜像描述",
+    "base": "基础镜像",
+    "version": "Python 版本",
+    "framework": "框架",
+    "address": "镜像地址",
+    "name": "名称",
+    "for": "适用于",
+    "processor": "处理器",
+    "os": "操作系统",
+    "cuda": "Cuda版本"
+  },
+  "filter": {
+    "name": "镜像名称"
+  },
+  "tip": {
+    "image_name": "镜像名称",
+    "image_desc": "镜像描述",
+    "image_address": "镜像地址",
+    "framework": "框架",
+    "python": "Python版本",
+    "label_info": "标签信息",
+    "generic": "通用",
+    "for": "适用于",
+    "training": "训练",
+    "modeling": "建模",
+    "port_conf": "端口配置",
+    "open": "开源",
+    "processor": "处理器",
+    "pai.kubegems.io/auth": "认证",
+    "os": "操作系统",
+    "cuda": "Cuda版本",
+    "inference": "推理",
+    "dataclean": "数据清洗"
+  },
+  "ruler": {
+    "image_address": "格式错误(不符合镜像地址规则)",
+    "abs_path": "格式错误(绝对路径)",
+    "image_name": "格式错误(以字母开头，允许使用字母、数字、下划线、中划线、点，长度50)"
+  }
+}

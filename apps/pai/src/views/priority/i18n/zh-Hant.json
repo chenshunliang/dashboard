@@ -1,0 +1,23 @@
+{
+  "resource": {
+    "priority": "優先順序"
+  },
+  "table": {
+    "name": "名稱",
+    "description": "描述",
+    "region": "區域",
+    "weight": "權重",
+    "creator": "創建者",
+    "update_at": "更新時間"
+  },
+  "filter": {
+    "name": "名稱"
+  },
+  "tip": {
+    "priority_name": "優先順序名稱",
+    "priority_desc": "優先順序描述",
+    "priority_weight": "權重",
+    "basic": "基本資訊",
+    "priority_conf": "權重配寘"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "resource": {
+    "self": "所有ミラー",
+    "opensource": "オープンソースのミラー"
+  },
+  "table": {
+    "description": "ミラーの説明",
+    "base": "ベースミラー",
+    "version": "Python バージョン",
+    "framework": "フレームワーク",
+    "address": "ミラーのアドレス",
+    "name": "名前",
+    "for": "適用先",
+    "processor": "プロセッサー",
+    "os": "オペレーティングシステム"
+  },
+  "filter": {
+    "name": "ミラー名"
+  },
+  "tip": {
+    "image_name": "ミラー名",
+    "image_desc": "image_description",
+    "image_address": "ミラーアドレス(mirror_address)",
+    "framework": "フレームワーク",
+    "python": "Python version",
+    "label_info": "label_info",
+    "generic": "ジェネリック",
+    "for": "適用対象",
+    "training": "培训",
+    "modelling": "モデリング",
+    "port_conf": "port_configuration",
+    "open": "オープンソース",
+    "processor": "プロセッサー",
+    "pai,kubegems,io/auth": "認証",
+    "os": "オペレーティングシステム",
+    "inference": "推論",
+    "dataclean": "データクリーニング"
+  },
+  "ruler": {
+    "image_address": "フォーマットエラー（画像アドレスルールに一致しません）",
+    "abs_path": "フォーマットエラー（絶対パス）",
+    "image_name": "フォーマットエラー (文字で始まり、文字、数字、下線、アンダースコア、ドットを使用可能、長さは 50)"
+  }
+}

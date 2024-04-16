@@ -1,0 +1,62 @@
+{
+  "table": {
+    "name": "名稱",
+    "description": "描述",
+    "region": "區域",
+    "weight": "權重",
+    "creator": "創建者",
+    "update_at": "更新時間",
+    "reclaimable": "回收資源",
+    "type": "類型",
+    "sku_limit": "SKU限額"
+  },
+  "filter": {
+    "name": "名稱"
+  },
+  "tip": {
+    "queue_name": "隊列名稱",
+    "queue_desc": "隊列描述",
+    "queue_weight": "權重",
+    "queue_reclaimable": "資源回收",
+    "basic": "基本資訊",
+    "resource_conf": "資源配置",
+    "queue_cpu": "CPU",
+    "queue_memory": "記憶體",
+    "no_reclaimabled": "否",
+    "reclaimabled": "是",
+    "weight_type": "權重類型",
+    "weight": "權重",
+    "by_cpu": "按CPU初始化權重",
+    "by_gpu": "按GPU初始化權重",
+    "by_memory": "按記憶體初始化權重",
+    "by_custom": "自定義權重",
+    "cpu": "CPU",
+    "memory": "記憶體",
+    "gpu": "GPU",
+    "max_resource": "最大資源",
+    "weight_not_equal": "隊列權重總值與權重設定不相等",
+    "weight_positive": "權重為正整數",
+    "im": "建模",
+    "inference": "推理",
+    "training": "訓練",
+    "now_weight": "當前權重",
+    "no_limit": "無限制",
+    "storage": "存儲",
+    "tenant_resource": "租戶資源",
+    "sgpu": "共享GPU"
+  },
+  "operate": {
+    "auto_generate": "自動生成權重",
+    "update_reclaimable": "更新隊列歸還狀態",
+    "save_weight": "保存数据",
+    "save": "保存"
+  },
+  "ruler": {
+    "cpu_format_rule": "格式錯誤（示例:1m,1）",
+    "memory_format_rule": "格式錯誤（示例:1Mi,1Gi）",
+    "cpu_max_rule": "超過CPU最大限額",
+    "memory_max_rule": "超過記憶體最大限額",
+    "gpu_max_rule": "超過GPU最大限額",
+    "storage_max_rule": "超過儲存最大限額"
+  }
+}

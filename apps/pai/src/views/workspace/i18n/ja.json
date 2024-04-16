@@ -1,0 +1,27 @@
+{
+  "resource": {
+    "workspace": "ワークスペース"
+  },
+  "tip": {
+    "workspace_name": "ワークスペース名",
+    "workspace_desc": "workspace_description",
+    "workspace_capacity": "ワークスペースの容量",
+    "workspace_addr": "ワークスペースのアドレス",
+    "workspace_username": "ワークスペースのユーザー名",
+    "workspace_password": "ワークスペースのパスワード",
+    "workspace_conf": "ワークスペース設定",
+    "workspace_mount": "workspace_mount_path",
+    "view_my": "私のワークスペース",
+    "display_name": "表示名"
+  },
+  "ruler": {
+    "gt_zero": "フォーマットエラー（正の数）",
+    "capacity_rule": "間違った形式 (例: 10Gi/10Ti)"
+  },
+  "operate": {
+    "view_c": "view {0}"
+  },
+  "filter": {
+    "name": "名前"
+  }
+}

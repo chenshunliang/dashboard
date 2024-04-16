@@ -1,0 +1,25 @@
+{
+  "table": {
+    "time": "時間",
+    "name": "名前",
+    "type": "タイプ",
+    "instance": "インスタンス数",
+    "cpu_used": "CPU使用率",
+    "gpu_used": "GPU使用率",
+    "traffic": "流量",
+    "total_cost": "総費用",
+    "expired": "締め切り時間",
+    "creator": "作成者"
+  },
+  "tip": {
+    "training_cost": "トレーニングコスト詳細",
+    "cost_report": "原価レポート",
+    "cost_trand": "コストトレンド",
+    "my_job": "マイタスク",
+    "my_instance": "インスタンスの実行",
+    "allocate_gpu": "GPUの割り当て",
+    "allocate_gpu_memory": "ディスプレイメモリの割り当て",
+    "allocate_cpu": "CPUの割り当て",
+    "allocate_memory": "メモリの割り当て"
+  }
+}

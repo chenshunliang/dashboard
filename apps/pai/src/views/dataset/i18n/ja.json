@@ -1,0 +1,50 @@
+{
+  "resource": {
+    "dataset": "データセット"
+  },
+  "operate": {
+    "create_c": "create{0}",
+    "view_c": "view{0}",
+    "open": "public",
+    "open_c": "public{0}",
+    "recache_c": "再キャッシュ{0}",
+    "private": "民営化",
+    "private_c": "民営化{0}"
+  },
+  "tab": {
+    "text": "テキスト",
+    "img": "image",
+    "audio": "オーディオ",
+    "video": "video",
+    "common": "共通",
+    "all": "すべて"
+  },
+  "tip": {
+    "dataset_source": "dataset_source",
+    "dataset_name": "データセット名",
+    "dataset_type": "データセットの種類",
+    "dataset_desc": "dataset_description",
+    "dataset_mount": "dataset_mount",
+    "now_select": "現在の選択",
+    "self_dataset": "self_dataset",
+    "opensource_dataset": "公開データセット",
+    "self_desc": "0から独自のデータセットを作成する",
+    "opensource_desc": "サードパーティの公開データセットへの参照",
+    "dataset_capacity": "データセットの容量",
+    "shared_dataset": "共有データセット",
+    "view_my": "私のデータセット",
+    "public_dataset": "公開データセット",
+    "display_name": "表示名"
+  },
+  "ruler": {
+    "gt_zero": "書式エラー（正の数）",
+    "abs_path": "書式エラー（絶対パス）",
+    "capacity_rule": "間違った形式 (例: 10Gi/10Ti)"
+  },
+  "filter": {
+    "name": "名前"
+  },
+  "status": {
+    "downloading": "ダウンロード"
+  }
+}

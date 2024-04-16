@@ -1,0 +1,23 @@
+{
+  "resource": {
+    "priority": "優先度"
+  },
+  "table": {
+    "name": "名前",
+    "description": "説明",
+    "region": "地域",
+    "weight": "weight",
+    "creator": "作成者",
+    "update_at": "update_time"
+  },
+  "filter": {
+    "name": "名前"
+  },
+  "tip": {
+    "priority_name": "優先順位名",
+    "priority_desc": "priority_description",
+    "priority_weight": "重み",
+    "basic": "基本情報",
+    "priority_conf": "ウェイト設定"
+  }
+}

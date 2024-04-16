@@ -1,0 +1,71 @@
+{
+  "tip": {
+    "select_instance": "請選擇一個規格",
+    "instance_info_conf": "名稱及價格",
+    "task_type": "任務類型",
+    "gpu_type": "GPU型號",
+    "gpu_core": "GPU覈心",
+    "cpu_type": "CPU型號",
+    "cpu_core": "CPU核心",
+    "single": "單機單卡",
+    "single_more": "單機多卡",
+    "multi": "多機分佈式",
+    "name": "名稱",
+    "flops": "算力",
+    "price": "價格",
+    "power_conf": "算力配寘",
+    "instance_spec": "規格",
+    "now_select": "已選",
+    "single_desc": "使用位於單個主機的單張GPU卡",
+    "single_more_desc": "使用位於單個主機的多張GPU卡",
+    "multi_desc": "使用位於多個主機的多張GPU卡",
+    "instance_task_type": "任務類型",
+    "core": "覈心",
+    "hour": "小時",
+    "memory": "記憶體",
+    "spec": "vCPU/記憶體規格",
+    "region": "區域",
+    "spec_type": "類別",
+    "gpu_memory": "顯存",
+    "total_gpu_memory": "總顯存",
+    "from_gpu": "來自GPU的算力",
+    "from_cpu": "來自CPU的算力",
+    "from_sgpu": "來自虛擬GPU的算力",
+    "share_gpu": "共享GPU"
+  },
+  "resource": {
+    "instance": "規格",
+    "spec": "規格"
+  },
+  "filter": {
+    "spec": "名稱",
+    "cpu": "CPU",
+    "gpu": "GPU",
+    "status": "狀態"
+  },
+  "table": {
+    "instance": "名稱",
+    "cpu": "vCPU",
+    "cpu_mode": "處理器型號",
+    "gpu": "GPU數",
+    "gpu_mode": "GPU型號",
+    "price": "價格（元/小時）",
+    "status": "狀態",
+    "flops": "算力（TFLOPS/S）",
+    "memory": "記憶體",
+    "gpu_memory": "顯存"
+  },
+  "ruler": {
+    "gt_zero": "格式錯誤（正數）",
+    "limit_max": "格式錯誤（超過最大限制{0}）",
+    "memory_rule": "格式錯誤(例：10Gi/10Mi)"
+  },
+  "operate": {
+    "online": "上架",
+    "offline": "下架",
+    "online_c": "上架{0}",
+    "offline_c": "下架{0}",
+    "batch_online": "批量上架",
+    "batch_offline": "批量下架"
+  }
+}

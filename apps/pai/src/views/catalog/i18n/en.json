@@ -1,0 +1,20 @@
+{
+  "resource": {
+    "model": "modelset",
+    "dataset": "dataset"
+  },
+  "tip": {
+    "modelset": "modelset",
+    "dataset": "dataset",
+    "recommend_content": "Recommended content",
+    "now_select": "current_source",
+    "default": "self"
+  },
+  "operate": {
+    "view": "view"
+  },
+  "filter": {
+    "name": "Name",
+    "source": "Source"
+  }
+}

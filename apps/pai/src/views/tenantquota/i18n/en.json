@@ -1,0 +1,62 @@
+{
+  "table": {
+    "name": "Name",
+    "description": "Description",
+    "region": "region",
+    "weight": "weight",
+    "creator": "creator",
+    "update_at": "update_time",
+    "reclaimable": "Reclaimable resources",
+    "type": "Type",
+    "sku_limit": "SKU Limit"
+  },
+  "filter": {
+    "name": "name"
+  },
+  "tip": {
+    "queue_name": "Queue name",
+    "queue_desc": "queue_description",
+    "queue_weight": "weight",
+    "queue_reclaimable": "resource_reclaimable",
+    "basic": "Basic Information",
+    "resource_conf": "Resource_Configuration",
+    "queue_cpu": "CPU",
+    "queue_memory": "memory",
+    "no_reclaimabled": "No",
+    "reclaimabled": "Yes",
+    "weight_type": "weight_type",
+    "weight": "weight",
+    "by_cpu": "Initialize weights by CPU",
+    "by_gpu": "Initialize weight by GPU",
+    "by_memory": "By memory initialization weight",
+    "by_custom": "Custom weight",
+    "cpu": "CPU",
+    "memory": "memory",
+    "gpu": "GPU",
+    "max_resource": "max_resource",
+    "weight_not_equal": "The total value of the queue weight is not equal to the weight setting",
+    "weight_positive": "Weight is a positive integer",
+    "im": "Modeling",
+    "inference": "Inference",
+    "training": "Training",
+    "now_weight": "Current weight",
+    "no_limit": "Unlimited",
+    "storage": "Storage",
+    "tenant_resource": "Tenant Resource",
+    "sgpu": "Shared GPU"
+  },
+  "operate": {
+    "auto_generate": "Automatically generate weights",
+    "update_reclaimable": "Update queue return status",
+    "save_weight": "Save data",
+    "save": "Save"
+  },
+  "ruler": {
+    "cpu_format_rule": "Format error (example: 1m,1)",
+    "memory_format_rule": "Format error (example: 1Mi,1Gi)",
+    "cpu_max_rule": "Exceed CPU maximum limit",
+    "memory_max_rule": "Memory_max_rule exceeded",
+    "gpu_max_rule": "Exceed GPU max limit",
+    "storage_max_rule": "Exceed storage max limit"
+  }
+}

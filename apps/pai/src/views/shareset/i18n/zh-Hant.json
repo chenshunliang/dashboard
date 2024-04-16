@@ -1,0 +1,16 @@
+{
+  "resource": {
+    "dataset": "數据集",
+    "model": "模型集"
+  },
+  "filter": {
+    "name": "名稱",
+    "source": "來源"
+  },
+  "operate": {
+    "create_c": "創建{0}"
+  },
+  "tip": {
+    "default": "自有"
+  }
+}

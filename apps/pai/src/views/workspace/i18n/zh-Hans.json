@@ -1,0 +1,27 @@
+{
+  "resource": {
+    "workspace": "工作空间"
+  },
+  "tip": {
+    "workspace_name": "工作空间名称",
+    "workspace_desc": "工作空间描述",
+    "workspace_capacity": "工作空间容量",
+    "workspace_addr": "工作空间地址",
+    "workspace_username": "工作空间用户名",
+    "workspace_password": "工作空间密码",
+    "workspace_conf": "工作空间配置",
+    "workspace_mount": "工作空间挂载路径",
+    "view_my": "我的工作空间",
+    "display_name": "显示名称"
+  },
+  "ruler": {
+    "gt_zero": "格式错误(正数)",
+    "capacity_rule": "格式错误(例：10Gi/10Ti)"
+  },
+  "operate": {
+    "view_c": "浏览{0}"
+  },
+  "filter": {
+    "name": "名称"
+  }
+}

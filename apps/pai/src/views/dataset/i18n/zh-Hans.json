@@ -1,0 +1,50 @@
+{
+  "resource": {
+    "dataset": "数据集"
+  },
+  "operate": {
+    "create_c": "创建{0}",
+    "view_c": "浏览{0}",
+    "open": "公开",
+    "open_c": "公开{0}",
+    "recache_c": "重新缓存{0}",
+    "private": "私有化",
+    "private_c": "私有化{0}"
+  },
+  "tab": {
+    "text": "文本",
+    "img": "图像",
+    "audio": "音频",
+    "video": "视频",
+    "common": "通用",
+    "all": "全部"
+  },
+  "tip": {
+    "dataset_source": "数据集来源",
+    "dataset_name": "数据集名称",
+    "dataset_type": "数据集类型",
+    "dataset_desc": "数据集描述",
+    "dataset_mount": "数据集挂载",
+    "now_select": "当前选择",
+    "self_dataset": "自建数据集",
+    "opensource_dataset": "公开数据集",
+    "self_desc": "从0开始创建自己的数据集",
+    "opensource_desc": "引用来自第三方的公开数据集",
+    "dataset_capacity": "数据集容量",
+    "share_dataset": "共享数据集",
+    "view_my": "我的数据集",
+    "public_dataset": "公开数据集",
+    "display_name": "显示名称"
+  },
+  "ruler": {
+    "gt_zero": "格式错误(正数)",
+    "abs_path": "格式错误(绝对路径)",
+    "capacity_rule": "格式错误(例：10Gi/10Ti)"
+  },
+  "filter": {
+    "name": "名称"
+  },
+  "status": {
+    "downloading": "下载中"
+  }
+}

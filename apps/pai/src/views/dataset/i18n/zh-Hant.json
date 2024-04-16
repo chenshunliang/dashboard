@@ -1,0 +1,50 @@
+{
+  "resource": {
+    "dataset": "數据集"
+  },
+  "operate": {
+    "create_c": "創建{0}",
+    "view_c": "瀏覽{0}",
+    "open": "公開",
+    "open_c": "公開{0}",
+    "recache_c": "重新緩存{0}",
+    "private": "私有化",
+    "private_c": "私有化{0}"
+  },
+  "tab": {
+    "text": "文字",
+    "img": "影像",
+    "audio": "音訊",
+    "video": "視頻",
+    "common": "通用",
+    "all": "全部"
+  },
+  "tip": {
+    "dataset_source": "數据集來源",
+    "dataset_name": "數据集名稱",
+    "dataset_type": "數据集類型",
+    "dataset_desc": "數据集描述",
+    "dataset_mount": "數据集掛載",
+    "now_select": "當前選擇",
+    "self_dataset": "自建數据集",
+    "opensource_dataset": "公開數据集",
+    "self_desc": "從0開始創建自己的數据集",
+    "opensource_desc": "引用來自協力廠商的公開數据集",
+    "dataset_capacity": "數据集容量",
+    "share_dataset": "共亯數据集",
+    "view_my": "我的數据集",
+    "public_dataset": "公開數據集",
+    "display_name": "顯示名稱"
+  },
+  "ruler": {
+    "gt_zero": "格式錯誤（正數）",
+    "abs_path": "格式錯誤（絕對路徑）",
+    "capacity_rule": "格式錯誤(例：10Gi/10Ti)"
+  },
+  "filter": {
+    "name": "名稱"
+  },
+  "status": {
+    "downloading": "下載中"
+  }
+}

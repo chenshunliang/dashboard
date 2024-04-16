@@ -1,0 +1,16 @@
+{
+  "resource": {
+    "dataset": "データセット",
+    "model": "モデルセット"
+  },
+  "filter": {
+    "name": "名前",
+    "source": "ソース"
+  },
+  "operate": {
+    "create_c": "作成する{0}"
+  },
+  "tip": {
+    "default": "自分の"
+  }
+}

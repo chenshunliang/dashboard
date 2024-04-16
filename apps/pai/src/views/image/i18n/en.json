@@ -1,0 +1,44 @@
+{
+  "resource": {
+    "self": "Owned mirrors",
+    "opensource": "open source mirrors"
+  },
+  "table": {
+    "description": "Mirror description",
+    "base": "base mirror",
+    "version": "Python version",
+    "framework": "Framework",
+    "address": "mirror address",
+    "name": "name",
+    "for": "Applicable to",
+    "processor": "processor",
+    "os": "operating system"
+  },
+  "filter": {
+    "name": "mirror name"
+  },
+  "tip": {
+    "image_name": "mirror_name",
+    "image_desc": "image_description",
+    "image_address": "mirror_address",
+    "framework": "framework",
+    "python": "Python version",
+    "label_info": "label_info",
+    "generic": "Generic",
+    "for": "Applicable to",
+    "training": "培训",
+    "modelling": "modelling",
+    "port_conf": "port_configuration",
+    "open": "open source",
+    "processor": "processor",
+    "pai,kubegems,io/auth": "authentication",
+    "os": "operating system",
+    "inference": "inference",
+    "dataclean": "data cleaning"
+  },
+  "ruler": {
+    "image_address": "Format error (does not match image address rules)",
+    "abs_path": "Format error (absolute path)",
+    "image_name": "Format error (starts with a letter, allows letters, numbers, underlines, underscores, dots, length 50)"
+  }
+}

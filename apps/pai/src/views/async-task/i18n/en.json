@@ -1,0 +1,41 @@
+{
+  "table": {
+    "name": "Name",
+    "kind": "Kind",
+    "start_at": "Start Time",
+    "status": "Status",
+    "creator": "Creator",
+    "storage_kind": "Data Kind",
+    "duration": "Duration"
+  },
+  "resource": {
+    "async_task": "Async Task",
+    "modelset": "ModelSet",
+    "dataset": "DataSet"
+  },
+  "filter": {
+    "name": "Name",
+    "storage_kind": "Data Type",
+    "kind": "Kind"
+  },
+  "tip": {
+    "modelx_url": "ModelX Url",
+    "modelx_token": "ModelX Token",
+    "huggingface_name": "HuggingFace Name",
+    "huggingface_token": "HuggingFace Token",
+    "script": "Script",
+    "urls": "Urls",
+    "modelx_conf": "ModelX Config",
+    "huggingface_conf": "HuggingFace Config",
+    "default_conf": "Default Config",
+    "uri_conf": "URI Config"
+  },
+  "ruler": {
+    "uri": "Formatting error (URI split by semicolon)"
+  },
+  "exclude": {
+    "default": "Exclude Default",
+    "modelx": "Exclude ModelX",
+    "huggingface": "Exclude HuggingFace"
+  }
+}

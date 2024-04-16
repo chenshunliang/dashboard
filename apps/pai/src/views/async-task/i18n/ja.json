@@ -1,0 +1,41 @@
+{
+  "table": {
+    "name": "名前",
+    "kind": "カテゴリー",
+    "start_at": "開始時間",
+    "status": "州",
+    "creator": "クリエイター",
+    "storage_kind": "データの種類",
+    "duration": "時間がかかる"
+  },
+  "resource": {
+    "async_task": "非同期タスク",
+    "modelset": "モデルセット",
+    "dataset": "データセット"
+  },
+  "filter": {
+    "name": "名前",
+    "storage_kind": "データの種類",
+    "kind": "種類"
+  },
+  "tip": {
+    "modelx_url": "ModelX住所",
+    "modelx_token": "ModelX トークン",
+    "huggingface_name": "HuggingFace名前",
+    "huggingface_token": "HuggingFace トークン",
+    "script": "脚本",
+    "urls": "URLアドレス",
+    "modelx_conf": "ModelX の構成",
+    "huggingface_conf": "ハグフェイスの構成",
+    "default_conf": "デフォルトの割り当て",
+    "uri_conf": "URIの設定"
+  },
+  "ruler": {
+    "uri": "フォーマットエラー（セミコロンで分割されたURI）"
+  },
+  "exclude": {
+    "default": "Default除外する",
+    "modelx": "ModelX除外する",
+    "huggingface": "HuggingFace除外する"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "table": {
+    "time": "时间",
+    "name": "名称",
+    "type": "类型",
+    "instance": "实例数",
+    "cpu_used": "CPU使用率",
+    "gpu_used": "GPU使用率",
+    "traffic": "流量",
+    "total_cost": "总费用",
+    "expired": "截止时间",
+    "creator": "创建者"
+  },
+  "tip": {
+    "training_cost": "训练成本明细",
+    "cost_report": "成本报表",
+    "cost_trand": "成本趋势",
+    "my_job": "我的任务",
+    "my_instance": "运行实例",
+    "allocate_gpu": "分配GPU",
+    "allocate_gpu_memory": "分配显存",
+    "allocate_cpu": "分配CPU",
+    "allocate_memory": "分配内存"
+  }
+}

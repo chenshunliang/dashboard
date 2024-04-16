@@ -1,0 +1,44 @@
+{
+  "resource": {
+    "self": "自有鏡像",
+    "opensource": "開源鏡像"
+  },
+  "table": {
+    "description": "鏡像描述",
+    "base": "基礎鏡像",
+    "version": "Python版本",
+    "framework": "框架",
+    "address": "鏡像地址",
+    "name": "名稱",
+    "for": "適用於",
+    "processor": "處理器",
+    "os": "作業系統"
+  },
+  "filter": {
+    "name": "鏡像名稱"
+  },
+  "tip": {
+    "image_name": "鏡像名稱",
+    "image_desc": "鏡像描述",
+    "image_address": "鏡像地址",
+    "framework": "框架",
+    "python": "Python版本",
+    "label_info": "標籤資訊",
+    "generic": "通用",
+    "for": "適用於",
+    "training": "訓練",
+    "modeling": "建模",
+    "port_conf": "埠配寘",
+    "open": "開源",
+    "processor": "處理器",
+    "pai.kubegems.io/auth": "認證",
+    "os": "作業系統",
+    "inference": "推理",
+    "dataclean": "資料清洗"
+  },
+  "ruler": {
+    "image_address": "格式錯誤（不符合鏡像地址規則）",
+    "abs_path": "格式錯誤（絕對路徑）",
+    "image_name": "格式錯誤(以字母開頭，允許使用字母、數字、下劃線、中劃線、點，長度50)"
+  }
+}

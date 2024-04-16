@@ -1,0 +1,25 @@
+{
+  "table": {
+    "time": "time",
+    "name": "Name",
+    "type": "type",
+    "instance": "number of instances",
+    "cpu_used": "CPU usage",
+    "gpu_used": "GPU_usage",
+    "traffic": "traffic_traffic",
+    "total_cost": "total_cost",
+    "expired": "expiry_time",
+    "creator": "creator"
+  },
+  "tip": {
+    "training_cost": "Training Cost Breakdown",
+    "cost_report": "cost_report",
+    "cost_trand": "cost_trend",
+    "my_job": "my_task",
+    "my_instance": "run_instance",
+    "allocate_gpu": "allocate_GPU",
+    "allocate_gpu_memory": "allocate_graphic_memory",
+    "allocate_cpu": "allocate_CPU",
+    "allocate_memory": "allocate_memory"
+  }
+}

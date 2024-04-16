@@ -1,0 +1,27 @@
+{
+  "resource": {
+    "workspace": "workspace"
+  },
+  "tip": {
+    "workspace_name": "workspace_name",
+    "workspace_desc": "workspace_description",
+    "workspace_capacity": "Workspace capacity",
+    "workspace_addr": "workspace_address",
+    "workspace_username": "workspace username",
+    "workspace_password": "workspace_password",
+    "workspace_conf": "workspace_configuration",
+    "workspace_mount": "workspace_mount_path",
+    "view_my": "My workspace",
+    "display_name": "DisplayName"
+  },
+  "ruler": {
+    "gt_zero": "Format error (positive number)",
+    "capacity_rule": "Format error (Example: 10Gi/10Ti)"
+  },
+  "operate": {
+    "view_c": "view {0}"
+  },
+  "filter": {
+    "name": "name"
+  }
+}

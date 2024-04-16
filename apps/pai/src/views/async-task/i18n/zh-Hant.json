@@ -1,0 +1,41 @@
+{
+  "table": {
+    "name": "名稱",
+    "kind": "類別",
+    "start_at": "開始時間",
+    "status": "狀態",
+    "creator": "創建者",
+    "storage_kind": "資料類型",
+    "duration": "耗時"
+  },
+  "resource": {
+    "async_task": "非同步任務",
+    "modelset": "模型集",
+    "dataset": "數据集"
+  },
+  "filter": {
+    "name": "名稱",
+    "storage_kind": "資料類型",
+    "kind": "類型"
+  },
+  "tip": {
+    "modelx_url": "ModelX位址",
+    "modelx_token": "ModelX令牌",
+    "huggingface_name": "HuggingFace名稱",
+    "huggingface_token": "HuggingFace令牌",
+    "script": "腳本",
+    "urls": "url地址",
+    "modelx_conf": "ModelX配置",
+    "huggingface_conf": "HuggingFace配置",
+    "default_conf": "預設配置",
+    "uri_conf": "URI配置"
+  },
+  "ruler": {
+    "uri": "格式錯誤（URI以分號分割）"
+  },
+  "exclude": {
+    "default": "排除Default",
+    "modelx": "排除ModelX",
+    "huggingface": "排除HuggingFace"
+  }
+}

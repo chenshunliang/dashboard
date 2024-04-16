@@ -1,0 +1,50 @@
+{
+  "resource": {
+    "dataset": "dataset"
+  },
+  "operate": {
+    "create_c": "create{0}",
+    "view_c": "view {0}",
+    "open": "public",
+    "open_c": "public{0}",
+    "recache_c": "Recache {0}",
+    "private": "privatization",
+    "private_c": "privatization {0}"
+  },
+  "tab": {
+    "text": "text",
+    "img": "image",
+    "audio": "audio",
+    "video": "video",
+    "common": "common",
+    "all": "all"
+  },
+  "tip": {
+    "dataset_source": "dataset_source",
+    "dataset_name": "dataset_name",
+    "dataset_type": "dataset type",
+    "dataset_desc": "dataset_description",
+    "dataset_mount": "dataset_mount",
+    "now_select": "Current selection",
+    "self_dataset": "self_dataset",
+    "opensource_dataset": "Public dataset",
+    "self_desc": "Create your own dataset from 0",
+    "opensource_desc": "Reference to a public dataset from a third party",
+    "dataset_capacity": "The capacity of the dataset",
+    "shared_dataset": "Shared dataset",
+    "view_my": "My dataset",
+    "public_dataset": "Public dataset",
+    "display_name": "DisplayName"
+  },
+  "ruler": {
+    "gt_zero": "Format error (positive number)",
+    "abs_path": "Formatting error (absolute path)",
+    "capacity_rule": "Format error (Example: 10Gi/10Ti)"
+  },
+  "filter": {
+    "name": "name"
+  },
+  "status": {
+    "downloading": "downloading"
+  }
+}

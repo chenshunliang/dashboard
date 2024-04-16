@@ -1,0 +1,41 @@
+{
+  "table": {
+    "name": "名称",
+    "kind": "类别",
+    "start_at": "开始时间",
+    "status": "状态",
+    "creator": "创建者",
+    "storage_kind": "数据类型",
+    "duration": "耗时"
+  },
+  "resource": {
+    "async_task": "异步任务",
+    "modelset": "模型集",
+    "dataset": "数据集"
+  },
+  "filter": {
+    "name": "名称",
+    "storage_kind": "数据类型",
+    "kind": "类型"
+  },
+  "tip": {
+    "modelx_url": "ModelX地址",
+    "modelx_token": "ModelX令牌",
+    "huggingface_name": "HuggingFace名称",
+    "huggingface_token": "HuggingFace令牌",
+    "script": "脚本",
+    "urls": "url地址",
+    "modelx_conf": "ModelX配置",
+    "huggingface_conf": "HuggingFace配置",
+    "default_conf": "默认配置",
+    "uri_conf": "URI配置"
+  },
+  "ruler": {
+    "uri": "格式错误(URI以分号分割)"
+  },
+  "exclude": {
+    "default": "排除Default",
+    "modelx": "排除ModelX",
+    "huggingface": "排除HuggingFace"
+  }
+}

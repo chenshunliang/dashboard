@@ -1,0 +1,35 @@
+{
+  "operate": {
+    "add_c": "新增{0}",
+    "view_c": "瀏覽{0}"
+  },
+  "resource": {
+    "codeset": "程式碼集"
+  },
+  "tip": {
+    "codeset_conf": "程式碼配寘",
+    "code_name": "程式碼名稱",
+    "code_desc": "程式碼描述",
+    "git_address": "Git地址",
+    "git_user": "Git用戶名",
+    "secret": "密碼/Token",
+    "code_mount": "程式碼掛載路徑",
+    "git_conf": "Git倉庫配寘",
+    "mount_conf": "掛載配寘",
+    "branch": "Git分支",
+    "use_commit": "使用commit號",
+    "commit": "Git Commit號",
+    "code_capacity": "程式碼容量",
+    "auth": "認證",
+    "view_my": "我的程式碼集",
+    "display_name": "顯示名稱"
+  },
+  "ruler": {
+    "gt_zero": "格式錯誤（正數）",
+    "abs_path": "格式錯誤（絕對路徑）",
+    "capacity_rule": "格式錯誤(例：10Gi/10Ti)"
+  },
+  "filter": {
+    "name": "名稱"
+  }
+}

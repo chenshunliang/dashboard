@@ -1,0 +1,67 @@
+{
+  "operate": {
+    "register_c": "{0}を登録する",
+    "publish_c": "{0}を公開する",
+    "view_c": "view{0}",
+    "publish": "公開",
+    "open": "公開",
+    "open_c": "public{0}",
+    "recache_c": "再キャッシュ{0}",
+    "private": "民営化",
+    "private_c": "民営化{0}"
+  },
+  "resource": {
+    "model": "モデルセット"
+  },
+  "tip": {
+    "now_select": "現在の選択",
+    "dataset_type": "データ型",
+    "s3": "S3プロトコルに基づくストレージ",
+    "model_name": "モデル名",
+    "model_type": "モデルタイプ",
+    "model_desc": "model_description",
+    "model_mount": "mount_path",
+    "model_version": "モデルのバージョン",
+    "version": "バージョン",
+    "model_registry": "モデルレポジトリ",
+    "other": "その他",
+    "modelx_desc": "Kubegems ModelXモデル管理プラグインに基づくモデル管理",
+    "other_desc": "その他のサードパーティのモデル管理方法、例えばxxxx",
+    "self": "自作モデルセット",
+    "self_desc": "0から独自のモデルセットを作成する",
+    "model_source": "モデルソース",
+    "model_capacity": "モデル容量",
+    "shared_modelset": "共有モデルセット",
+    "view_my": "私のモデルセット",
+    "task_type": "タスクタイプ",
+    "inference_image": "推論画像",
+    "base_info": "base_info",
+    "resource_conf": "最小リソース設定(minimum_resource_configuration)",
+    "registry_conf": "repository_configuration",
+    "registry": "model_repository",
+    "token": "トークン",
+    "image_conf": "image_configuration",
+    "memory": "メモリー",
+    "gpu_memory": "video_memory",
+    "needGpu": "GPU",
+    "public_modelset": "パブリックコレクション",
+    "display_name": "表示名"
+  },
+  "ruler": {
+    "gt_zero": "フォーマットエラー（正の数）",
+    "abs_path": "フォーマットエラー（絶対パス）",
+    "capacity_rule": "間違った形式 (例: 10Gi/10Ti)",
+    "cpu_rule": "間違った形式 (例：10m/10)",
+    "memory_rule": "間違った形式 (例: 10Gi/10Mi)"
+  },
+  "tab": {
+    "other": "その他",
+    "all": "すべて"
+  },
+  "filter": {
+    "name": "名前"
+  },
+  "status": {
+    "downloading": "ダウンロード"
+  }
+}

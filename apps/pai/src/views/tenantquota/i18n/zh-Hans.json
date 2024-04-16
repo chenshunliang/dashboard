@@ -1,0 +1,69 @@
+{
+  "table": {
+    "name": "名称",
+    "description": "描述",
+    "region": "区域",
+    "weight": "权重",
+    "creator": "创建者",
+    "update_at": "更新时间",
+    "reclaimable": "归还",
+    "capability": "最大额度",
+    "predict_resource": "预计资源",
+    "type": "类型",
+    "cpu": "CPU",
+    "gpu": "GPU",
+    "memory": "内存",
+    "storage": "存储",
+    "sku_limit": "SKU限额"
+  },
+  "filter": {
+    "name": "名称"
+  },
+  "tip": {
+    "queue_name": "队列名称",
+    "queue_desc": "队列描述",
+    "queue_weight": "权重",
+    "queue_reclaimable": "资源回收",
+    "basic": "基本信息",
+    "resource_conf": "资源配置",
+    "queue_cpu": "CPU",
+    "queue_memory": "内存",
+    "no_reclaimabled": "否",
+    "reclaimabled": "是",
+    "weight_type": "权重类型",
+    "weight": "权重",
+    "by_cpu": "按CPU初始化权重",
+    "by_gpu": "按GPU初始化权重",
+    "by_memory": "按内存初始化权重",
+    "by_custom": "自定义权重",
+    "cpu": "CPU",
+    "memory": "内存",
+    "gpu": "GPU",
+    "max_resource": "最大资源",
+    "weight_not_equal": "队列权重总值与权重设置不相等",
+    "weight_positive": "权重为正整数",
+    "im": "建模",
+    "inference": "推理",
+    "training": "训练",
+    "now_weight": "当前权重",
+    "total": "总{0}",
+    "no_limit": "无限制",
+    "storage": "存储",
+    "tenant_resource": "租户资源",
+    "sgpu": "共享GPU"
+  },
+  "operate": {
+    "auto_generate": "自动生成权重",
+    "update_reclaimable": "更新队列归还状态",
+    "save_weight": "保存数据",
+    "save": "保存"
+  },
+  "ruler": {
+    "cpu_format_rule": "格式错误(示例:1m,1)",
+    "memory_format_rule": "格式错误(示例:1Mi,1Gi)",
+    "cpu_max_rule": "超过CPU最大限额",
+    "memory_max_rule": "超过内存最大限额",
+    "gpu_max_rule": "超过GPU最大限额",
+    "storage_max_rule": "超过存储最大限额"
+  }
+}

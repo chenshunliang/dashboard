@@ -1,0 +1,67 @@
+{
+  "operate": {
+    "register_c": "注册{0}",
+    "publish_c": "发布{0}",
+    "view_c": "浏览{0}",
+    "publish": "发布",
+    "open": "公开",
+    "open_c": "公开{0}",
+    "recache_c": "重新缓存{0}",
+    "private": "私有化",
+    "private_c": "私有化{0}"
+  },
+  "resource": {
+    "model": "模型集"
+  },
+  "tip": {
+    "now_select": "当前选择",
+    "dataset_type": "数据类型",
+    "s3": "基于S3协议的存储",
+    "model_name": "模型名称",
+    "model_type": "模型类型",
+    "model_desc": "模型描述",
+    "model_mount": "挂载路径",
+    "model_version": "模型版本",
+    "version": "版本",
+    "model_registry": "模型仓库",
+    "other": "其他",
+    "modelx_desc": "基于Kubegems ModelX模型管理插件进行模型管理",
+    "other_desc": "其他第三方模型管理方式，例如xxxx",
+    "self": "自建模型集",
+    "self_desc": "从0开始创建自己的模型集",
+    "model_source": "模型来源",
+    "model_capacity": "模型容量",
+    "share_modelset": "共享模型集",
+    "view_my": "我的模型集",
+    "task_type": "任务类型",
+    "inference_image": "推理镜像",
+    "base_info": "基本信息",
+    "resource_conf": "最小资源配置",
+    "registry_conf": "仓库配置",
+    "registry": "模型仓库",
+    "token": "令牌",
+    "image_conf": "镜像配置",
+    "memory": "内存",
+    "gpu_memory": "显存",
+    "needGpu": "GPU",
+    "public_modelset": "公开模型集",
+    "display_name": "显示名称"
+  },
+  "ruler": {
+    "gt_zero": "格式错误(正数)",
+    "abs_path": "格式错误(绝对路径)",
+    "capacity_rule": "格式错误(例：10Gi/10Ti)",
+    "cpu_rule": "格式错误(例：10m/10)",
+    "memory_rule": "格式错误(例：10Gi/10Mi)"
+  },
+  "tab": {
+    "other": "其他",
+    "all": "全部"
+  },
+  "filter": {
+    "name": "名称"
+  },
+  "status": {
+    "downloading": "下载中"
+  }
+}

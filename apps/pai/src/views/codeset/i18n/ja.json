@@ -1,0 +1,35 @@
+{
+  "operate": {
+    "add_c": "{0}を追加",
+    "view_c": "view {0}"
+  },
+  "resource": {
+    "codeset": "コードセット"
+  },
+  "tip": {
+    "codeset_conf": "code_configuration",
+    "code_name": "コード名",
+    "code_desc": "code_description",
+    "git_address": "Git アドレス",
+    "git_user": "Gitのユーザー名",
+    "secret": "パスワード/トークン",
+    "code_mount": "コードのマウントパス",
+    "git_conf": "Git リポジトリの設定",
+    "mount_conf": "マウント設定",
+    "branch": "Git ブランチ",
+    "use_commit": "use_commit_number",
+    "commit": "Gitコミット番号",
+    "code_capacity": "コード容量",
+    "auth": "認証",
+    "view_my": "私のコードブック",
+    "display_name": "表示名"
+  },
+  "ruler": {
+    "gt_zero": "書式エラー（正の数）",
+    "abs_path": "書式エラー（絶対パス）",
+    "capacity_rule": "間違った形式 (例: 10Gi/10Ti)"
+  },
+  "filter": {
+    "name": "名前"
+  }
+}
