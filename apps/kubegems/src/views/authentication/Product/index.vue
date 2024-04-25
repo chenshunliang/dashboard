@@ -192,7 +192,7 @@
         id: 'AIGems',
         text: config.product.AIGEMS,
         color: color.value[3],
-        disabled: true,
+        disabled: false,
         routeName: 'pai',
         highlight: false,
         col: 2,

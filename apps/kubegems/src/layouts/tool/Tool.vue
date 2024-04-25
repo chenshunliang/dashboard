@@ -75,6 +75,8 @@
       return config.product.OBSERVEGEMS + i18nLocal.t('tip.management');
     } else if (['modelhub', 'admin-modelhub'].indexOf(meta.value.rootName) > -1) {
       return config.product.MODELHUB + i18nLocal.t('tip.management');
+    } else if (['pai', 'admin-pai'].indexOf(meta.value.rootName) > -1) {
+      return config.product.AIGEMS + i18nLocal.t('tip.management');
     }
     return i18nLocal.t('tip.management');
   });
@@ -94,6 +96,8 @@
       });
     } else if (['observe'].indexOf(meta.value.rootName) > -1) {
       await router.push({ name: 'admin-observe' });
+    } else if (['pai'].indexOf(meta.value.rootName) > -1) {
+      await router.push({ name: 'admin-pai-cluster', params: routeParams.value, query: query.value });
     }
     store.commit('SET_ADMIN_VIEWPORT', true);
   };

@@ -3,6 +3,7 @@ import { useRouter } from '@kubegems/extension/router';
 import { useStore } from '@kubegems/extension/store';
 import config from '@kubegems/libs/constants/global';
 import { adminObserve, observe } from '@kubegems/observability/router';
+import { paiAdmin, paiWorkspace } from '@kubegems/pai/router';
 
 import { adminWorkspace } from './admin_workspace';
 import { appStore } from './app_store';
@@ -43,6 +44,26 @@ const originalRoutes = global
       children: observe,
     },
   ]) // 租户可观测性
+  .concat([
+    {
+      path: '/admin-pai',
+      name: 'admin-pai',
+      component: () => import('@/layouts/Layout.vue'),
+      redirect: { name: 'admin-pai-overview' },
+      children: paiAdmin,
+    },
+  ]) // 租户pai
+  .concat([
+    {
+      path: '/pai',
+      name: 'pai',
+      component: () => import('@/layouts/Layout.vue'),
+      redirect: {
+        name: 'pai-overview',
+      },
+      children: paiWorkspace,
+    },
+  ])
   .concat(tool) // 租户工具箱
   .concat(appStore) // 应用商店
   .concat(userCenter) // 用户中心
@@ -161,6 +182,12 @@ router.beforeEach(async (to, from, next): Promise<void> => {
         cluster: store.state.Edge || environment.ClusterName,
         projectId: environment.ProjectID,
       });
+    }
+    if (['pai', 'admin-pai'].indexOf(to.meta.rootName) > -1 && to.name !== 'login') {
+      if (store.state.pai.RegionStore?.length === 0) {
+        await store.dispatch('UPDATE_REGION_DATA');
+      }
+      store.dispatch('UPDATE_QUEUE_STATUS_DATA');
     }
     store.dispatch('INIT_GLOBAL_PLUGINS');
     if (store.state.AdminViewport && to.meta.upToAdmin) {

@@ -372,6 +372,7 @@
           }
         } else {
           await this.$store.dispatch('UPDATE_TENANT_DATA');
+          if (window.aigems) await this.$store.dispatch('UPDATE_REGION_DATA');
           if (this.$route.query.redirect !== undefined) {
             this.$router.push({ path: this.$route.query.redirect });
           } else {

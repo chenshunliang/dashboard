@@ -22,6 +22,7 @@
     "@kubegems/libs": "workspace:*",
     "@kubegems/mixins": "workspace:*",
     "@kubegems/observability": "workspace:*",
+    "@kubegems/pai": "workspace:*",
     "@kubernetes/client-node": "^0.18.0",
     "@sentry/browser": "^7.38.0",
     "filepond": "^4.30.4",

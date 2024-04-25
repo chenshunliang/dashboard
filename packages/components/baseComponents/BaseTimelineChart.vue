@@ -1,17 +1,19 @@
 <!--
- * Copyright 2022 The kubegems.io Authors
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *       http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * xiaoshi
+ * Copyright (C) 2024  xiaoshiai.cn
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
 <template>
@@ -21,7 +23,6 @@
 </template>
 
 <script lang="ts" setup>
-  import { useStore } from '@kubegems/extension/store';
   import { LINE_THEME_COLORS, LINE_THEME_FUL_COLORS } from '@kubegems/libs/constants/chart';
   import { randomString } from '@kubegems/libs/utils/helpers';
   import Chart, { ScatterDataPoint } from 'chart.js/auto';
@@ -60,7 +61,6 @@
     },
   );
 
-  const store = useStore();
   const chart = ref<any>(undefined);
   const chartId = ref<string>('');
   const height = ref<number>(100);
@@ -86,6 +86,12 @@
                 align: 'start',
                 display: true,
                 text: props.title,
+                font: {
+                  weight: 'normal',
+                  lineHeight: '32px',
+                  size: 14,
+                },
+                color: 'rgba(0, 0, 0, 0.87)',
               },
               legend: {
                 display: props.labelShow,
@@ -114,13 +120,13 @@
                 },
               },
               datalabels: {
-                color: '#424242',
+                color: 'rgba(0, 0, 0, 0.87)',
                 anchor: 'start',
                 align: (context) => {
                   return ((context.dataset.data[context.dataIndex] as ScatterDataPoint).x[0] -
                     (context.dataset.data[0] as ScatterDataPoint).x[0]) /
                     props.duration <
-                    0.2
+                    0.3
                     ? 'right'
                     : 'left';
                 },
@@ -155,6 +161,9 @@
                   unit: 'millisecond',
                   stepSize: getStepSize(),
                 },
+              },
+              y: {
+                display: false,
               },
               yAxis: {
                 display: props.yDisplay,
@@ -232,13 +241,13 @@
   const getHeight = (items: any): number => {
     if (items?.length) {
       if (items.length <= 10) {
-        return 40 * items.length + 36;
+        return 80 * items.length + 36;
       } else if (items.length <= 15) {
-        return 31.6 * items.length;
+        return 51.6 * items.length;
       } else if (items.length <= 20) {
-        return 31.1 * items.length;
+        return 40.1 * items.length;
       } else if (items.length < 30) {
-        return 30.5 * items.length;
+        return 35.5 * items.length;
       } else {
         return 29.8 * items.length;
       }
@@ -268,16 +277,6 @@
     async (newValue) => {
       if (newValue && newValue?.length >= 0 && document.getElementById(chartId.value)) {
         height.value = getHeight(newValue[0].data);
-        loadChart();
-      }
-    },
-    { deep: true },
-  );
-
-  watch(
-    () => store.state.ThemeColor,
-    async (newValue) => {
-      if (newValue && newValue?.length >= 0 && document.getElementById(chartId.value)) {
         loadChart();
       }
     },

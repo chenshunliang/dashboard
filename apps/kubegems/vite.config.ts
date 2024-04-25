@@ -68,6 +68,13 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/api\/v1/, '/api/v1'),
         ws: true,
       },
+      '/api/v1/pai': {
+        // target: 'http://10.12.32.41:8020',
+        target: 'http://demo.xiaoshiai.cn:30080',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/v1\/pai/, '/api/v1/pai'),
+        ws: true,
+      },
       '/realtime/': {
         target: 'http://local.kubegems.io:8020',
         changeOrigin: true,

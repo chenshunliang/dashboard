@@ -32,6 +32,7 @@ import '@kubegems/extension/tool';
 import '@/assets/styles/index.scss';
 import './request';
 import '@kubegems/api/response';
+import '@kubegems/pai/install';
 
 const store = useStore();
 

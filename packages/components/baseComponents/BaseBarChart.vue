@@ -1,17 +1,19 @@
 <!--
- * Copyright 2022 The kubegems.io Authors
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *       http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * xiaoshi
+ * Copyright (C) 2024  xiaoshiai.cn
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
 <template>
@@ -21,7 +23,6 @@
 </template>
 
 <script lang="ts" setup>
-  import { useStore } from '@kubegems/extension/store';
   import { LINE_THEME_COLORS, LINE_THEME_FUL_COLORS } from '@kubegems/libs/constants/chart';
   import { beautifyTime, randomString } from '@kubegems/libs/utils/helpers';
   import Chart, { ScatterDataPoint } from 'chart.js/auto';
@@ -32,7 +33,6 @@
     defineProps<{
       id?: string;
       color?: string[];
-      colorful?: boolean;
       extendHeight?: number;
       labels?: string[];
       labelShow?: boolean;
@@ -40,11 +40,11 @@
       title?: string;
       horizontal?: boolean;
       type?: string;
+      yDisplay?: boolean;
     }>(),
     {
       id: '',
       color: undefined,
-      colorful: false,
       extendHeight: 280,
       labels: undefined,
       labelShow: true,
@@ -52,10 +52,10 @@
       title: '',
       horizontal: false,
       type: '',
+      yDisplay: true,
     },
   );
 
-  const store = useStore();
   const chart = ref<any>(undefined);
   const chartId = ref<string>('');
 
@@ -80,6 +80,12 @@
                 align: 'start',
                 display: true,
                 text: props.title,
+                font: {
+                  weight: 'normal',
+                  lineHeight: '32px',
+                  size: 14,
+                },
+                color: 'rgba(0, 0, 0, 0.87)',
               },
               legend: {
                 display: props.labelShow,
@@ -110,7 +116,7 @@
                 },
               },
               datalabels: {
-                color: 'green',
+                color: 'rgba(0,0,0,0.87)',
                 align: 'right',
                 anchor: 'end',
                 display: (context) => {
@@ -137,14 +143,13 @@
             radius: 0,
             borderWidth: 1,
             scales: {
-              xAxis: {
-                display: !props.horizontal,
+              x: {
                 grid: {
                   display: false,
                 },
               },
-              yAxis: {
-                display: !props.horizontal,
+              y: {
+                display: props.yDisplay,
                 grid: {
                   borderDash: [8, 8, 8],
                   drawBorder: false,
@@ -168,22 +173,9 @@
       return {
         label: m.label || '',
         data: m.data,
-        borderColor:
-          props.color?.length > 0
-            ? props.color[index % props.color.length]
-            : props.colorful
-            ? LINE_THEME_FUL_COLORS[index % 10]
-            : getComputedStyle(document.documentElement)
-                .getPropertyValue(LINE_THEME_COLORS[index % 10].replaceAll('var(', '').replaceAll(')', ''))
-                ?.trim(),
+        borderColor: props.color?.length > 0 ? props.color[index % props.color.length] : LINE_THEME_COLORS[index % 10],
         backgroundColor:
-          props.color?.length > 0
-            ? props.color[index % props.color.length]
-            : props.colorful
-            ? LINE_THEME_FUL_COLORS[index % 10]
-            : getComputedStyle(document.documentElement)
-                .getPropertyValue(LINE_THEME_COLORS[index % 10].replaceAll('var(', '').replaceAll(')', ''))
-                ?.trim(),
+          props.color?.length > 0 ? props.color[index % props.color.length] : LINE_THEME_FUL_COLORS[index % 10],
         datalabels: {
           labels: {
             name: {
@@ -192,7 +184,9 @@
               },
               anchor: 'start',
               color: (context) => {
-                return context.dataset.data[context.dataIndex].x / context.dataset.data[0].x < 0.3 ? 'grey' : 'white';
+                return context.dataset.data[context.dataIndex].x / context.dataset.data[0].x < 0.3
+                  ? 'grey'
+                  : 'rgba(0,0,0,0.87)';
               },
               formatter: function (value) {
                 return value.y;
@@ -225,16 +219,6 @@
 
   watch(
     () => props.metrics,
-    async (newValue) => {
-      if (newValue && newValue?.length >= 0 && document.getElementById(chartId.value)) {
-        loadChart();
-      }
-    },
-    { deep: true },
-  );
-
-  watch(
-    () => store.state.ThemeColor,
     async (newValue) => {
       if (newValue && newValue?.length >= 0 && document.getElementById(chartId.value)) {
         loadChart();
