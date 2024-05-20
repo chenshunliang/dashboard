@@ -2,6 +2,7 @@
   font-size: 14px;
   font-weight: 400;
   cursor: pointer;
+  color: var(--text-primary-color);
 }
 
 [data-filepond-item-state='processing-complete'] .filepond--item-panel {
@@ -11,4 +12,22 @@
 [data-filepond-item-state*='error'] .filepond--item-panel,
 [data-filepond-item-state*='invalid'] .filepond--item-panel {
   background-color: var(--error-color);
+}
+
+.filepond--root {
+  width: 450px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 500px;
+  min-height: 4.75rem;
+}
+
+.filepond--item {
+  content-visibility: auto !important;
+  contain-intrinsic-size: auto 46px !important;
+  will-change: transform !important;
+}
+
+.filepond--data {
+  will-change: transform !important;
 }

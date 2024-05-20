@@ -30,19 +30,22 @@
       :style="{ paddingLeft: `${4 * pathLevel}px` }"
       :v-if="param.children && param.children.length > 0"
     >
-      <BaseParam
-        v-for="(childrenParam, index) in param.children"
-        :id="`${id}-${index}`"
-        :key="`${id}-${index}`"
-        :all-params="allParams"
-        :allow-delete="allowDelete"
-        :app-values="appValues"
-        class="my-0 mt-0"
-        :cluster-name="clusterName"
-        :param="childrenParam"
-        v-bind="$attrs"
-        v-on="$listeners"
-      />
+      <v-row class="mt-0">
+        <v-col v-for="(childrenParam, index) in param.children" :key="`${id}-${index}`" :cols="param.cols || cols">
+          <BaseParam
+            :id="`${id}-${index}`"
+            :key="`${id}-${index}`"
+            :all-params="allParams"
+            :allow-delete="allowDelete"
+            :app-values="appValues"
+            class="my-0 mt-0"
+            :cluster-name="clusterName"
+            :param="childrenParam"
+            v-bind="$attrs"
+            v-on="$listeners"
+          />
+        </v-col>
+      </v-row>
     </v-flex>
   </v-flex>
 </template>
@@ -60,6 +63,7 @@
       allParams?: any[];
       appValues?: any;
       allowDelete?: boolean;
+      cols?: number;
     }>(),
     {
       id: undefined,
@@ -70,6 +74,7 @@
       allParams: undefined,
       appValues: {},
       allowDelete: false,
+      cols: 12,
     },
   );
 

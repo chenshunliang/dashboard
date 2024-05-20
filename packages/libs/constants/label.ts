@@ -20,9 +20,13 @@ export const EDGE_DEVICEID_KEY = 'edge.kubegems.io/device-id';
 export const PAI_DATASET_CATALOG_KEY = 'pai.kubegems.io/dataset-catalog';
 export const PAI_MODALSET_CATALOG_KEY = 'pai.kubegems.io/modelset-catalog';
 export const PAI_SET_MOUNT_PATH_KEY = 'pai.kubegems.io/default-mount-path';
+export const PAI_CONDA_CATALOG_KEY = `pai.kubegems.io/conda-catalog`;
+export const PAI_WORKSPACE_CATALOG_KEY = `pai.kubegems.io/workspace-catalog`;
 
 export const PAI_IMAGE_FOR_KEY = 'pai.kubegems.io/for';
 export const PAI_IMAGE_PROCESSOR_KEY = 'pai.kubegems.io/processor';
 export const PAI_IMAGE_PYTHON_KEY = 'pai.kubegems.io/python';
 export const PAI_IMAGE_FRAMEWORK_KEY = 'pai.kubegems.io/framework';
 export const PAI_IMAGE_OS_KEY = 'pai.kubegems.io/os';
+
+export const PAI_CONDA_FROM_KEY = `pai.kubegems.io/conda-from`;

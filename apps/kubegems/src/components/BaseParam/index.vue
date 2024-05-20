@@ -47,6 +47,7 @@
         (type === 'string' &&
           !param.render &&
           !param.enum &&
+          !param['x-remote-enum'] &&
           param.name !== 'storageClassName' &&
           param.name !== 'storageClass' &&
           param.name !== 'nameOverride' &&
@@ -80,7 +81,7 @@
     />
     <!-- 多选组件 -->
     <MultiSelectParam
-      v-else-if="type === 'array'"
+      v-else-if="type === 'array' && !param['x-remote-enum']"
       :id="id"
       v-bind="$attrs"
       :app-values="appValues"
@@ -111,6 +112,15 @@
       v-bind="$attrs"
       v-on="$listeners"
     />
+    <TableParam
+      v-else-if="(type === 'string' || type === 'array') && param['x-remote-enum'] && param['x-remote-enum'].table"
+      :id="id"
+      :label="param.title || param.path"
+      :level="level"
+      :param="param"
+      v-bind="$attrs"
+      v-on="$listeners"
+    />
   </v-flex>
 </template>
 
@@ -123,6 +133,7 @@
   import MultiSelectParam from './MultiSelectParam.vue';
   import SingleSelectParam from './SingleSelectParam.vue';
   import Subsection from './Subsection.vue';
+  import TableParam from './TableParam.vue';
   import TextAreaParam from './TextAreaParam.vue';
   import TextFieldParam from './TextFieldParam.vue';
 

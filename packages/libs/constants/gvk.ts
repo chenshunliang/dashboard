@@ -13,6 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+export const KUBEGEMS_GROUP = 'kubegems.io';
+
 export const TENANT_NETWORK_POLICY_GROUP = `gems.kubegems.io`;
 export const ENVIRONMENT_GROUP = `gems.kubegems.io`;
 export const TENANT_GATEWAY_GROUP = `gems.kubegems.io`;

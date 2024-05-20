@@ -22,6 +22,7 @@
       color="primary"
       dense
       hide-details
+      :hint="param.description || ''"
       :input-value="param.value === true ? true : false"
       :label="pathLevel === 1 ? label : label"
       @change="changed($event)"

@@ -26,12 +26,14 @@
     <v-autocomplete
       :id="id"
       class="my-2"
+      :hint="param.description || ''"
       :items="items"
       :label="pathLevel === 1 ? '' : label"
       :menu-props="{
         bottom: true,
         left: true,
         origin: `top center`,
+        nudgeBottom: param.description ? '24px' : '2px',
       }"
       :rules="rules"
       :value="param.value"

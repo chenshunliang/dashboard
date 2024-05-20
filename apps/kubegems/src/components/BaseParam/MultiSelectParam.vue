@@ -79,6 +79,7 @@
           :app-values="appValues"
           class="my-0 mt-0"
           :cluster-name="clusterName"
+          :hint="param.description || ''"
           :level="0"
           :param="p"
           v-bind="$attrs"
@@ -99,6 +100,7 @@
           bottom: true,
           left: true,
           origin: `top center`,
+          nudgeBottom: param.description ? '24px' : '2px',
         }"
         multiple
         :search-input.sync="state.search"

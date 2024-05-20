@@ -26,6 +26,7 @@
     <v-text-field
       :id="id"
       class="my-2"
+      :hint="param.description || ''"
       :label="pathLevel === 1 ? '' : label"
       :placeholder="param.placeholder || ''"
       :rules="rules"

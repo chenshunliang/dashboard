@@ -461,3 +461,30 @@ export function validateJWTExpiredSoon(jwt: string): boolean {
     return true;
   }
 }
+
+export function htmlDecodeByRegExp(str, url = '') {
+  let s = '';
+  if (str?.length == 0) return '';
+  s = str.replace(/&amp;/g, '&');
+  s = s.replace(/&lt;/g, '<');
+  s = s.replace(/&gt;/g, '>');
+  s = s.replace(/&nbsp;/g, ' ');
+  s = s.replace(/&#39;/g, "'");
+  s = s.replace(/&quot;/g, '"');
+
+  try {
+    const reg = new RegExp('<img .*src="((?!http).*?)"', 'gi');
+    s = s.replaceAll(reg, `<img src="${url.replaceAll('/README.md', '')}/$1"`);
+  } catch (e) {
+    console.log(e);
+  }
+
+  try {
+    const reg = new RegExp('<a .*href="((?!http).*?)"', 'gi');
+    s = s.replaceAll(reg, `<a href="${url.replaceAll('/README.md', '')}/$1"`);
+  } catch (e) {
+    console.log(e);
+  }
+
+  return s;
+}

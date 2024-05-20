@@ -193,3 +193,30 @@ export const PAI_JOB_NODE_RESOURCE_REQUEST_PROMQL = `sum(%kube_pod_container_res
 
 export const PAI_STORAGE_TRAFFIC = `round(sum_over_time(juicefs_s3_input_bytes{bucket=~"$1"}[24h]), 0.001)`;
 export const PAI_STORAGE_REQUEST = `round(sum_over_time(juicefs_s3_request_count{bucket=~"$1"}[24h]), 0.001)`;
+
+export const PAI_JUICE_CACHE_SIZE_PROMQL = `sum(%juicefs_blockcache_bytes{pod=~"$1", namespace="juicefs-system"}%) by (pod) / 1024 / 1024`;
+export const PAI_JUICE_HIT_PRCENTAGE_PROMQL = `avg(juicefs_blockcache_hits{pod=~"$1", namespace="juicefs-system"} / juicefs_blockcache_blocks{pod=~"$1", namespace="juicefs-system"} * 100) by (pod)`;
+export const PAI_JUICE_READ_CACHE_DURATION_PROMQL = `sum(%juicefs_blockcache_read_hist_seconds{pod=~"$1", namespace="juicefs-system"}%) by (pod)  / 1024 / 1024`;
+export const PAI_JUICE_WREITE_CACHE_DURATION_PROMQL = `sum(%juicefs_blockcache_write_hist_seconds{pod=~"$1", namespace="juicefs-system"}%) by (pod)  / 1024 / 1024`;
+
+export const PAI_NGINX_REQUEST_TOTAL_PROMQL = `sum(nginx_ingress_controller_requests{service=~"$1"}) by (service)`;
+export const PAI_NGINX_REQUEST_SUCCESS_PROMQL = `sum(nginx_ingress_controller_requests{service=~"$1", status=~"1.*|2.*|3.*"}) by (service)`;
+export const PAI_NGINX_REQUEST_DURATION_P99_PROMQL = `sum(histogram_quantile(0.99, rate(nginx_ingress_controller_request_duration_seconds_bucket{service=~"$1", status="200"}[10m])) > 0) by (service)`;
+
+export const PAI_NVLINK_BANDWIDTH_PROMQL = `sum(%DCGM_FI_DEV_NVLINK_BANDWIDTH_TOTAL{pod=~"$1"}%) by (device)`;
+export const PAI_XID_ERRORS_PROMQL = `sum(%DCGM_FI_DEV_XID_ERRORS{pod=~"$1"}%) by (device)`;
+export const PAI_PCIE_TX_BYTES_PROMQL = `sum(%DCGM_FI_PROF_PCIE_TX_BYTES{pod=~"$1"}%) by (device)`;
+export const PAI_PCIE_RX_BYTES_PROMQL = `sum(%DCGM_FI_PROF_PCIE_RX_BYTES{pod=~"$1"}%) by (device)`;
+
+export const PAI_JOB_GPU_USE_PROMQL = `avg_over_time(pai_job_gpu_utils{pod=~"$1"}[24h])`;
+
+export const PAI_JUICE_READ_SIZE_PROMQL = `sum(%juicefs_fuse_read_size_bytes{pod=~"$1", namespace="juicefs-system"}%) by (pod)  / 1024 / 1024`;
+export const PAI_JUICE_WRITE_SIZE_PROMQL = `sum(%juicefs_fuse_written_size_bytes{pod=~"$1", namespace="juicefs-system"}%) by (pod)  / 1024 / 1024`;
+export const PAI_JUICE_OPS_DYRATION_PROMQL = `%juicefs_fuse_ops_durations_histogram_seconds{pod=~"$1", namespace="juicefs-system"}%`;
+export const PAI_JUICE_OPEN_HANDLERS_PROMQL = `%juicefs_fuse_open_handlers{pod=~"$1", namespace="juicefs-system"}%`;
+
+export const PAI_JUICE_CPU_PROMQL = `sum(%irate(juicefs_cpu_usage{pod=~"$1", namespace="juicefs-system"}[5m])%) by (pod, namespace) * 1000 * 1000 * 1000`;
+export const PAI_JUICE_MEMORY_PROMQL = `sum(%juicefs_memory{pod=~"$1", namespace="juicefs-system"}%) by (pod) / 1024 / 1024`;
+
+export const PAI_STORAGE_TRAFFIC_PROMQL = `round(increase(juicefs_s3_input_bytes{bucket=~"$1"}[24h]), 0.001)`;
+export const PAI_STORAGE_REQUEST_PROMQL = `round(increase(juicefs_s3_request_count{bucket=~"$1"}[24h]), 1)`;
