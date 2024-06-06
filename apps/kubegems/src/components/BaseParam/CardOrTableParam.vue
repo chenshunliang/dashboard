@@ -164,7 +164,6 @@
 <script lang="ts" setup>
   import { useGlobalI18n } from '@kubegems/extension/i18n';
   import { getModelImage } from '@kubegems/extension/icon/helpers';
-  import { required } from '@kubegems/extension/ruler';
   import { useStore } from '@kubegems/extension/store';
   import { JSONPath } from 'jsonpath-plus';
   import { ComputedRef, computed, onMounted, ref, watch } from 'vue';

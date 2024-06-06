@@ -208,8 +208,6 @@ export const PAI_XID_ERRORS_PROMQL = `sum(%DCGM_FI_DEV_XID_ERRORS{pod=~"$1"}%) b
 export const PAI_PCIE_TX_BYTES_PROMQL = `sum(%DCGM_FI_PROF_PCIE_TX_BYTES{pod=~"$1"}%) by (device)`;
 export const PAI_PCIE_RX_BYTES_PROMQL = `sum(%DCGM_FI_PROF_PCIE_RX_BYTES{pod=~"$1"}%) by (device)`;
 
-export const PAI_JOB_GPU_USE_PROMQL = `avg_over_time(pai_job_gpu_utils{pod=~"$1"}[24h])`;
-
 export const PAI_JUICE_READ_SIZE_PROMQL = `sum(%juicefs_fuse_read_size_bytes{pod=~"$1", namespace="juicefs-system"}%) by (pod)  / 1024 / 1024`;
 export const PAI_JUICE_WRITE_SIZE_PROMQL = `sum(%juicefs_fuse_written_size_bytes{pod=~"$1", namespace="juicefs-system"}%) by (pod)  / 1024 / 1024`;
 export const PAI_JUICE_OPS_DYRATION_PROMQL = `%juicefs_fuse_ops_durations_histogram_seconds{pod=~"$1", namespace="juicefs-system"}%`;
@@ -221,9 +219,15 @@ export const PAI_JUICE_MEMORY_PROMQL = `sum(%juicefs_memory{pod=~"$1", namespace
 export const PAI_STORAGE_TRAFFIC_PROMQL = `round(increase(juicefs_s3_input_bytes{bucket=~"$1"}[24h]), 0.001)`;
 export const PAI_STORAGE_REQUEST_PROMQL = `round(increase(juicefs_s3_request_count{bucket=~"$1"}[24h]), 1)`;
 
+export const PAI_JOB_GPU_MEMORY_BY_POD_PROMQL = `avg(DCGM_FI_DEV_FB_USED{pod=~"$1"} / (DCGM_FI_DEV_FB_USED{pod=~"$1"} + DCGM_FI_DEV_FB_FREE{pod=~"$1"}) * 100) by (device, pod)`;
+export const GPU_PROMQL = `sum(%pai_job_gpu_utils{pod=~"$1"}%) by (device)`;
+export const GPU_TEMP_PROMQL = `sum(%pai_job_gpu_temp{pod=~"$1"}%) by (device)`;
+export const GPU_POWER_PROMQL = `sum(%pai_job_gpu_power{pod=~"$1"}%) by (device)`;
+
 export const PAI_NPU_MEMORY_USED_PROMQL = `sum(%container_npu_used_memory{pod_name=~"$1"}%) by (id)`;
 export const PAI_NPU_MEMORY_TOTAL_PROMQL = `sum(%container_npu_total_memory{pod_name=~"$1"}%) by (id)`;
 export const PAI_NPU_USAGE_PROMQL = `sum(%container_npu_utilization{pod_name=~"$1"}%) by (id)`;
+export const PAI_NPU_MEMORY_USAGE_PROMQL = `sum(container_npu_used_memory{pod_name=~"$1"} / container_npu_total_memory{pod_name=~"$1"} * 100) by (id)`;
 export const PAI_NPU_POWER_PROMQL = `sum(%ascend_npu_power{containerName=~".*$1.*"}%) by (id)`;
 export const PAI_NPU_TEMPERATURE_PROMQL = `sum(%ascend_npu_temperature{containerName=~".*$1.*"}%) by (id)`;
 export const PAI_NPU_FREQ_PROMQL = `sum(%ascend_npu_freq{containerName=~".*$1.*"}%) by (id)`;
@@ -231,7 +235,15 @@ export const PAI_NPU_HBM_MEMORY_USED_PROMQL = `sum(%ascend_npu_hbm_used_memory{c
 export const PAI_NPU_HBM_MEMORY_TOTAL_PROMQL = `sum(%ascend_npu_hbm_total_memory{containerName=~".*$1.*"}%) by (id)`;
 export const PAI_NPU_BANDWIDTH_RX_PROMQL = `sum(%ascend_npu_bandwidth_rx{containerName=~".*$1.*"}%) by (id)`;
 export const PAI_NPU_BANDWIDTH_TX_PROMQL = `sum(%ascend_npu_bandwidth_tx{containerName=~".*$1.*"}%) by (id)`;
-export const PAI_JOB_GPU_MEMORY_BY_POD_PROMQL = `avg(DCGM_FI_DEV_FB_USED{pod=~"$1"} / (DCGM_FI_DEV_FB_USED{pod=~"$1"} + DCGM_FI_DEV_FB_FREE{pod=~"$1"}) * 100) by (device, pod)`;
-export const GPU_PROMQL = `sum(%pai_job_gpu_utils{pod=~"$1"}%) by (device)`;
-export const GPU_TEMP_PROMQL = `sum(%pai_job_gpu_temp{pod=~"$1"}%) by (device)`;
-export const GPU_POWER_PROMQL = `sum(%pai_job_gpu_power{pod=~"$1"}%) by (device)`;
+
+export const PAI_JOB_GPU_USE_PROMQL = `avg_over_time(pai_job_gpu_utils{pod=~"$1"}[24h])`;
+
+export const PAI_NPU_POD_MEMORY_USED_PROMQL = `avg(container_npu_used_memory{pod_name=~"$1"}) by (pod_name)`;
+export const PAI_NPU_POD_MEMORY_TOTAL_PROMQL = `avg(container_npu_total_memory{pod_name=~"$1"}) by (pod_name)`;
+export const PAI_NPU_POD_USAGE_PROMQL = `avg(container_npu_utilization{pod_name=~"$1"}) by (pod_name)`;
+export const PAI_JOB_GPU_MEMORY_PROMQL = `ceil(avg(DCGM_FI_DEV_FB_USED{pod=~"$1"}) by (device))`;
+
+export const PAI_JOB_CPU_PRCENTAGE_PROMQL = `sum(gems_container_cpu_usage_percent{namespace="${SERVICE_PAI}",pod=~"$1"}) by (pod, namespace)`;
+export const PAI_JOB_MEMORY_PRCENTAGE_PROMQL = `sum(gems_container_memory_usage_percent{namespace="${SERVICE_PAI}",pod=~"$1"}) by (pod, namespace)`;
+export const PAI_JOB_GPU_PRCENTAGE_PROMQL = `ceil(avg(pai_job_gpu_utils{pod=~"$1"}) by (device))`;
+export const PAI_JOB_GPU_MEMORY_PRCENTAGE_PROMQL = `avg(DCGM_FI_DEV_FB_USED{pod=~"$1"} / (DCGM_FI_DEV_FB_USED{pod=~"$1"} + DCGM_FI_DEV_FB_FREE{pod=~"$1"}) * 100) by (device)`;

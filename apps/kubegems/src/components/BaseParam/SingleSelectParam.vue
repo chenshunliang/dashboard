@@ -63,7 +63,6 @@
   import { StorageClass } from '@kubegems/api/typed/storageclass';
   import { convertResponse2List } from '@kubegems/api/utils';
   import { useGlobalI18n } from '@kubegems/extension/i18n';
-  import { required } from '@kubegems/extension/ruler';
   import { ComputedRef, computed, onMounted, ref, watch } from 'vue';
 
   const props = withDefaults(
