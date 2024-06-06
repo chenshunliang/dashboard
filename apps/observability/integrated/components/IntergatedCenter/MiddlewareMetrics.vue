@@ -1,17 +1,17 @@
 <!--
  * Copyright 2022 The kubegems.io Authors
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *       http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
 -->
 
 <template>
@@ -148,7 +148,7 @@
     postImportPrometheusRule,
   } from '@kubegems/api/direct';
   import { randomString } from '@kubegems/libs/utils/helpers';
-  import { retrieveFromSchema } from '@kubegems/libs/utils/schema';
+  import { convertObjectToArray, deleteHiddenParams, retrieveFromSchema } from '@kubegems/libs/utils/schema';
   import { deleteValue, setValue } from '@kubegems/libs/utils/yaml';
   import { Base64 } from 'js-base64';
   import { mapGetters, mapState } from 'vuex';
@@ -247,7 +247,7 @@
               chart: this.chartName,
               chartVersion: this.chart.version,
               tenant_id: this.Tenant().ID,
-              values: this.appValues,
+              values: deleteHiddenParams(this.appValues, this.schemaJson),
             };
             await postDeployAppStore(this.Tenant().ID, this.env?.projectid, this.env?.value, data);
 
@@ -302,6 +302,7 @@
         } else if (operate === 'set') {
           this.appValues = setValue(this.appValues, path, value);
         }
+        this.appValues = convertObjectToArray(this.appValues);
         this.reRender();
       },
       reRender() {

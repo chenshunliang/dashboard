@@ -42,19 +42,31 @@
 
     "gpu_core": "Total Core",
     "gpu_memory": "Total Video Memory",
-    "gpu_resource": "Gpu Resource",
+    "gpu_resource": "GPU/NPU Resource",
 
     "gpu_used": "{0} Usage",
     "gpu_used_prcent": "{0} Usage Rate",
     "gpu_temp": "GPU temperature",
     "gpu_power": "GPU power",
+    "npu_temp": "NPU temperature",
+    "npu_power": "NPU power",
     "limits": "{0} Limits",
     "requests": "{0} Requests",
     "core": "core",
     "real_time": "The specific time",
     "datetime": "Time",
     "file_viewer": "File browser",
-    "file_tree": "File Tree"
+    "file_tree": "File Tree",
+    "nvilink_bandwidth": "NvLink bandwidth",
+    "xid_error": "XID error ",
+    "pcie_tx": "Nvidia PCIe transfer rate",
+    "pcie_rx": "Nvidia PCIe receive rate",
+    "npu_memory": "NPU Memory",
+    "npu_freq": "NPU frequency",
+    "npu_hbm_memory": "NPU HBM memory",
+    "npu_band_width_rx": "NPU transmission rate",
+    "npu_band_width_tx": "NPU receiving rate",
+    "npu_band_width": "NPU bandwidth"
   },
   "table": {
     "container_name": "Container Name",

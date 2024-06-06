@@ -1,17 +1,19 @@
 <!--
- * Copyright 2022 The kubegems.io Authors
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *       http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * kubegems-pai
+ * Copyright (C) 2023  kubegems.io
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
 <template>
@@ -23,17 +25,75 @@
       :id="id"
       :all-params="allParams"
       :app-values="appValues"
+      :cluster-id="clusterId"
       :cluster-name="clusterName"
+      :cols="param.cols || cols"
       :label="param.title || param.path"
       :level="level"
+      :outliend="outliend"
       :param="param"
       :path-level="pathLevel"
+      :tenant-id="tenantId"
       v-bind="$attrs"
       v-on="$listeners"
     />
     <!-- 布尔组件 -->
     <BooleanParam
       v-else-if="type === 'boolean'"
+      :id="id"
+      :label="param.title || param.path"
+      :level="level"
+      :param="param"
+      v-bind="$attrs"
+      v-on="$listeners"
+    />
+    <RadioParam
+      v-else-if="type === 'string' && param.enum && param.enum.length > 0 && param.render === 'radio'"
+      :id="id"
+      v-bind="$attrs"
+      :input-type="inputType"
+      :label="param.title || param.path"
+      :level="level"
+      :param="param"
+      v-on="$listeners"
+    />
+    <!-- 单选组件(枚举/存储类) -->
+    <SingleSelectParam
+      v-else-if="
+        (type === 'string' || type === 'integer') &&
+        ((param.enum && param.enum.length > 0) ||
+          param.name === 'storageClassName' ||
+          param.name === 'storageClass' ||
+          param.name === 'ingressClassName' ||
+          param.name === 'ingressClass')
+      "
+      :id="id"
+      v-bind="$attrs"
+      :cluster-id="clusterId"
+      :cluster-name="clusterName"
+      :input-type="inputType"
+      :label="param.title || param.path"
+      :level="level"
+      :param="param"
+      :tenant-id="tenantId"
+      v-on="$listeners"
+    />
+    <MinMaxParam
+      v-else-if="type === 'integer' && param.render && param.render === 'slider'"
+      :id="id"
+      :label="param.title || param.path"
+      :level="level"
+      :param="param"
+      v-bind="$attrs"
+      v-on="$listeners"
+    />
+    <!-- 滑块带范围的组件 -->
+    <SliderParam
+      v-else-if="
+        (type === 'integer' || type === 'number') &&
+        Object.prototype.hasOwnProperty.call(param, 'minimum') &&
+        Object.prototype.hasOwnProperty.call(param, 'maximum')
+      "
       :id="id"
       :label="param.title || param.path"
       :level="level"
@@ -50,6 +110,8 @@
           !param['x-remote-enum'] &&
           param.name !== 'storageClassName' &&
           param.name !== 'storageClass' &&
+          param.name !== 'ingressClassName' &&
+          param.name !== 'ingressClass' &&
           param.name !== 'nameOverride' &&
           param.name !== 'fullnameOverride') ||
         type === 'integer' ||
@@ -62,21 +124,6 @@
       :level="level"
       :param="param"
       v-bind="$attrs"
-      v-on="$listeners"
-    />
-    <!-- 单选组件(枚举/存储类) -->
-    <SingleSelectParam
-      v-else-if="
-        type === 'string' &&
-        ((param.enum && param.enum.length > 0) || param.name === 'storageClassName' || param.name === 'storageClass')
-      "
-      :id="id"
-      v-bind="$attrs"
-      :cluster-name="clusterName"
-      :input-type="inputType"
-      :label="param.title || param.path"
-      :level="level"
-      :param="param"
       v-on="$listeners"
     />
     <!-- 多选组件 -->
@@ -92,16 +139,6 @@
       :param="param"
       v-on="$listeners"
     />
-    <!-- 滑块带范围的组件 -->
-    <MinMaxParam
-      v-else-if="type === 'string' && param.render && param.render === 'slider'"
-      :id="id"
-      :label="param.title || param.path"
-      :level="level"
-      :param="param"
-      v-bind="$attrs"
-      v-on="$listeners"
-    />
     <!-- 文本框组件 -->
     <TextAreaParam
       v-else-if="type === 'string' && param.render && param.render === 'textArea'"
@@ -112,8 +149,8 @@
       v-bind="$attrs"
       v-on="$listeners"
     />
-    <TableParam
-      v-else-if="(type === 'string' || type === 'array') && param['x-remote-enum'] && param['x-remote-enum'].table"
+    <CardOrTableParam
+      v-else-if="(type === 'string' || type === 'array') && param['x-remote-enum']"
       :id="id"
       :label="param.title || param.path"
       :level="level"
@@ -129,11 +166,13 @@
   import { ComputedRef, computed } from 'vue';
 
   import BooleanParam from './BooleanParam.vue';
+  import CardOrTableParam from './CardOrTableParam.vue';
   import MinMaxParam from './MinMaxParam.vue';
   import MultiSelectParam from './MultiSelectParam.vue';
+  import RadioParam from './RadioParam.vue';
   import SingleSelectParam from './SingleSelectParam.vue';
+  import SliderParam from './SliderParam.vue';
   import Subsection from './Subsection.vue';
-  import TableParam from './TableParam.vue';
   import TextAreaParam from './TextAreaParam.vue';
   import TextFieldParam from './TextFieldParam.vue';
 
@@ -146,6 +185,10 @@
       allParams?: any[];
       appValues?: any;
       allowDelete?: boolean;
+      clusterId?: number;
+      tenantId?: number;
+      cols?: number;
+      outliend?: boolean;
     }>(),
     {
       id: undefined,
@@ -155,6 +198,10 @@
       allParams: undefined,
       appValues: {},
       allowDelete: false,
+      clusterId: 0,
+      tenantId: 0,
+      cols: 12,
+      outliend: false,
     },
   );
 

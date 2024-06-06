@@ -1,17 +1,17 @@
 <!--
  * Copyright 2022 The kubegems.io Authors
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *       http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
 -->
 
 <template>
@@ -46,15 +46,7 @@
             <div class="float-left">
               <v-icon class="mx-1" color="primary">{{ getOSIcon(item) }}</v-icon>
             </div>
-            <v-flex
-              v-if="
-                (item.metadata.labels &&
-                  item.metadata.labels['tencent.com/vcuda'] &&
-                  item.metadata.labels['tencent.com/vcuda'] === 'true') ||
-                (item.metadata.labels['nvidia.com/gpu'] && item.metadata.labels['nvidia.com/gpu'] === 'true')
-              "
-              class="float-left"
-            >
+            <v-flex v-if="isGpu(item)" class="float-left">
               <GpuTip :allocated="false" :item="item" :top="2" />
             </v-flex>
 
@@ -203,6 +195,7 @@
     NODE_LOAD_PROMQL,
     NODE_POD_RUNNING_COUNT_PROMQL,
   } from '@kubegems/libs/constants/prometheus';
+  import { deviceMap } from '@kubegems/libs/utils/gpu';
   import { convertStrToNum, sizeOfStorage } from '@kubegems/libs/utils/helpers';
   import BaseFilter from '@kubegems/mixins/base_filter';
   import BasePermission from '@kubegems/mixins/permission';
@@ -389,11 +382,19 @@
         this.items.forEach((item, index) => {
           if (
             item?.metadata?.labels['tencent.com/vcuda'] === 'true' ||
-            item?.metadata?.labels['nvidia.com/gpu'] === 'true'
+            item?.metadata?.labels['nvidia.com/gpu'] === 'true' ||
+            item?.metadata?.labels?.[`pai.kubegems.io/vgpu-enabled`] === 'true' ||
+            item?.metadata?.labels?.['servertype']?.indexOf('Ascend') > -1
           ) {
             item.TkeGpu = item.status.capacity['tencent.com/vcuda-core'];
             item.TkeMemory = item.status.capacity['tencent.com/vcuda-memory'];
             item.NvidiaGpu = item.status.capacity['nvidia.com/gpu'];
+            Object.keys(deviceMap).forEach((key) => {
+              if (Object.prototype.hasOwnProperty.call(item.status.capacity, key) && key.startsWith('huawei.com')) {
+                item.AscendNpu = item.status.capacity[key];
+                return;
+              }
+            });
             this.$set(this.items, index, item);
           }
         });
@@ -521,6 +522,14 @@
         if (os.indexOf('windows') > -1) return 'mdi-microsoft-windows';
         if (os.indexOf('centos') > -1) return 'mdi-centos';
         if (os.indexOf('redhat') > -1) return 'mdi-redhat';
+      },
+      isGpu(item) {
+        return (
+          item?.metadata?.labels?.['tencent.com/vcuda'] === 'true' ||
+          item?.metadata?.labels?.['nvidia.com/gpu'] === 'true' ||
+          item?.metadata?.labels?.[`pai.kubegems.io/vgpu-enabled`] === 'true' ||
+          item?.metadata?.labels?.['servertype']?.indexOf('Ascend') > -1
+        );
       },
     },
   };

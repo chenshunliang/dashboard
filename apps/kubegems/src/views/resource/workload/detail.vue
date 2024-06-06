@@ -1,17 +1,17 @@
 <!--
  * Copyright 2022 The kubegems.io Authors
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *       http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
 -->
 
 <template>
@@ -166,6 +166,7 @@
   import UpdateWorkload from './components/UpdateWorkload';
   import WorkloadMonitor from './components/WorkloadMonitor';
   import messages from './i18n';
+  import AscendNpuMonitor from '@/views/resource/components/common/AscendNpuMonitor';
   import NvidiaGpuMonitor from '@/views/resource/components/common/NvidiaGpuMonitor';
   import PodList from '@/views/resource/components/common/PodList';
   import TkeGpuMonitor from '@/views/resource/components/common/TkeGpuMonitor';
@@ -189,6 +190,7 @@
       TkeGpuMonitor,
       UpdateWorkload,
       WorkloadMonitor,
+      AscendNpuMonitor,
     },
     mixins: [BasePermission, BaseResource],
     data() {
@@ -218,6 +220,10 @@
 
         if (this.isNvidia()) {
           items.push({ text: this.$root.$t('tab.gpu_monitor'), value: 'NvidiaGpuMonitor' });
+        }
+
+        if (this.isHuawei()) {
+          items.push({ text: this.$root.$t('tab.npu_monitor'), value: 'AscendNpuMonitor' });
         }
 
         return items;

@@ -63,14 +63,14 @@ export default defineConfig({
       },
       '/api/v1': {
         // target: 'http://10.12.32.41:8020',
-        target: 'http://demo.xiaoshiai.cn:30080',
+        target: 'http://47.108.255.162:32727',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/v1/, '/api/v1'),
         ws: true,
       },
       '/api/v1/pai': {
         // target: 'http://10.12.32.41:8020',
-        target: 'http://demo.xiaoshiai.cn:30080',
+        target: 'http://47.108.255.162:32727',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/v1\/pai/, '/api/v1/pai'),
         ws: true,

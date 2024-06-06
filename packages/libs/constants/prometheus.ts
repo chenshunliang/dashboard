@@ -220,3 +220,18 @@ export const PAI_JUICE_MEMORY_PROMQL = `sum(%juicefs_memory{pod=~"$1", namespace
 
 export const PAI_STORAGE_TRAFFIC_PROMQL = `round(increase(juicefs_s3_input_bytes{bucket=~"$1"}[24h]), 0.001)`;
 export const PAI_STORAGE_REQUEST_PROMQL = `round(increase(juicefs_s3_request_count{bucket=~"$1"}[24h]), 1)`;
+
+export const PAI_NPU_MEMORY_USED_PROMQL = `sum(%container_npu_used_memory{pod_name=~"$1"}%) by (id)`;
+export const PAI_NPU_MEMORY_TOTAL_PROMQL = `sum(%container_npu_total_memory{pod_name=~"$1"}%) by (id)`;
+export const PAI_NPU_USAGE_PROMQL = `sum(%container_npu_utilization{pod_name=~"$1"}%) by (id)`;
+export const PAI_NPU_POWER_PROMQL = `sum(%ascend_npu_power{containerName=~".*$1.*"}%) by (id)`;
+export const PAI_NPU_TEMPERATURE_PROMQL = `sum(%ascend_npu_temperature{containerName=~".*$1.*"}%) by (id)`;
+export const PAI_NPU_FREQ_PROMQL = `sum(%ascend_npu_freq{containerName=~".*$1.*"}%) by (id)`;
+export const PAI_NPU_HBM_MEMORY_USED_PROMQL = `sum(%ascend_npu_hbm_used_memory{containerName=~".*$1.*"}%) by (id)`;
+export const PAI_NPU_HBM_MEMORY_TOTAL_PROMQL = `sum(%ascend_npu_hbm_total_memory{containerName=~".*$1.*"}%) by (id)`;
+export const PAI_NPU_BANDWIDTH_RX_PROMQL = `sum(%ascend_npu_bandwidth_rx{containerName=~".*$1.*"}%) by (id)`;
+export const PAI_NPU_BANDWIDTH_TX_PROMQL = `sum(%ascend_npu_bandwidth_tx{containerName=~".*$1.*"}%) by (id)`;
+export const PAI_JOB_GPU_MEMORY_BY_POD_PROMQL = `avg(DCGM_FI_DEV_FB_USED{pod=~"$1"} / (DCGM_FI_DEV_FB_USED{pod=~"$1"} + DCGM_FI_DEV_FB_FREE{pod=~"$1"}) * 100) by (device, pod)`;
+export const GPU_PROMQL = `sum(%pai_job_gpu_utils{pod=~"$1"}%) by (device)`;
+export const GPU_TEMP_PROMQL = `sum(%pai_job_gpu_temp{pod=~"$1"}%) by (device)`;
+export const GPU_POWER_PROMQL = `sum(%pai_job_gpu_power{pod=~"$1"}%) by (device)`;

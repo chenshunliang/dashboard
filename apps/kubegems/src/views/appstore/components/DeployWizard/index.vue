@@ -1,17 +1,17 @@
 <!--
  * Copyright 2022 The kubegems.io Authors
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *       http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
 -->
 
 <template>
@@ -195,7 +195,7 @@
   import { getAppStoreFiles, postDeployAppStore, postImportPrometheusRule } from '@kubegems/api/direct';
   import { k8sName, required } from '@kubegems/extension/ruler';
   import { deepCopy } from '@kubegems/libs/utils/helpers';
-  import { retrieveFromSchema } from '@kubegems/libs/utils/schema';
+  import { convertObjectToArray, deleteHiddenParams, retrieveFromSchema } from '@kubegems/libs/utils/schema';
   import { deleteValue, setValue, setYamlValue } from '@kubegems/libs/utils/yaml';
   import BasePermission from '@kubegems/mixins/permission';
   import BaseResource from '@kubegems/mixins/resource';
@@ -368,6 +368,7 @@
         } else if (operate === 'set') {
           this.appValues = setValue(this.appValues, path, value);
         }
+        this.appValues = convertObjectToArray(this.appValues);
         this.reRender();
       },
       reRender() {
@@ -399,7 +400,7 @@
           chart: this.obj.app,
           chartVersion: this.obj.selectVersion,
           tenant_id: this.Tenant().ID,
-          values: this.appValues,
+          values: deleteHiddenParams(this.appValues, this.schemaJson),
           annotations: {
             'application.kubegems.io/repo': this.selectRepo,
           },
@@ -530,7 +531,9 @@
       },
       onTabChange() {
         if (this.tab === 0) {
-          this.appValues = this.$yamlload(this.appValuesYaml);
+          const data = this.$yamlload(this.appValuesYaml);
+          if (data) this.appValues = data;
+          else return;
           this.yamlMode = false;
           this.reRender();
         } else {

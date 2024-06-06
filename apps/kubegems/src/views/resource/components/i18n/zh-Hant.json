@@ -42,19 +42,31 @@
 
     "gpu_core": "總核心",
     "gpu_memory": "總顯存",
-    "gpu_resource": "Gpu資源",
+    "gpu_resource": "GPU/NPU資源",
 
     "gpu_used": "{0}使用量",
     "gpu_used_prcent": "{0}使用率",
     "gpu_temp": "GPU溫度",
     "gpu_power": "GPU功率",
+    "npu_temp": "NPU溫度",
+    "npu_power": "NPU功率",
     "limits": "{0}限制值",
     "requests": "{0}請求值",
     "core": "核心",
     "real_time": "具體時間",
     "datetime": "時間",
     "file_viewer": "文件瀏覽器",
-    "file_tree": "文件樹"
+    "file_tree": "文件樹",
+    "nvilink_bandwidth": "NvLink頻寬",
+    "xid_error": "XID錯誤號",
+    "pcie_tx": "Nvidia PCIe匯流排傳輸速率",
+    "pcie_rx": "Nvidia PCIe匯流排接收速率",
+    "npu_memory": "NPU記憶體",
+    "npu_freq": "NPU頻率",
+    "npu_hbm_memory": "NPU HBM記憶體",
+    "npu_band_width_rx": "NPU 傳輸速率",
+    "npu_band_width_tx": "NPU 接收速率",
+    "npu_band_width": "NPU頻寬"
   },
   "table": {
     "container_name": "容器名",

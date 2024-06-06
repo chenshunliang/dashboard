@@ -488,3 +488,11 @@ export function htmlDecodeByRegExp(str, url = '') {
 
   return s;
 }
+
+export const sum = (numbers) => {
+  let sum = 0;
+  for (const number of numbers) {
+    sum += number;
+  }
+  return sum;
+};

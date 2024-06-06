@@ -1,17 +1,19 @@
 <!--
- * Copyright 2022 The kubegems.io Authors
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *       http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * kubegems-pai
+ * Copyright (C) 2023  kubegems.io
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
 <template>
@@ -19,8 +21,9 @@
     <BaseSubTitle
       v-if="pathLevel === 1"
       class="mb-4"
-      :color="pathLevel === 1 ? 'grey lighten-3' : ''"
+      :color="pathLevel === 1 ? 'kubegems__sub_title_bg' : ''"
       :divider="false"
+      schema
       :title="label"
     />
     <v-autocomplete
@@ -28,30 +31,38 @@
       class="my-2"
       :hint="param.description || ''"
       :items="items"
-      :label="pathLevel === 1 ? '' : label"
+      :label="pathLevel === 1 ? '' : labelWithDesc"
       :menu-props="{
         bottom: true,
         left: true,
         origin: `top center`,
         nudgeBottom: param.description ? '24px' : '2px',
       }"
+      :no-data-text="i18n.t('data.no_data')"
       :rules="rules"
-      :value="param.value"
+      :value="param.value || param.default"
       @change="changed($event)"
       @focus="getStorageClassList"
     >
       <template #selection="{ item }">
-        <v-chip class="mx-1" color="primary" small>
+        <div class="d-flex">
           {{ item['text'] }}
-        </v-chip>
+          <div class="text-body-2 ml-2 text--secondary">{{ item['extand'] || '' }}</div>
+        </div>
+      </template>
+      <template #item="{ item }">
+        {{ item['text'] }}
+        {{ item['extand'] || '' }}
       </template>
     </v-autocomplete>
   </v-flex>
 </template>
 
 <script lang="ts" setup>
+  import { gatewaySelectData } from '@kubegems/api/direct';
   import { StorageClass } from '@kubegems/api/typed/storageclass';
   import { convertResponse2List } from '@kubegems/api/utils';
+  import { useGlobalI18n } from '@kubegems/extension/i18n';
   import { required } from '@kubegems/extension/ruler';
   import { ComputedRef, computed, onMounted, ref, watch } from 'vue';
 
@@ -62,6 +73,8 @@
       param?: any;
       level?: number;
       clusterName?: string;
+      clusterId?: number;
+      tenantId?: number;
     }>(),
     {
       id: undefined,
@@ -69,8 +82,20 @@
       param: {},
       level: 1,
       clusterName: '',
+      clusterId: 0,
+      tenantId: 0,
     },
   );
+
+  const i18n = useGlobalI18n();
+
+  const labelWithDesc = computed(() => {
+    if (props.param.description) {
+      return `${props.label}(${props.param.description})`;
+    } else {
+      return props.label;
+    }
+  });
 
   const pathLevel: ComputedRef<number> = computed(() => {
     if (props.param?.path?.indexOf('/') > -1) return props.param.path.split('/').length;
@@ -78,7 +103,7 @@
     return props.level;
   });
 
-  const rules = [required];
+  const rules = [];
 
   const emit = defineEmits(['changeBasicFormParam']);
   const changed = (event: string): void => {
@@ -88,11 +113,28 @@
   const items = ref<{ text: string; value: string }[]>([]);
   const getStorageClassList = async (): Promise<void> => {
     if ((props.param.name === 'storageClassName' || props.param.name === 'storageClass') && props.clusterName !== '') {
-      const data = await new StorageClass().getStorageClassList(props.clusterName, { page: 1, size: 1000 });
+      const data = await new StorageClass().getStorageClassList(props.clusterName, {
+        page: 1,
+        size: 1000,
+        noprocessing: true,
+      });
       items.value = convertResponse2List<StorageClass>(data).map((d) => {
         return { text: d.metadata.name, value: d.metadata.name };
       });
     }
+  };
+
+  const getIngressClassNameList = async () => {
+    const data: { [key: string]: any } = await gatewaySelectData(props.tenantId, props.clusterId, {
+      noprocessing: true,
+    });
+    items.value = data?.map((d) => {
+      return {
+        text: d.metadata.name,
+        value: d.spec.ingressClass,
+        extand: `(ingress class name: ${d.spec.ingressClass})`,
+      };
+    });
   };
 
   watch(
@@ -105,6 +147,9 @@
       ) {
         getStorageClassList();
       }
+      if ((props.param.name === 'ingressClassName' || props.param.name === 'ingressClass') && props.clusterId) {
+        getIngressClassNameList();
+      }
     },
     { immediate: true },
   );
@@ -115,6 +160,13 @@
         return { text: enumValue, value: enumValue };
       });
     }
-    getStorageClassList();
+    if ((props.param.name === 'storageClassName' || props.param.name === 'storageClass') && props.clusterName !== '') {
+      getStorageClassList();
+    }
+    if ((props.param.name === 'ingressClassName' || props.param.name === 'ingressClass') && props.clusterId) {
+      getIngressClassNameList();
+    }
+
+    emit('changeBasicFormParam', props.param, props.param.value || props.param.default);
   });
 </script>

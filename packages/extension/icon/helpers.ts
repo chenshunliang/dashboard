@@ -1,17 +1,19 @@
 /*
- * Copyright 2022 The kubegems.io Authors
+ * xiaoshi
+ * Copyright (C) 2024  xiaoshiai.cn
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *       http://www.apache.org/licenses/LICENSE-2.0
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 const getPlatfom = (): string => {
   const title = document.title;
@@ -20,8 +22,8 @@ const getPlatfom = (): string => {
       ? title
           ?.substr(title?.indexOf('-') + 1)
           ?.trim()
-          ?.toLocaleLowerCase() || 'kubegems'
-      : title?.trim()?.toLocaleLowerCase() || 'kubegems';
+          ?.toLocaleLowerCase() || 'xiaoshi'
+      : title?.trim()?.toLocaleLowerCase() || 'xiaoshi';
   return platform;
 };
 
@@ -29,14 +31,72 @@ export const getIconName = (name: string, def = 'kubernetes'): string => {
   name = name.toLowerCase().trim();
   if (name.startsWith('mm')) return '';
 
+  if (name.startsWith('mdi')) return name;
+  if (name.startsWith('tabler')) return name;
+  if (name.startsWith('logos')) return name;
+
+  if (name === 'data-conda') return 'img:/icon/common/conda.png';
+  if (name === 'data-workspace') return 'img:/icon/common/workspace.png';
+  if (name === 'data-text') return 'img:/icon/common/text.png';
+  if (name === 'data-video') return 'img:/icon/common/video.png';
+  if (name === 'data-image') return 'img:/icon/common/image.png';
+  if (name === 'data-audio') return 'img:/icon/common/audio.png';
+  if (name === 'data-generic') return 'img:/icon/common/generic.png';
+  if (name === 'data-code') return 'img:/icon/common/code.png';
+  if (name === 'data-tuning') return 'img:/icon/common/tuning.png';
+  if (name === 'data-inference') return 'img:/icon/common/inference.png';
+  if (name === 'data-code-image') return 'img:/icon/common/code-image.png';
+  if (name === 'ai-cluster') return 'img:/icon/common/cluster.png';
+  if (name === 'data-model') return 'img:/icon/common/model.png';
+  if (name === 'cloud-env') return 'img:/icon/common/env.png';
+  if (name === 'cloud-user') return 'img:/icon/common/user.png';
+  if (name === 'cloud-pod') return 'img:/icon/common/pod.png';
+  if (name === 'cloud-project') return 'img:/icon/common/project.png';
+  if (name === 'cloud-workload') return 'img:/icon/common/workload.png';
+  if (name === 'cloud-role') return 'img:/icon/common/role.png';
+  if (name === 'cloud-app') return 'img:/icon/common/application.png';
+  if (name === 'cloud-cpu') return 'img:/icon/common/cpu.png';
+  if (name === 'cloud-storage') return 'img:/icon/common/storage.png';
+  if (name === 'cloud-memory') return 'img:/icon/common/memory.png';
+  if (name === 'cloud-node') return 'img:/icon/common/node.png';
+  if (name === 'desktop-store') return 'img:/icon/common/store.png';
+  if (name === 'desktop-github') return 'img:/icon/common/github.png';
+  if (name === 'desktop-settings') return 'img:/icon/common/settings.png';
+  if (name === 'desktop-profile') return 'img:/icon/common/profile.png';
+  if (name === 'desktop-graph') return 'img:/icon/common/graph.png';
+  if (name === 'desktop-ai') return 'img:/icon/common/ai.png';
+  if (name === 'desktop-cloud') return 'img:/icon/common/cloud.png';
+  if (name === 'desktop-license') return 'img:/icon/common/license.png';
+  if (name === 'desktop-broadcast') return 'img:/icon/common/broadcast.png';
+  if (name === 'desktop-enter') return 'img:/icon/common/enter.png';
+  if (name === 'desktop-edge') return 'img:/icon/common/edge.png';
+  if (name === 'ai-region') return 'img:/icon/common/region.png';
+  if (name === 'ai-server') return 'img:/icon/common/server.png';
+  if (name === 'desktop-hub') return 'img:/icon/common/hub.png';
+  if (name === 'all') return 'img:/icon/common/all.png';
+  if (name === 'plugin') return 'img:/icon/common/plugin.png';
+  if (name === 'file-capacity') return 'img:/icon/common/capacity.png';
+  if (name === 'file-count') return 'img:/icon/common/files.png';
+  if (name === 'file-traffic') return 'img:/icon/common/traffic.png';
+  if (name === 'desktop-about') return 'img:/icon/common/about.png';
+  if (name.replaceAll('-', '').replaceAll('_', '') === 'llamafactory') return '/icon/common/llama-factory.png';
+  if (name.replaceAll('-', '').replaceAll('_', '') === 'megatron') return '/icon/common/megatron.png';
+  if (name.replaceAll('-', '').replaceAll('_', '') === 'deepspeed') return '/icon/common/deepspeed.png';
+  if (name.replaceAll('-', '').replaceAll('_', '') === 'mindspore') return '/icon/common/mindspore.png';
+  if (name.replaceAll('-', '').replaceAll('_', '') === 'colossalai') return '/icon/common/colossal-ai.png';
+
+  if (name.indexOf('kunpeng') > -1) return 'img:/icon/kunpeng.svg';
+  if (name.indexOf('huawei') > -1) return 'img:/icon/huawei.svg';
+  if (name.indexOf('dell') > -1) return 'img:/icon/dell.svg';
   if (name.indexOf('jupyter') > -1) return 'logos:jupyter';
   if (name.indexOf('code-server') > -1) return 'logos:visual-studio-code';
   if (name === 'im') return 'img:/icon/im.svg';
-  if (name === 'modelx') return 'img:/icon/modelx.svg';
+  if (name === 'moha') return 'img:/icon/moha.svg';
+  if (name.indexOf('tesla') > -1) return 'img:/icon/nvidia.svg';
   if (name.indexOf('nvidia_tesla') > -1) return 'img:/icon/nvidia_tesla.svg';
   if (name.indexOf('nvidia_geforce') > -1) return 'img:/icon/nvidia_geforce.svg';
   if (name.indexOf('juicefs') > -1) return 'img:/icon/juicefs.svg';
-  if (name.indexOf('modelgeneric') > -1) return 'img:/icon/modelset.svg';
+  if (name.indexOf('modelgeneric') > -1) return 'img:/icon/common/model.png';
   if (name === 'generic') return 'mdi:database';
   if (name.indexOf('aliyun') > -1) return 'img:/icon/aliyun.svg';
   if (name.indexOf('dingding') > -1) return 'img:/icon/dingding.svg';
@@ -50,7 +110,6 @@ export const getIconName = (name: string, def = 'kubernetes'): string => {
   if (name.indexOf('mysql') > -1) return 'logos:mysql-icon';
   if (name.indexOf('redis') > -1) return 'logos:redis';
   if (name.indexOf('nginx') > -1) return 'logos:nginx';
-  if (name.indexOf('operator') > -1) return 'img:/icon/operator.svg';
   if (name.indexOf('elasticsearch') > -1) return 'logos:elasticsearch';
   if (name.indexOf('elastic') > -1) return 'logos:elasticsearch';
   if (name === 'es') return 'logos:elasticsearch';
@@ -83,6 +142,10 @@ export const getIconName = (name: string, def = 'kubernetes'): string => {
   if (name.indexOf('vmware') > -1) return 'img:/icon/vmware.svg';
   if (name.indexOf('email') > -1) return 'logos:google-gmail';
   if (name.indexOf('feishu') > -1) return 'img:/icon/feishu.svg';
+  if (name.indexOf('glusterfs') > -1) return 'img:/icon/glusterfs.svg';
+  if (name.indexOf('openebs') > -1) return 'img:/icon/openebs.svg';
+  if (name.indexOf('longhorn') > -1) return 'img:/icon/longhorn.svg';
+  if (name.indexOf('carina') > -1) return 'img:/icon/carina.svg';
   if (name.indexOf('webhook') > -1) return 'logos:webhooks';
   if (name.indexOf('apm-server') > -1) {
     return 'img:/icon/apm-server.svg';
@@ -145,6 +208,7 @@ export const getIconName = (name: string, def = 'kubernetes'): string => {
   if (name.indexOf('cert_manager') > -1) return 'img:/icon/cert-manager.svg';
   if (name.indexOf('local_path') > -1) return 'logos:rancher-icon';
   if (name.indexOf('local-path') > -1) return 'logos:rancher-icon';
+  if (name.indexOf('rancher') > -1) return 'logos:rancher-icon';
   if (name.indexOf('tke') > -1) return 'img:/icon/tke.svg';
   if (name.indexOf('filebeat') > -1) return 'img:/icon/filebeat.svg';
   if (name.indexOf('metricbeat') > -1) return 'img:/icon/metricbeat.svg';
@@ -157,6 +221,8 @@ export const getIconName = (name: string, def = 'kubernetes'): string => {
   if (name.indexOf('moodle') > -1) return 'img:/icon/moodle.svg';
   if (name.indexOf('ejbca') > -1) return 'img:/icon/ejbca.svg';
   if (name.indexOf('owncloud') > -1) return 'img:/icon/owncloud.svg';
+  if (name.indexOf('volcano') > -1) return 'img:/icon/volcano.svg';
+  if (name.indexOf('tidb') > -1) return 'img:/icon/tidb.svg';
   if (name.indexOf('odoo') > -1) return 'img:/icon/odoo.svg';
   if (name.indexOf('thanos') > -1) return 'img:/icon/thanos.svg';
   if (name.indexOf('sugarcrm') > -1) return 'img:/icon/sugarcrm.svg';
@@ -172,8 +238,8 @@ export const getIconName = (name: string, def = 'kubernetes'): string => {
   if (name.indexOf('oauth') > -1) return 'logos:oauth';
   if (name.indexOf('ldap') > -1) return 'img:/icon/openldap.svg';
   if (name.toLocaleLowerCase() === 'opencsg') return `img:/opencsg.svg`;
-  if (name.toLocaleLowerCase() === 'modelx') return `img:/${getPlatfom()}.svg`;
-  if (name === 'kubegems') return `img:/favicon.ico`;
+  if (name.toLocaleLowerCase() === 'moha') return `img:/${getPlatfom()}.svg`;
+  if (name === 'kubegems') return `img:/${getPlatfom()}.svg`;
   if (name.startsWith('kubegems')) return `img:/${getPlatfom()}.svg`;
   if (name.indexOf('gke') > -1) return 'logos:google-cloud';
   if (name === 'ack') return 'img:/icon/aliyun.svg';
@@ -189,6 +255,7 @@ export const getIconName = (name: string, def = 'kubernetes'): string => {
   if (name.indexOf('javascript') > -1) return 'logos:javascript';
   if (name.indexOf('java') > -1) return 'logos:java';
   if (name.indexOf('jmx') > -1) return 'logos:java';
+  if (name.indexOf('aws') > -1) return 'logos:aws';
   if (name.indexOf('php') > -1) return 'logos:php';
   if (name.indexOf('helm') > -1) return 'logos:helm';
   if (name.indexOf('python') > -1) return 'logos:python';
@@ -199,8 +266,8 @@ export const getIconName = (name: string, def = 'kubernetes'): string => {
   if (name.indexOf('region') > -1) return 'img:/icon/region.svg';
   if (name.indexOf('gateway') > -1) return 'logos:nginx';
   if (name.indexOf('tracing') > -1) return 'img:/icon/jaeger.svg';
-  if (name.indexOf('log collect') > -1) return `img:/${getPlatfom()}.svg`;
-  if (name === 'opentelemetry') return 'logos:opentelemetry';
+  if (name.indexOf('log collect') > -1) return `img:/icon/loki.svg`;
+  if (name === 'opentelemetry') return 'logos:opentelemetry-icon';
   if (name.indexOf('opentelemetry') > -1) return 'logos:opentelemetry-icon';
   if (name.indexOf('otel') > -1) return 'logos:opentelemetry-icon';
   if (name.indexOf('openkruise') > -1) return 'img:/icon/openkruise.svg';
@@ -247,7 +314,6 @@ export const getIconName = (name: string, def = 'kubernetes'): string => {
   if (name.indexOf('conversation') > -1) return 'mdi:account-convert';
   if (name.indexOf('extract') > -1) return 'mdi:eyedropper';
   if (name.indexOf('fill-mask') > -1) return 'mdi:basket-fill';
-  if (name.indexOf('local') > -1) return 'mdi:earth';
 
   if (name.indexOf('tempo') > -1) return 'img:/icon/tempo.svg';
   if (name.indexOf('openmmlab') > -1) return 'img:/icon/openmmlab_logo.svg';
@@ -264,13 +330,17 @@ export const getIconName = (name: string, def = 'kubernetes'): string => {
   if (name.indexOf('centos') > -1) return 'mdi:centos';
   if (name.indexOf('redhat') > -1) return 'mdi:redhat';
   if (name === 'intel') return 'img:/icon/intel.svg';
-  if (name === 'amd') return 'img:/icon/amd.svg';
+  if (name === 'amd') return 'img:/icon/common/amd.webp';
   if (name === 'lfs') return 'img:/icon/lfs.svg';
   if (name.indexOf('oneflow') > -1) return 'img:/icon/oneflow.svg';
-
-  if (name.startsWith('mdi')) return name;
-
-  // if (name.indexOf('selfhosted') > -1) return 'img:kubegems.svg';
+  if (name.indexOf('notebook') > -1) return 'logos:jupyter';
+  if (name.indexOf('moha') > -1) return 'img:/icon/moha.svg';
+  if (name === 'other') return 'img:/icon/modelset.svg';
+  if (name.indexOf('operator') > -1) return 'img:/icon/operator.svg';
+  if (name === 'traefik') return 'img:/icon/traefik.svg';
+  if (name === 'zeppelin') return 'logos:open-zeppelin-icon';
+  if (name.indexOf('intel') > -1) return 'img:/icon/intel.svg';
+  if (name.indexOf('chaos') > -1) return 'img:/icon/chaos.png';
 
   switch (def) {
     case 'task':
@@ -286,12 +356,32 @@ export const getIconName = (name: string, def = 'kubernetes'): string => {
     case 'model':
       return 'img:/icon/ai-model.svg';
     case 'pai':
-      return 'img:/icon/modelset.svg';
+      return 'img:/icon/common/workspace.png';
     case 'image':
       return 'logos:docker-icon';
     case 'none':
-      return 'mdi:help-rhombus';
+      return 'mdi:question-mark';
     default:
       return 'logos:kubernetes';
   }
+};
+
+export const getModelImage = (name: string) => {
+  if (name.indexOf('baichuan') > -1) return '/icon/common/baichuan.webp';
+  if (name.indexOf('qwen') > -1) return '/icon/common/qwen.webp';
+  if (name.indexOf('llama') > -1) return '/icon/common/llama.webp';
+  if (name.indexOf('chatglm') > -1) return '/icon/common/chatglm.webp';
+  if (name.indexOf('mixtral') > -1) return '/icon/common/mixtral.webp';
+  if (name.indexOf('mistral') > -1) return '/icon/common/mixtral.webp';
+  if (name.indexOf('bloom') > -1) return '/icon/common/bloom.webp';
+  if (name.indexOf('gpt') > -1) return '/icon/common/openai.webp';
+  if (name.indexOf('gemma') > -1) return '/icon/common/gemma.webp';
+  if (name.indexOf('xuanyuan') > -1) return '/icon/common/xuanyuan.webp';
+  if (name.indexOf('deepseek') > -1) return '/icon/common/deepseek.webp';
+  if (name.indexOf('falcon') > -1) return '/icon/common/falcon.webp';
+  if (name.indexOf('internlm') > -1) return '/icon/common/internlm.webp';
+  if (name.indexOf('yi') > -1) return '/icon/common/yi.webp';
+  if (name.indexOf('custom') > -1) return '/icon/common/model.png';
+
+  return '/icon/common/model.png';
 };

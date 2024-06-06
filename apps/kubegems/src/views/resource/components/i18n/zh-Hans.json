@@ -42,12 +42,14 @@
 
     "gpu_core": "总核心",
     "gpu_memory": "总显存",
-    "gpu_resource": "Gpu资源",
+    "gpu_resource": "GPU/NPU资源",
 
     "gpu_used": "{0}使用量",
     "gpu_used_prcent": "{0}使用率",
     "gpu_temp": "GPU温度",
     "gpu_power": "GPU功率",
+    "npu_temp": "NPU温度",
+    "npu_power": "NPU功率",
     "limits": "{0}限制值",
     "requests": "{0}请求值",
     "core": "核心",
@@ -55,7 +57,17 @@
     "datetime": "时间",
     "file_viewer": "文件浏览器",
     "file_tree": "文件树",
-    "connect_closed": "连接已关闭或无法打开"
+    "connect_closed": "连接已关闭或无法打开",
+    "nvilink_bandwidth": "NvLink带宽",
+    "xid_error": "XID错误号",
+    "pcie_tx": "Nvidia PCIe总线传输速率",
+    "pcie_rx": "Nvidia PCIe总线接收速率",
+    "npu_memory": "NPU内存",
+    "npu_freq": "NPU频率",
+    "npu_hbm_memory": "NPU HBM内存",
+    "npu_band_width_rx": "NPU 传输速率",
+    "npu_band_width_tx": "NPU 接收速率",
+    "npu_band_width": "NPU带宽"
   },
   "table": {
     "container_name": "容器名",

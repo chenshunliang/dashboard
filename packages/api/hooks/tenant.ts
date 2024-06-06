@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { deviceMap } from '@kubegems/libs/utils/gpu';
 import { sizeOfCpu, sizeOfStorage } from '@kubegems/libs/utils/helpers';
 
 import { Cluster } from '../typed/cluster';
@@ -152,6 +153,12 @@ export const useTenantResourceQuotaPagination = async (
     }
     if (item.Content['limits.tencent.com/vcuda-core']) {
       item.TkeGpu = parseFloat(item.Content['limits.tencent.com/vcuda-core']);
+    }
+    if (Object.keys(item.Content).indexOf('huawei.com') > -1) {
+      item.AscendNpu = 0;
+      Object.keys(deviceMap).forEach((k) => {
+        item.AscendNpu += parseFloat(item.Content[`limits.${k}`]);
+      });
     }
     if (item.Content['limits.tencent.com/vcuda-memory']) {
       item.TkeMemory = parseFloat(item.Content['limits.tencent.com/vcuda-memory']);

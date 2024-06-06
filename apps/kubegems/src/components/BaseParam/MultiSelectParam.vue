@@ -1,17 +1,19 @@
 <!--
- * Copyright 2022 The kubegems.io Authors
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *       http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * kubegems-pai
+ * Copyright (C) 2023  kubegems.io
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
 <template>
@@ -19,20 +21,28 @@
     <BaseSubTitle
       v-if="pathLevel === 1 || (param.items && param.items.type === 'object')"
       class="mb-4"
-      :color="pathLevel === 1 ? 'grey lighten-3' : ''"
+      :color="pathLevel === 1 ? 'kubegems__sub_title_bg' : ''"
       :divider="false"
+      schema
       :title="label"
     >
       <template v-if="param.items && param.items.type === 'object'" #action>
         <v-btn class="mt-n1" color="primary" icon small @click="addItem">
-          <v-icon small>mdi-plus-box</v-icon>
+          <v-icon class="mr-1" size="16">mdi-plus</v-icon>
         </v-btn>
       </template>
     </BaseSubTitle>
     <template v-if="param.items && param.items.type === 'object'">
       <div v-for="(item, ii) in list" :id="`${id}-${ii}`" :key="`${id}-${ii}`" class="grey lighten-5 rounded ma-3 pa-2">
-        <v-btn class="float-right" color="error" icon small @click="removeItem(item, `${param.path}/${item}`)">
-          <v-icon small>mdi-close-box</v-icon>
+        <v-btn
+          v-if="ii >= param.minItems"
+          class="float-right"
+          color="error"
+          icon
+          small
+          @click="removeItem(item, `${param.path}/${item}`)"
+        >
+          <v-icon size="20">mdi-close</v-icon>
         </v-btn>
         <div class="kubegems__clear-float" />
         <BaseParam
@@ -50,10 +60,10 @@
       </div>
     </template>
     <template v-else-if="param.items && Array.isArray(param.items)">
-      <BaseSubTitle class="mb-4" color="grey lighten-3" :divider="false" :title="param.title || param.path">
+      <BaseSubTitle class="mb-4" color="grey lighten-3" :divider="false" schema :title="param.title || param.path">
         <template v-if="param.items && param.additionalItems" #action>
           <v-btn class="mt-n1" color="primary" icon small @click="addAdditionalItems">
-            <v-icon small>mdi-plus-box</v-icon>
+            <v-icon class="mr-1" size="16">mdi-plus</v-icon>
           </v-btn>
         </template>
       </BaseSubTitle>
@@ -79,7 +89,6 @@
           :app-values="appValues"
           class="my-0 mt-0"
           :cluster-name="clusterName"
-          :hint="param.description || ''"
           :level="0"
           :param="p"
           v-bind="$attrs"
@@ -94,8 +103,9 @@
         :attach="`#${id}`"
         class="my-2"
         hide-selected
+        :hint="param.description || ''"
         :items="state.items"
-        :label="pathLevel === 1 ? '' : label"
+        :label="pathLevel === 1 ? '' : labelWithDesc"
         :menu-props="{
           bottom: true,
           left: true,
@@ -103,6 +113,7 @@
           nudgeBottom: param.description ? '24px' : '2px',
         }"
         multiple
+        :no-data-text="i18n.t('data.no_data')"
         :search-input.sync="state.search"
         @change="changed($event)"
       >
@@ -116,17 +127,10 @@
           </v-list-item>
         </template>
         <template #selection="{ item }">
-          <v-chip
-            class="ma-1"
-            close
-            close-icon="mdi-close-circle"
-            color="success"
-            dense
-            small
-            @click:close="removeCommand(item)"
-          >
-            {{ item }}
-          </v-chip>
+          ({{ item }}
+          <v-btn color="error" icon small @click.stop="removeCommand(item)">
+            <v-icon size="20">mdi-close</v-icon> </v-btn
+          >)
         </template>
         <template #append-outer><v-flex :id="id" /></template>
       </v-combobox>
@@ -165,6 +169,14 @@
 
   const store = useStore();
   const i18n = useGlobalI18n();
+
+  const labelWithDesc = computed(() => {
+    if (props.param.description) {
+      return `${props.label}(${props.param.description})`;
+    } else {
+      return props.label;
+    }
+  });
 
   const pathLevel: ComputedRef<number> = computed(() => {
     if (props.param?.path?.indexOf('/') > -1) return props.param.path.split('/').length;
@@ -261,6 +273,12 @@
       return;
     }
     if (props.param.items && props.param.items.type === 'object') {
+      if (props.param?.minItems) {
+        Array.from({ length: props.param.minItems }, (_, index) => index).forEach((_) => {
+          list.value.push(list.value.length);
+        });
+      }
+
       const value = getValue(props.appValues, props.param.path);
       if (value) {
         const initValue = JSON.parse(value.toString());

@@ -114,6 +114,7 @@
     "cpu": "CPU",
     "cpu_c": "{0}CPU",
     "gpu": "GPU",
+    "npu": "NPU",
     "video_memory": "スクリーンキャスト",
     "memory": "メモリ",
     "memory_c": "{0}メモリ",
@@ -405,15 +406,15 @@
     },
     "pai": {
       "h_dashboard": "概要",
-      "h_task": "開発する",
-      "h_asset": "資産",
+      "h_task": "モデル開発",
+      "h_asset": "データ管理",
       "h_cost": "料金",
       "h_setting": "設定",
       "h_async_task": "タスク",
-      "h_deploy": "展開する",
+      "h_deploy": "モデルサービス",
 
       "g_dashboard": "概要",
-      "g_task": "タスクセンター",
+      "g_task": "大型モデル",
       "g_setting": "プラットフォーム設定",
       "g_ai_asset": "アルゴリズム資産",
       "g_cost": "料金",
@@ -425,6 +426,7 @@
       "dashboard": "リソースの概要",
       "train_task": "トレーニング タスク",
       "model_sft": "チューニング",
+      "model_inference": "仕える",
       "dataset": "データセット",
       "image": "鏡像",
       "modelset": "モデル",
@@ -527,7 +529,8 @@
     "event": "イベント",
     "pod": "ポッド",
     "monitor": "監視",
-    "gpu_monitor": "GPU監視"
+    "gpu_monitor": "GPU監視",
+    "npu_monitor": "NPU監視"
   },
   "intro": {
     "next": "次のステップ",

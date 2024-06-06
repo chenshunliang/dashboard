@@ -119,6 +119,7 @@
     "cpu": "CPU",
     "cpu_c": "{0} CPU",
     "gpu": "GPU",
+    "npu": "NPU",
     "video_memory": "Video Memory",
     "memory": "Memory",
     "memory_c": "{0} Memory",
@@ -417,15 +418,15 @@
     },
     "pai": {
       "h_dashboard": "Dashboard",
-      "h_task": "Development",
-      "h_asset": "Asset",
+      "h_task": "Model Development",
+      "h_asset": "Data management",
       "h_cost": "Cost",
       "h_setting": "Setting",
       "h_async_task": "Task",
-      "h_deploy": "Deploy",
+      "h_deploy": "Model Service",
 
       "g_dashboard": "Dashboard",
-      "g_task": "Model Training",
+      "g_task": "Large Model",
       "g_setting": "Management",
       "g_ai_asset": "AI Asset",
       "g_cost": "Cost",
@@ -437,6 +438,7 @@
       "dashboard": "Dashboard",
       "train_task": "Train",
       "model_sft": "Tuning",
+      "model_inference": "Service",
       "dataset": "Dataset",
       "image": "Image",
       "modelset": "Modelset",
@@ -541,7 +543,8 @@
     "event": "Event",
     "pod": "Pod",
     "monitor": "Monitor",
-    "gpu_monitor": "GPU Monitor"
+    "gpu_monitor": "GPU Monitor",
+    "npu_monitor": "NPU Monitor"
   },
   "intro": {
     "next": "Next",
