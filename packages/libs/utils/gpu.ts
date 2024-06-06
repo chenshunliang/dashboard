@@ -21,3 +21,14 @@ export const getGPUTotal = (limits) => {
   });
   return total;
 };
+
+export const getGpuType = (job: any) => {
+  let _type = '';
+  job?.config?.roles?.forEach((r) => {
+    if (r?.skuDetails?.resources?.some((r) => r?.resourceName?.indexOf('huawei.com') > -1)) _type = 'npu';
+    else if (r?.skuDetails?.resources?.some((r) => r?.resourceName?.indexOf('nvidia.com') > -1)) _type = 'gpu';
+    else if (r?.skuDetails?.resources?.some((r) => r?.resourceName?.indexOf('volcano.sh/vgpu-memory') > -1))
+      _type = 'gpu';
+  });
+  return _type;
+};
