@@ -416,6 +416,12 @@
           return c?.resources?.limits && c?.resources?.limits['nvidia.com/gpu'];
         });
       },
+      isHuawei() {
+        return this.workload?.spec?.template?.spec?.containers.some((c) => {
+          const keys = Object.keys((c?.resources?.limits && c?.resources?.limits) || {});
+          return keys.some((key) => key.includes('huawei.com'));
+        });
+      },
     },
   };
 </script>

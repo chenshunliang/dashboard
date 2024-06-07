@@ -19,6 +19,7 @@ import { useStore } from '@kubegems/extension/store';
 import { integratedSentry } from '@kubegems/extension/tool/sentry';
 import { integratedOpenTelemetry } from '@kubegems/extension/tool/tracing';
 import Vue from 'vue';
+import VueClipboard from 'vue-clipboard2';
 
 import App from './App.vue';
 import '@kubegems/extension/icon';
@@ -37,6 +38,9 @@ import '@kubegems/pai/install';
 const store = useStore();
 
 Vue.config.productionTip = false;
+
+VueClipboard.config.autoSetContainer = true;
+Vue.use(VueClipboard);
 
 // 集成sentry
 if (import.meta.env.VUE_APP_SENTRY === 'true') {

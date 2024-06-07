@@ -1,6 +1,6 @@
 /*
- * xiaoshi
- * Copyright (C) 2024  xiaoshiai.cn
+ * kubegems-pai
+ * Copyright (C) 2023  kubegems.io
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,8 +22,8 @@ const getPlatfom = (): string => {
       ? title
           ?.substr(title?.indexOf('-') + 1)
           ?.trim()
-          ?.toLocaleLowerCase() || 'xiaoshi'
-      : title?.trim()?.toLocaleLowerCase() || 'xiaoshi';
+          ?.toLocaleLowerCase() || 'kubegems'
+      : title?.trim()?.toLocaleLowerCase() || 'kubegems';
   return platform;
 };
 

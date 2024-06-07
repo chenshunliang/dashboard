@@ -224,6 +224,9 @@ importers:
       v-code-diff:
         specifier: ^0.3.12
         version: 0.3.12(vue@2.7.15)
+      vue-clipboard2:
+        specifier: ^0.3.3
+        version: 0.3.3
       vue-filepond:
         specifier: ^7.0.3
         version: 7.0.3(filepond@4.30.4)(vue@2.7.15)
@@ -9302,6 +9305,22 @@ packages:
         optional: true
     dependencies:
       vue: 2.7.15
+    dev: true
+
+  /vue-demi@0.14.8(vue@2.7.15):
+    resolution: {integrity: sha512-Uuqnk9YE9SsWeReYqK2alDI5YzciATE0r2SkA6iMAtuXvNTMNACJLJEXNXaEy94ECuBe4Sk6RzRU80kjdbIo1Q==}
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      vue: 2.7.15
+    dev: false
 
   /vue-eslint-parser@7.11.0(eslint@7.27.0):
     resolution: {integrity: sha512-qh3VhDLeh773wjgNTl7ss0VejY9bMMa0GoDG2fQVyDzRFdiU3L7fw74tWZDHNQXdZqxO3EveQroa9ct39D2nqg==}
@@ -9414,7 +9433,7 @@ packages:
         optional: true
     dependencies:
       vue: 2.7.15
-      vue-demi: 0.14.7(vue@2.7.15)
+      vue-demi: 0.14.8(vue@2.7.15)
     dev: false
 
   /vue-router@3.6.5(vue@2.7.15):

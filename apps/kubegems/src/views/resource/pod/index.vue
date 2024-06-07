@@ -81,7 +81,7 @@
               <BaseCopyItem :item="item.metadata.name" :max-width="podNameWidth" />
             </a>
           </v-flex>
-          <v-flex v-if="isTke(item) || isNvidia(item)" class="float-left">
+          <v-flex v-if="isTke(item) || isNvidia(item) || isHuawei(item)" class="float-left">
             <GpuTip :allocated="false" :item="item" />
           </v-flex>
           <v-flex
@@ -635,6 +635,12 @@
       isNvidia(item) {
         return item.spec.containers.some((c) => {
           return c?.resources?.limits && c?.resources?.limits['nvidia.com/gpu'];
+        });
+      },
+      isHuawei(item) {
+        return item.spec.containers.some((c) => {
+          const keys = Object.keys((c?.resources?.limits && c?.resources?.limits) || {});
+          return keys.some((key) => key.indexOf('huawei.com') > -1);
         });
       },
       getGpuLimit(item) {

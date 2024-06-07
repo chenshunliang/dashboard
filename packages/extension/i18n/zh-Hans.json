@@ -422,7 +422,7 @@
     },
     "pai": {
       "h_dashboard": "概览",
-      "h_task": "模型开发",
+      "h_task": "模型",
       "h_asset": "数据管理",
       "h_cost": "成本",
       "h_setting": "设置",
@@ -437,7 +437,7 @@
       "g_cluster_setting": "集群管理",
       "g_async_task": "异步任务",
       "g_deploy": "模型部署",
-      "g_develop": "模型开发",
+      "g_develop": "模型开发/训练",
 
       "dashboard": "资源概览",
       "train_task": "训练任务",

@@ -104,7 +104,7 @@
                 {{ item.workload.metadata.name }}
               </a>
             </v-flex>
-            <v-flex v-if="isTke(item) || isNvidia(item)" class="float-left gpu__icon">
+            <v-flex v-if="isTke(item) || isNvidia(item) || isHuawei(item)" class="float-left gpu__icon">
               <GpuTip :allocated="false" :item="item" />
             </v-flex>
             <v-flex
@@ -614,6 +614,12 @@
       isNvidia(item) {
         return item.spec.template.spec.containers.some((c) => {
           return c?.resources?.limits && c?.resources?.limits['nvidia.com/gpu'];
+        });
+      },
+      isHuawei(item) {
+        return item.spec.template.spec.containers.some((c) => {
+          const keys = Object.keys((c?.resources?.limits && c?.resources?.limits) || {});
+          return keys.some((key) => key.indexOf('huawei.com') > -1);
         });
       },
       getGpuLimit(item) {
